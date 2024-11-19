@@ -176,7 +176,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/background-blue.png
 
-#begin Images/explosion.png
+#begin images/explosion.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -186,7 +186,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/explosion.png
+/build:images/explosion.png
 
 #begin Images/laser-blue.png
 /importer:TextureImporter
@@ -224,7 +224,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/laser-yellow.png
 
-#begin Images/ship_player.png
+#begin images/ship-player.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -234,5 +234,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/ship_player.png;Images/ship-player.png
+/build:images/ship-player.png
 

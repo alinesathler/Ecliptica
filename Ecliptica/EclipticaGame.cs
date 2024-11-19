@@ -1,4 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿/* EclipticaGame.cs
+* Final Project
+* Revision History
+* Aline Sathler Delfino, 2024.11.18: Created, content, entities, and levels added.
+* Aline Sathler Delfino, 2024.11.19: Added animated sprites, sound effects, and background music.
+*/
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;

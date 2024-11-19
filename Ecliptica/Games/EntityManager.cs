@@ -47,7 +47,7 @@ namespace Ecliptica.Games
 
 			if (_isExploding)
 			{
-				_explosion.Update();
+				_explosion.Update(gametime);
 			}
 
 
@@ -166,8 +166,9 @@ namespace Ecliptica.Games
 				Sound.PlaySound(Sound.Explosion, volume * 4);
 			}
 
-			_explosion = new AnimatedSprite(Art.Explosion, 6, 6);
-			_animatedPosition = entity.Position;
+			_explosion = new AnimatedSprite(Art.Explosion, 5, 5, 0.05f);
+			_animatedPosition = new Vector2(entity.Position.X, entity.Position.Y);
+			_animatedPosition = entity.Position - entity.Size;
 			_isExploding = true;
 
 			// If the entity is an asteroid, add a new asteroid

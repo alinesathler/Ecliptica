@@ -8,24 +8,41 @@ namespace Ecliptica.Games
 		public Texture2D Texture { get; set; }
 		public int Rows { get; set; }
 		public int Columns { get; set; }
-		public int currentFrame;
-		public int totalFrames;
+		private int _currentFrame;
+		private int _totalFrames;
+		public float TimePerFrame;
+		private float _timer;
+		public bool isActive;
 
-		public AnimatedSprite(Texture2D texture, int rows, int columns)
+		public AnimatedSprite(Texture2D texture, int rows, int columns, float timePerFrame)
 		{
 			Texture = texture;
 			Rows = rows;
 			Columns = columns;
-			currentFrame = 0;
-			totalFrames = Rows * Columns;
+			_currentFrame = 0;
+			_totalFrames = Rows * Columns;
+			TimePerFrame = timePerFrame;
+			_timer = 0f;
+			isActive = true;
 		}
 
-		public void Update()
+		public void Update(GameTime gameTime)
 		{
-			currentFrame++;
-			if (currentFrame == totalFrames)
+			if (!isActive) return;
+
+			_timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
+			if (_timer >= TimePerFrame)
 			{
-				currentFrame = 0;
+				_timer -= TimePerFrame;
+				_currentFrame++;
+
+				// Deactivate the explosion when animation is complete
+				if (_currentFrame >= _totalFrames)
+				{
+					isActive = false;
+				}
 			}
 		}
 
@@ -33,13 +50,18 @@ namespace Ecliptica.Games
 		{
 			int width = Texture.Width / Columns;
 			int height = Texture.Height / Rows;
-			int row = currentFrame / Columns;
-			int column = currentFrame % Columns;
+			//int row = currentFrame / Columns;
+			//int column = currentFrame % Columns;
 
-			Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-			Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width, height);
+			//Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
+			//Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width, height);
 
-			spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+			int row = _currentFrame / (Texture.Width / width);
+			int column = _currentFrame % (Texture.Width / width);
+			Rectangle sourceRect = new Rectangle(column * width, row * width, width, height);
+
+			spriteBatch.Draw(Texture, location, sourceRect, Color.White);
+			//spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
 		}
 	}
 }
