@@ -1,27 +1,34 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Ecliptica.Arts;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Ecliptica.Games
 {
-	internal class Background
+    internal class Background
 	{
-		public static Texture2D BackgroundBlue { get; private set; }
-		public static Texture2D BackgroundStars { get; private set; }
+		private static Texture2D BackgroundSolid;
+		private static Texture2D BackgroundStars;
 
 		// Scrolling star background
 		private static float _starOffset = 0f;
 		private static float _starSpeed = -50f;
 
-		/// <summary>
-		/// Method to load the background images
-		/// </summary>
-		/// <param name="content"></param>
-		public static void Load(ContentManager content)
+		public static void Load(Texture2D backgroundSolid, Texture2D backgroundStars)
 		{
-			BackgroundBlue = content.Load<Texture2D>("Images/background-blue");
-			BackgroundStars = content.Load<Texture2D>("Images/background-stars");
+			BackgroundSolid = backgroundSolid;
+			BackgroundStars = backgroundStars;
 		}
+
+		///// <summary>
+		///// Method to load the background images
+		///// </summary>
+		///// <param name="content"></param>
+		//public static void Load(ContentManager content, Texture2D backgroundSolid, Texture2D backgroundStars)
+		//{
+		//	BackgroundSolid = backgroundSolid;
+		//	BackgroundStars = backgroundStars;
+		//}
 
 		/// <summary>
 		/// Method to update the background
@@ -46,7 +53,7 @@ namespace Ecliptica.Games
 
 			// Draw the static blue background
 			spriteBatch.Draw(
-				BackgroundBlue,
+				BackgroundSolid,
 				new Rectangle(0, 0, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height),
 				Color.White
 			);

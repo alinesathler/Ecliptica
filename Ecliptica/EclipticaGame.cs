@@ -2,20 +2,16 @@
 * Final Project
 * Revision History
 * Aline Sathler Delfino, 2024.11.18: Created, content, entities, and levels added.
-* Aline Sathler Delfino, 2024.11.19: Added animated sprites, sound effects, and background music.
+* Aline Sathler Delfino, 2024.11.19: Added animated sprites, sound effects, background music, and Menu Screen.
 */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
-using Microsoft.Xna.Framework.Media;
 using Ecliptica.Games;
-using static System.Net.Mime.MediaTypeNames;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Ecliptica.Levels;
+using Ecliptica.Arts;
 
 namespace Ecliptica
 {
@@ -32,8 +28,7 @@ namespace Ecliptica
         private SpriteBatch _spriteBatch;
 		private static KeyboardState _keyboardState;
 
-		//private Vector2 _velocity = new Vector2(1, 1);
-        private ShipPlayer _shipPlayer;
+		private ShipPlayer _shipPlayer;
 		private float _normalSpeed = 1.0f;
 		private float _turboSpeed = 5.0f;
 
@@ -41,12 +36,7 @@ namespace Ecliptica
 		private float _timeSinceLastShot = 0f;
 		private float _soundVolume = 0.25f;
 
-		//private Asteroid _asteroidRedSmall;
-		//private Asteroid _asteroidRedMedium;
-
 		private Platform _platform = Platform.Windows;
-
-		private SpriteFont _myFont;
 
         public EclipticaGame()
         {
@@ -106,15 +96,16 @@ namespace Ecliptica
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            Art.Load(Content);
-			Sound.Load(Content);
-			Background.Load(Content);
-			LevelManager.LoadLevels();
+			// TODO: use this.Content to load your game content here
+			Images.Load(Content, GraphicsDevice);
+			Sounds.Load(Content);
 			Fonts.Load(Content);
 
+			var maenuScreen = new MenuScreen(Images.BackgroundScreens, Images.BackgroundStars1, Fonts.FontGame, Sounds.MenuScreen);
+			ScreenManager.PushScreen(maenuScreen);
+
+			Fonts.Load(Content);
 			_shipPlayer = new ShipPlayer();
-			_myFont = Fonts.MyFont;
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -151,40 +142,40 @@ namespace Ecliptica
 				_timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 				// Moving the spaceship with the keyboard
-				if (_keyboardState.IsKeyDown(Keys.Left) && _shipPlayer.Position.X > _shipPlayer.GetImageSize()[0])
+				if (_keyboardState.IsKeyDown(Keys.Left) && _shipPlayer.Position.X > _shipPlayer.Size.X)
 				{
 					// Move faster if the left control key is pressed
-					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.X > _shipPlayer.GetImageSize()[0])
+					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.X > _shipPlayer.Size.X)
 					{
 						_shipPlayer.Position = new Vector2(_shipPlayer.Position.X - _turboSpeed, _shipPlayer.Position.Y);
 					}
 
 					_shipPlayer.Position = new Vector2(_shipPlayer.Position.X - _normalSpeed, _shipPlayer.Position.Y);
 				}
-				if (_keyboardState.IsKeyDown(Keys.Right) && _shipPlayer.Position.X < ScreenSize.X - _shipPlayer.GetImageSize()[0])
+				if (_keyboardState.IsKeyDown(Keys.Right) && _shipPlayer.Position.X < ScreenSize.X - _shipPlayer.Size.X)
 				{
 					// Move faster if the left control key is pressed
-					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.X < ScreenSize.X - _shipPlayer.GetImageSize()[0])
+					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.X < ScreenSize.X - _shipPlayer.Size.X)
 					{
 						_shipPlayer.Position = new Vector2(_shipPlayer.Position.X + _turboSpeed, _shipPlayer.Position.Y);
 					}
 
 					_shipPlayer.Position = new Vector2(_shipPlayer.Position.X + _normalSpeed, _shipPlayer.Position.Y);
 				}
-				if (_keyboardState.IsKeyDown(Keys.Up) && _shipPlayer.Position.Y > _shipPlayer.GetImageSize()[1])
+				if (_keyboardState.IsKeyDown(Keys.Up) && _shipPlayer.Position.Y > _shipPlayer.Size.Y)
 				{
 					// Move faster if the left control key is pressed
-					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.Y > _shipPlayer.GetImageSize()[1])
+					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.Y > _shipPlayer.Size.Y)
 					{
 						_shipPlayer.Position = new Vector2(_shipPlayer.Position.X, _shipPlayer.Position.Y - _turboSpeed);
 					}
 
 					_shipPlayer.Position = new Vector2(_shipPlayer.Position.X, _shipPlayer.Position.Y - _normalSpeed);
 				}
-				if (_keyboardState.IsKeyDown(Keys.Down) && _shipPlayer.Position.Y < ScreenSize.Y - _shipPlayer.GetImageSize()[1])
+				if (_keyboardState.IsKeyDown(Keys.Down) && _shipPlayer.Position.Y < ScreenSize.Y - _shipPlayer.Size.Y)
 				{
 					// Move faster if the left control key is pressed
-					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.Y < ScreenSize.Y - _shipPlayer.GetImageSize()[1])
+					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.Y < ScreenSize.Y - _shipPlayer.Size.Y)
 					{
 						_shipPlayer.Position = new Vector2(_shipPlayer.Position.X, _shipPlayer.Position.Y + _turboSpeed);
 					}
@@ -199,15 +190,8 @@ namespace Ecliptica
 					_timeSinceLastShot = 0f;
 				}
 
-				// Check if the level is completed
-				if (!LevelTransition.IsTransitioning && LevelManager.CurrentLevel.EnemyCount == EntityManager.GetNumberOfEnemiesDestroyedLevel())
-				{
-					LevelTransition.StartTransition();
-				}
-
-				LevelManager.UpdateCurrentLevel(gameTime);
-
 				_shipPlayer.Update(gameTime);
+				ScreenManager.Update(gameTime);
 				Background.Update(gameTime);
 				LevelTransition.UpdateTransition(gameTime);
 
@@ -215,26 +199,20 @@ namespace Ecliptica
 			}
 		}
 
-        protected override void Draw(GameTime gameTime)
-        {
+		protected override void Draw(GameTime gameTime)
+		{ 
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-            _spriteBatch.Begin();
+			//string message = $"Level {LevelManager.CurrentLevel.LevelNumber.ToString()}";
+
+			// TODO: Add your drawing code here
+			_spriteBatch.Begin();
 			Background.Draw(_spriteBatch, GraphicsDevice);
-			LevelManager.DrawCurrentLevel(_spriteBatch);
-			LevelTransition.DrawTransition(_spriteBatch);
+			ScreenManager.Draw(_spriteBatch);
 			_shipPlayer.Draw(_spriteBatch);
 			_spriteBatch.End();
 
             base.Draw(gameTime);
         }
-
-        private void AddGiftBoxes()
-		{
-			//_redGiftBox = new MovingEntity(Art.RedGiftBox, Vector2.Zero, _velocity);
-
-			//EntityManager.Add(_asteroidRedSmall);
-		}
 	}
 }

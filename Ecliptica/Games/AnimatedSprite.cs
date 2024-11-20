@@ -50,18 +50,12 @@ namespace Ecliptica.Games
 		{
 			int width = Texture.Width / Columns;
 			int height = Texture.Height / Rows;
-			//int row = currentFrame / Columns;
-			//int column = currentFrame % Columns;
-
-			//Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-			//Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width, height);
 
 			int row = _currentFrame / (Texture.Width / width);
 			int column = _currentFrame % (Texture.Width / width);
 			Rectangle sourceRect = new Rectangle(column * width, row * width, width, height);
 
 			spriteBatch.Draw(Texture, location, sourceRect, Color.White);
-			//spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
 		}
 	}
 }

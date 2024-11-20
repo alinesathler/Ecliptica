@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Ecliptica.Arts;
+using Ecliptica.Screens;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -21,7 +23,6 @@ namespace Ecliptica.Games
 
 		private static AnimatedSprite _explosion;
 		private static Vector2 _animatedPosition;
-		private static bool _isExploding = false;
 
 		/// <summary>
 		/// Method to add an entity to the list of entities
@@ -45,7 +46,7 @@ namespace Ecliptica.Games
 				entity.Update(gametime);
 			}
 
-			if (_isExploding)
+			if (_explosion != null && _explosion.isActive)
 			{
 				_explosion.Update(gametime);
 			}
@@ -85,7 +86,7 @@ namespace Ecliptica.Games
 					}
 
 					// If it's not a projectile, decrease the life of the ShipPlayer
-					ShipPlayer.Instance.Life--;
+					ShipPlayer.Instance.RemoveLife();
 
 					// Explode the entity if it collides with the ShipPlayer
 					ExplodeEntities(entities[i], volume);
@@ -158,18 +159,15 @@ namespace Ecliptica.Games
 
 			if (entity is ShipPlayer)
 			{
-				Sound.PlaySound(Sound.PlayerKilled, volume * 4);
-
-				KillPlayer();
+				Sounds.PlaySound(Sounds.PlayerKilled, volume * 4);
 			} else
 			{
-				Sound.PlaySound(Sound.Explosion, volume * 4);
+				Sounds.PlaySound(Sounds.Explosion, volume * 4);
 			}
 
-			_explosion = new AnimatedSprite(Art.Explosion, 5, 5, 0.05f);
+			_explosion = new AnimatedSprite(Images.Explosion, 5, 5, 0.05f);
 			_animatedPosition = new Vector2(entity.Position.X, entity.Position.Y);
 			_animatedPosition = entity.Position - entity.Size;
-			_isExploding = true;
 
 			// If the entity is an asteroid, add a new asteroid
 			//if (entity is Asteroid)
@@ -179,11 +177,18 @@ namespace Ecliptica.Games
 
 		}
 
-	/// <summary>
-	/// Method to kill the player
-	/// </summary>
-	private static void KillPlayer() {
+		/// <summary>
+		/// Method to kill the player
+		/// </summary>
+		private static void KillPlayer()
+		{
+			_explosion = new AnimatedSprite(Images.Explosion, 5, 5, 0.05f);
+			_animatedPosition = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y);
+			_animatedPosition = ShipPlayer.Instance.Position - ShipPlayer.Instance.Size;
+
 			ShipPlayer.Instance.IsActivee = false;
+
+			ScreenManager.ReplaceScreen(new GameOverScreen(Images.BackgroundGameOver, Images.BackgroundStars, Fonts.FontGame, Sounds.GameOver));
 		}
 
 		//public static IEnumerable<Entity> GetNearbyEntities(Vector2 position, float radius)
@@ -196,18 +201,23 @@ namespace Ecliptica.Games
 		/// </summary>
 		/// <param name="spriteBatch"></param>
 		public static void Draw(SpriteBatch spriteBatch)
-        {
-            foreach (var entity in entities)
-            {
-                if (entity.IsActivee)
-                {
-                    entity.Draw(spriteBatch);
-                }
-            }
+		{
+			foreach (var entity in entities)
+			{
+				if (entity.IsActivee)
+				{
+					entity.Draw(spriteBatch);
+				}
+			}
 
-			if (_isExploding)
+			if (_explosion != null && _explosion.isActive)
 			{
 				_explosion.Draw(spriteBatch, _animatedPosition);
+			}
+			
+			if (ShipPlayer.Instance.Life == 0 && _explosion != null && !_explosion.isActive)
+			{
+				KillPlayer();
 			}
 		}
 

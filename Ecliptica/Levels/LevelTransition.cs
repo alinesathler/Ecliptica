@@ -1,15 +1,16 @@
-﻿using Ecliptica.Games;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection.Metadata;
+using Ecliptica.Arts;
 
 namespace Ecliptica.Levels
 {
-	public static class LevelTransition
+    public static class LevelTransition
 	{
 		public static bool IsTransitioning { get; private set; }
 		public static float TransitionTime { get; private set; }
@@ -24,8 +25,8 @@ namespace Ecliptica.Levels
 				return;
 			IsTransitioning = true;
 			TransitionTime = 0f;
-			Sound.StopMusic();
-			Sound.PlayMusic(Sound.LevelComplete);
+			Sounds.StopMusic();
+			Sounds.PlayMusic(Sounds.LevelComplete);
 		}
 
 		/// <summary>
@@ -54,9 +55,8 @@ namespace Ecliptica.Levels
 			if (IsTransitioning)
 			{
 				float alpha = MathHelper.Clamp(TransitionTime / MaxTransitionTime, 0f, 1f);
-				//spriteBatch.Begin();
-				//spriteBatch.Draw(Art.WhiteTexture, new Rectangle(0, 0, EclipticaGame.ScreenSize.X, EclipticaGame.ScreenSize.Y), Color.Black * alpha);
-				//spriteBatch.End();
+
+				spriteBatch.Draw(Images.BackgroundLevelWin, new Rectangle(0, 0, (int)EclipticaGame.ScreenSize.X, (int)EclipticaGame.ScreenSize.Y), Color.White * alpha);
 			}
 		}
 	}

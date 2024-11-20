@@ -80,6 +80,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/File.spritefont;Fonts/MyFont.spritefont
 
+#begin Fonts/GameFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/GameFont.spritefont
+
 #begin Images/asteroid-blue-medium.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -152,6 +159,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/asteroid-red-small.png
 
+#begin Images/backgroud-stars-1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/backgroud-stars-1.png
+
 #begin Images/backgroud-stars.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -164,6 +183,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/backgroud-stars.png;Images/background-stars.png
 
+#begin Images/background-black.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/background-black.png
+
 #begin Images/background-blue.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -175,6 +206,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/background-blue.png
+
+#begin Images/background-game-over.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/background-game-over.png
+
+#begin Images/background-level-transition.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/background-level-transition.png
 
 #begin images/explosion.png
 /importer:TextureImporter
@@ -223,6 +278,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/laser-yellow.png
+
+#begin Images/life-sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/life-sheet.png
 
 #begin images/ship-player.png
 /importer:TextureImporter

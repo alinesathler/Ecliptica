@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Media;
+using Ecliptica.Arts;
 
 namespace Ecliptica.Levels
 {
-	public class Level
+    public class Level
 	{
 		public int LevelNumber { get; set; }
 		public int EnemyCount { get; set; } = 0;
@@ -18,12 +19,14 @@ namespace Ecliptica.Levels
 		public Song MusicTrack { get; set; }
 		public List<Entity> Enemies { get; set; }
 		private float _soundVolume = 0.25f;
+		private string _levelName;
 
 
 		public Level(int levelNumber)
 		{
 			LevelNumber = levelNumber;
 			Enemies = new List<Entity>();
+			_levelName = "Level " + levelNumber;
 		}
 
 		/// <summary>
@@ -31,7 +34,7 @@ namespace Ecliptica.Levels
 		/// </summary>
 		public void LoadLevel()
 		{
-			Sound.PlayMusic(MusicTrack);
+			Sounds.PlayMusic(MusicTrack);
 
 			EntityManager.Clear();
 
@@ -67,6 +70,7 @@ namespace Ecliptica.Levels
 		/// <param name="spriteBatch"></param>
 		public void Draw(SpriteBatch spriteBatch)
 		{
+			spriteBatch.DrawString(Fonts.FontGame, _levelName, new Vector2((EclipticaGame.ScreenSize.X - Fonts.FontGame.MeasureString(_levelName).X) / 2, 10), Color.White);
 			EntityManager.Draw(spriteBatch);
 		}
 
@@ -77,16 +81,16 @@ namespace Ecliptica.Levels
 		{
 			Vector2 projectileStartPosition = new Vector2(
 				shipPlayer.Position.X,
-				shipPlayer.Position.Y - shipPlayer.GetImageSize()[1]
+				shipPlayer.Position.Y - shipPlayer.Size.Y
 			);
 
 			Vector2 projectileVelocity = new Vector2(0, -10);
 
-			var newProjectile = new Projectile(Art.LaserYellow, projectileStartPosition, projectileVelocity);
+			var newProjectile = new Projectile(Images.LaserYellow, projectileStartPosition, projectileVelocity);
 
 			EntityManager.Add(newProjectile);
 
-			Sound.PlaySound(Sound.Shoot, _soundVolume);
+			Sounds.PlaySound(Sounds.Shoot, _soundVolume);
 		}
 	}
 
