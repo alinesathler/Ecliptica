@@ -1,4 +1,5 @@
 ﻿using Ecliptica.Arts;
+using Ecliptica.Levels;
 using Ecliptica.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -188,7 +189,9 @@ namespace Ecliptica.Games
 
 			ShipPlayer.Instance.IsActivee = false;
 
-			ScreenManager.ReplaceScreen(new GameOverScreen(Images.BackgroundGameOver, Images.BackgroundStars, Fonts.FontGame, Sounds.GameOver));
+			ScreenManager.ReplaceScreen(new GameOverScreen());
+
+			LevelManager.Clear();
 		}
 
 		//public static IEnumerable<Entity> GetNearbyEntities(Vector2 position, float radius)

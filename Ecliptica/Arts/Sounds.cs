@@ -30,13 +30,16 @@ namespace Ecliptica.Arts
         /// <param name="content"></param>
         public static void Load(ContentManager content)
         {
+            //Musics
+			TitleScreen = content.Load<Song>("Audio/sky-fire-title-screen");
 			MenuScreen = content.Load<Song>("Audio/brave-pilots-menu-screen");
 			MusicTheme = content.Load<Song>("Audio/rain-of-lasers-level-theme");
-            TitleScreen = content.Load<Song>("Audio/sky-fire-title-screen");
             GameOver = content.Load<Song>("Audio/defeated-game-over-tune");
             LevelComplete = content.Load<Song>("Audio/victory-tune");
             GameEnd = content.Load<Song>("Audio/epic-end");
-            Shoot = content.Load<SoundEffect>("Audio/sound-laser");
+
+			//Sound Effects
+			Shoot = content.Load<SoundEffect>("Audio/sound-laser");
             Explosion = content.Load<SoundEffect>("Audio/falling-hit");
             PlayerKilled = content.Load<SoundEffect>("Audio/arcade-retro-game-over");
         }

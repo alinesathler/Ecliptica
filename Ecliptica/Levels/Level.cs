@@ -77,11 +77,11 @@ namespace Ecliptica.Levels
 		/// <summary>
 		/// Method to fire a projectile
 		/// </summary>
-		public void FireProjectile(ShipPlayer shipPlayer)
+		public void FireProjectile()
 		{
 			Vector2 projectileStartPosition = new Vector2(
-				shipPlayer.Position.X,
-				shipPlayer.Position.Y - shipPlayer.Size.Y
+				ShipPlayer.Instance.Position.X,
+				ShipPlayer.Instance.Position.Y - ShipPlayer.Instance.Size.Y
 			);
 
 			Vector2 projectileVelocity = new Vector2(0, -10);

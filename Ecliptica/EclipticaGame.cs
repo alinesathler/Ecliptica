@@ -3,6 +3,7 @@
 * Revision History
 * Aline Sathler Delfino, 2024.11.18: Created, content, entities, and levels added.
 * Aline Sathler Delfino, 2024.11.19: Added animated sprites, sound effects, background music, and Menu Screen.
+* Aline Sathler Delfino, 2024.11.20: Added Buttons, Game Screen, Game Over Screen, Win Screen, and Level Transition Screen.
 */
 
 using Microsoft.Xna.Framework;
@@ -12,6 +13,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 using Ecliptica.Games;
 using Ecliptica.Levels;
 using Ecliptica.Arts;
+using Ecliptica.Screens;
 
 namespace Ecliptica
 {
@@ -27,10 +29,12 @@ namespace Ecliptica
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 		private static KeyboardState _keyboardState;
+		private Texture2D cursorTexture;
+		private Vector2 cursorOffset;
 
-		private ShipPlayer _shipPlayer;
-		private float _normalSpeed = 1.0f;
-		private float _turboSpeed = 5.0f;
+		//private ShipPlayer ShipPlayer.Instance;
+		//private float _normalSpeed = 1.0f;
+		//private float _turboSpeed = 5.0f;
 
 		private float _shootCooldown = 0.25f;
 		private float _timeSinceLastShot = 0f;
@@ -44,7 +48,7 @@ namespace Ecliptica
 
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            IsMouseVisible = false;
 
             //Screen size
             SetWindowSize();
@@ -59,14 +63,9 @@ namespace Ecliptica
 			_graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 
-			if (_platform == Platform.Android || _platform == Platform.iOS)
-			{
-				IsMouseVisible = false;
-			} else
+			if (_platform == Platform.Windows || _platform == Platform.Linux)
 			{
 				SetWindowSize();
-
-				IsMouseVisible = true;
 			}
 		}
 
@@ -101,12 +100,17 @@ namespace Ecliptica
 			Sounds.Load(Content);
 			Fonts.Load(Content);
 
-			var maenuScreen = new MenuScreen(Images.BackgroundScreens, Images.BackgroundStars1, Fonts.FontGame, Sounds.MenuScreen);
-			ScreenManager.PushScreen(maenuScreen);
+			//Change cursor
+			if (_platform == Platform.Windows || _platform == Platform.Linux)
+			{
+				cursorTexture = Images.Cursor;
+				cursorOffset = new Vector2(cursorTexture.Width / 2, 0);
+			}
+
+			ScreenManager.ReplaceScreen(new MenuScreen());
 
 			Fonts.Load(Content);
-			_shipPlayer = new ShipPlayer();
-		}
+		}       
 
 		protected override void Update(GameTime gameTime)
 		{
@@ -122,15 +126,20 @@ namespace Ecliptica
 					switch (gesture.GestureType)
 					{
 						case GestureType.Tap:
-							LevelManager.FireProjectile(_shipPlayer);
-							_timeSinceLastShot = 0f;
+							if(ShipPlayer.Instance != null)
+							{
+								LevelManager.FireProjectile();
+
+								_timeSinceLastShot = 0f;
+							}
 							break;
 						case GestureType.DoubleTap:
 							break;
 						case GestureType.Flick:
 							break;
 						case GestureType.FreeDrag:
-							_shipPlayer.Position = gesture.Position;
+							if (ShipPlayer.Instance != null)
+								ShipPlayer.Instance.Position = gesture.Position;
 							break;
 						default:
 							break;
@@ -138,59 +147,65 @@ namespace Ecliptica
 				}
 			} else if (_platform == Platform.Windows)
 			{
+				if (ShipPlayer.Instance != null)
+				{
+					GameScreen.Instance.MoveSpaceShip(gameTime);
+				}
+
 				_keyboardState = Keyboard.GetState();
-				_timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
+				//_timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-				// Moving the spaceship with the keyboard
-				if (_keyboardState.IsKeyDown(Keys.Left) && _shipPlayer.Position.X > _shipPlayer.Size.X)
-				{
-					// Move faster if the left control key is pressed
-					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.X > _shipPlayer.Size.X)
-					{
-						_shipPlayer.Position = new Vector2(_shipPlayer.Position.X - _turboSpeed, _shipPlayer.Position.Y);
-					}
+				//// Moving the spaceship with the keyboard
+				//if (_keyboardState.IsKeyDown(Keys.Left) && ShipPlayer.Instance.Position.X > ShipPlayer.Instance.Size.X)
+				//{
+				//	// Move faster if the left control key is pressed
+				//	if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.X > ShipPlayer.Instance.Size.X)
+				//	{
+				//		ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X - _turboSpeed, ShipPlayer.Instance.Position.Y);
+				//	}
 
-					_shipPlayer.Position = new Vector2(_shipPlayer.Position.X - _normalSpeed, _shipPlayer.Position.Y);
-				}
-				if (_keyboardState.IsKeyDown(Keys.Right) && _shipPlayer.Position.X < ScreenSize.X - _shipPlayer.Size.X)
-				{
-					// Move faster if the left control key is pressed
-					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.X < ScreenSize.X - _shipPlayer.Size.X)
-					{
-						_shipPlayer.Position = new Vector2(_shipPlayer.Position.X + _turboSpeed, _shipPlayer.Position.Y);
-					}
+				//	ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X - _normalSpeed, ShipPlayer.Instance.Position.Y);
+				//}
+				//if (_keyboardState.IsKeyDown(Keys.Right) && ShipPlayer.Instance.Position.X < ScreenSize.X - ShipPlayer.Instance.Size.X)
+				//{
+				//	// Move faster if the left control key is pressed
+				//	if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.X < ScreenSize.X - ShipPlayer.Instance.Size.X)
+				//	{
+				//		ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X + _turboSpeed, ShipPlayer.Instance.Position.Y);
+				//	}
 
-					_shipPlayer.Position = new Vector2(_shipPlayer.Position.X + _normalSpeed, _shipPlayer.Position.Y);
-				}
-				if (_keyboardState.IsKeyDown(Keys.Up) && _shipPlayer.Position.Y > _shipPlayer.Size.Y)
-				{
-					// Move faster if the left control key is pressed
-					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.Y > _shipPlayer.Size.Y)
-					{
-						_shipPlayer.Position = new Vector2(_shipPlayer.Position.X, _shipPlayer.Position.Y - _turboSpeed);
-					}
+				//	ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X + _normalSpeed, ShipPlayer.Instance.Position.Y);
+				//}
+				//if (_keyboardState.IsKeyDown(Keys.Up) && ShipPlayer.Instance.Position.Y > ShipPlayer.Instance.Size.Y)
+				//{
+				//	// Move faster if the left control key is pressed
+				//	if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.Y > ShipPlayer.Instance.Size.Y)
+				//	{
+				//		ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y - _turboSpeed);
+				//	}
 
-					_shipPlayer.Position = new Vector2(_shipPlayer.Position.X, _shipPlayer.Position.Y - _normalSpeed);
-				}
-				if (_keyboardState.IsKeyDown(Keys.Down) && _shipPlayer.Position.Y < ScreenSize.Y - _shipPlayer.Size.Y)
-				{
-					// Move faster if the left control key is pressed
-					if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && _shipPlayer.Position.Y < ScreenSize.Y - _shipPlayer.Size.Y)
-					{
-						_shipPlayer.Position = new Vector2(_shipPlayer.Position.X, _shipPlayer.Position.Y + _turboSpeed);
-					}
+				//	ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y - _normalSpeed);
+				//}
+				//if (_keyboardState.IsKeyDown(Keys.Down) && ShipPlayer.Instance.Position.Y < ScreenSize.Y - ShipPlayer.Instance.Size.Y)
+				//{
+				//	// Move faster if the left control key is pressed
+				//	if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.Y < ScreenSize.Y - ShipPlayer.Instance.Size.Y)
+				//	{
+				//		ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y + _turboSpeed);
+				//	}
 
-					_shipPlayer.Position = new Vector2(_shipPlayer.Position.X, _shipPlayer.Position.Y + _normalSpeed);
-				}
+				//	ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y + _normalSpeed);
+				//}
 
 				// Spaceship shooting
-				if (_keyboardState.IsKeyDown(Keys.Space) && _timeSinceLastShot >= _shootCooldown)
+				_timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+				if (_keyboardState.IsKeyDown(Keys.Space) && _timeSinceLastShot >= _shootCooldown && ShipPlayer.Instance != null)
 				{
-					LevelManager.FireProjectile(_shipPlayer);
+					LevelManager.FireProjectile();
 					_timeSinceLastShot = 0f;
 				}
 
-				_shipPlayer.Update(gameTime);
 				ScreenManager.Update(gameTime);
 				Background.Update(gameTime);
 				LevelTransition.UpdateTransition(gameTime);
@@ -208,11 +223,18 @@ namespace Ecliptica
 			// TODO: Add your drawing code here
 			_spriteBatch.Begin();
 			Background.Draw(_spriteBatch, GraphicsDevice);
+
 			ScreenManager.Draw(_spriteBatch);
-			_shipPlayer.Draw(_spriteBatch);
+
+
+			//Cursor update
+			MouseState mouseState = Mouse.GetState();
+			Vector2 cursorPosition = new Vector2(mouseState.X, mouseState.Y) - cursorOffset;
+			_spriteBatch.Draw(cursorTexture, cursorPosition, Color.White);
+
 			_spriteBatch.End();
 
-            base.Draw(gameTime);
+			base.Draw(gameTime);
         }
 	}
 }

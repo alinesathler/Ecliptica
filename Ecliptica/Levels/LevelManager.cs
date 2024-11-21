@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Ecliptica.Games;
 using Ecliptica.Arts;
 using System.Reflection.Metadata;
+using Ecliptica.Screens;
 
 namespace Ecliptica.Levels
 {
@@ -42,6 +43,13 @@ namespace Ecliptica.Levels
 			// Define and add levels here
 			var level1 = new Level(1);
 			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
 			level1.MusicTrack = Sounds.MusicTheme;
 			levels.Add(level1);
 
@@ -51,7 +59,7 @@ namespace Ecliptica.Levels
 			level2.AddAsteroid(new Asteroid(Images.AsteroidRedBig, EclipticaGame.ScreenSize, _velocityLevel1, _largeLife));
 			level2.AddAsteroid(new Asteroid(Images.AsteroidRedBig, EclipticaGame.ScreenSize, _velocityLevel1, _largeLife));
 			level2.MusicTrack = Sounds.MusicTheme;
-			levels.Add(level2);
+			//levels.Add(level2);
 
 
 			// Set the first level as the current level
@@ -92,25 +100,23 @@ namespace Ecliptica.Levels
 				CurrentLevel.LoadLevel();
 			} else
 			{
-				// End the game if all levels are completed
 				CurrentLevel = null;
-				// Handle game over here, if necessary
+
+				ScreenManager.ReplaceScreen(new WinScreen());
 			}
 		}
 
-		public static void FireProjectile(ShipPlayer shipPlayer)
+		public static void FireProjectile()
 		{
-			CurrentLevel?.FireProjectile(shipPlayer);
+			CurrentLevel?.FireProjectile();
 		}
 
-		///// <summary>
-		///// Method to reset the levels
-		///// </summary>
-		//public static void ResetLevels()
-		//{
-		//	CurrentLevelIndex = 0;
-		//	LoadCurrentLevel();
-		//}
+		public static void Clear()
+		{
+			CurrentLevel = null;
+			levels.Clear();
+			currentLevelIndex = 0;
+		}
 	}
 
 }

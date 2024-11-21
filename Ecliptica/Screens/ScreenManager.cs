@@ -1,7 +1,5 @@
-﻿using Ecliptica.Arts;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 namespace Ecliptica.Games
@@ -14,30 +12,27 @@ namespace Ecliptica.Games
 		static ScreenManager()
 		{
 			_screenStack = new Stack<Screen>();
-			//_spriteBatch = new SpriteBatch(GraphicsDevice);
 		}
 
 		public static void PushScreen(Screen screen)
 		{
-			if (_screenStack.Count > 0)
-			{
-				Sounds.StopMusic();
-			}
-
 			_screenStack.Push(screen);
-			screen.PlayMusic();
+
+			screen.Load(false);
 		}
 
-		public static void PopScreen()
+		public static void PopScreen(int screensToPop = 1)
 		{
-			if (_screenStack.Count > 0)
+			for (int i = 0; i < screensToPop; i++)
 			{
-				Screen screen = _screenStack.Pop();
-				Sounds.StopMusic();
-
 				if (_screenStack.Count > 0)
 				{
-					_screenStack.Peek().PlayMusic();
+					Screen screen = _screenStack.Pop();
+
+					if (_screenStack.Count > 0)
+					{
+						_screenStack.Peek().Load(false);
+					}
 				}
 			}
 		}
@@ -48,9 +43,10 @@ namespace Ecliptica.Games
 			{
 				_screenStack.Pop();
 			}
+
 			_screenStack.Push(screen);
 
-			screen.PlayMusic();
+			screen.Load(true);
 		}
 
 		public static void Update(GameTime gameTime)
@@ -68,5 +64,7 @@ namespace Ecliptica.Games
 				_screenStack.Peek().Draw(spriteBatch);
 			}
 		}
+
+		public static Screen CurrentScreen() => _screenStack.Count > 0 ? _screenStack.Peek() : null;
 	}
 }

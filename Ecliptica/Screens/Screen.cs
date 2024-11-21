@@ -1,51 +1,63 @@
 ﻿using Ecliptica.Arts;
+using Ecliptica.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Collections.Generic;
 
 namespace Ecliptica.Games
 {
 	public abstract class Screen
 	{
-		protected Song Music;
-		protected SpriteFont Font;
+		internal Song Music;
+		internal SpriteFont Font;
+		internal Texture2D BackgroundSolid;
+		internal Texture2D BackgroundStars;
+		internal float DefaultScale;
+		internal float HoverScale;
+		internal Color DefaultColor;
+		internal Color HoverColor;
+		internal int ButtonWidth;
+		internal int ButtonHeight;
 
-		/// <summary>
-		/// Contructor for a screen
-		/// </summary>
-		/// <param name="backgroundTexture"></param>
-		/// <param name="backgroundMusic"></param>
-		/// <param name="font"></param>
-		protected Screen(Texture2D backgroundSolid, Texture2D backgroundStars, Song backgroundMusic, SpriteFont font)
+		internal List<Button> Buttons = new List<Button>();
+
+		public void Load(bool isLoadMusic)
 		{
-			Background.Load(backgroundSolid, backgroundStars);
-
-			Music = backgroundMusic;
-			Font = font;
-		}
-
-		/// <summary>
-		/// Method to play the music
-		/// </summary>
-		public void PlayMusic()
-		{
-			if (Music != null)
+			// Choose to load the music
+			if (isLoadMusic)
 			{
-				Sounds.StopMusic();
-				Sounds.PlayMusic(Music);
+				if (Music != null)
+				{
+					Sounds.StopMusic();
+					Sounds.PlayMusic(Music);
+				}
+			}
+
+			if (BackgroundSolid != null && BackgroundStars != null)
+			{
+				Background.Load(BackgroundSolid, BackgroundStars);
 			}
 		}
 
-		/// <summary>
-		/// Abstract method to update the screen
-		/// </summary>
-		/// <param name="gameTime"></param>
-		public abstract void Update(GameTime gameTime);
+		public virtual void Update(GameTime gameTime)
+		{
+			MouseState mouseState = Mouse.GetState();
 
-		/// <summary>
-		/// Abstract method to draw the screen
-		/// </summary>
-		/// <param name="spriteBatch"></param>
-		public abstract void Draw(SpriteBatch spriteBatch);
+			foreach (var button in Buttons)
+			{
+				button.Update(mouseState);
+			}
+		}
+
+		public virtual void Draw(SpriteBatch spriteBatch)
+		{
+			foreach (var button in Buttons)
+			{
+				button.Draw(spriteBatch);
+			}
+		}
 	}
 }
+

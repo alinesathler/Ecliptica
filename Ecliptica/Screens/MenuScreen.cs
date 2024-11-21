@@ -4,74 +4,148 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Ecliptica.Games
 {
 	public class MenuScreen : Screen
 	{
-		private string _startButtonText = "Start Game";
 		private Rectangle _startButtonRect;
-		private Vector2 _startButtonCenter;
-		float _fontScale;
+		private Button _startButton;
 
-		public MenuScreen(Texture2D backgroundSolid, Texture2D backgroundStars, SpriteFont font, Song backgroundMusic)
-			: base(backgroundSolid, backgroundStars, backgroundMusic, font)
+		private Rectangle _loadButtonRect;
+		private Button _loadButton;
+
+		private Rectangle _scoresButtonRect;
+		private Button _scoresButton;
+
+		private Rectangle _tutorialButtonRect;
+		private Button _tutorialButton;
+
+		private Rectangle _aboutButtonRect;
+		private Button _aboutButton;
+
+		private Rectangle _exitButtonRect;
+		private Button _exitButton;
+
+		public MenuScreen()
 		{
-			int buttonWidth = 450;
-			int buttonHeight = 75;
+			Music = Sounds.MenuScreen;
+			BackgroundSolid = Images.BackgroundScreens;
+			BackgroundStars = Images.BackgroundStars1;
+			Font = Fonts.FontGame;
+			DefaultScale = 1.0f;
+			HoverScale = 1.2f;
+			DefaultColor = Color.White;
+			HoverColor = Color.Yellow;
+			ButtonWidth = 450;
+			ButtonHeight = 50;
+			AnimatedSprite _explosion;
+			Vector2 _animatedPosition;
 
-			_fontScale = 1.0f;
 
+			// Start button
 			_startButtonRect = new Rectangle(
-				((int)EclipticaGame.ScreenSize.X - buttonWidth) / 2,
-				((int)EclipticaGame.ScreenSize.Y - buttonHeight) / 2,
-				buttonWidth,
-				buttonHeight);
+				((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2,
+				((int)EclipticaGame.ScreenSize.Y) / 4,
+				ButtonWidth,
+				ButtonHeight);
 
-			_startButtonCenter = new Vector2(
-				_startButtonRect.X + _startButtonRect.Width / 2,
-				_startButtonRect.Y + _startButtonRect.Height / 2);
-		}
+			_startButton = new Button(
+				"Start Game",
+				_startButtonRect,
+				Font,
+				DefaultScale,
+				HoverScale,
+				DefaultColor,
+				HoverColor,
+				() => ScreenManager.ReplaceScreen(new GameScreen()));
 
-		public override void Update(GameTime gameTime)
-		{
-			MouseState mouseState = Mouse.GetState();
-			Point mousePosition = mouseState.Position;
+			Buttons.Add(_startButton);
 
-			if (_startButtonRect.Contains(mousePosition))
-			{
+			// Load button
+			_loadButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth, ButtonHeight);
 
-				if (mouseState.LeftButton == ButtonState.Pressed)
-				{
-					ScreenManager.ReplaceScreen(new GameScreen(
-						Images.BackgroundBlue,
-						Images.BackgroundStars,
-						Fonts.FontGame,
-						Sounds.MusicTheme));
-				}
+			_loadButton = new Button(
+				"Load Game",
+				_loadButtonRect,
+				Font,
+				DefaultScale,
+				HoverScale,
+				DefaultColor,
+				HoverColor,
+				() => ScreenManager.PushScreen(new LoadScreen())
+			);
 
-				_fontScale = 1.2f;
-			} else
-			{
-				_fontScale = 1.0f;
-			}
-		}
+			Buttons.Add(_loadButton);
 
-		public override void Draw(SpriteBatch spriteBatch)
-		{
-			Vector2 textSize = Font.MeasureString(_startButtonText);
-			Vector2 origin = textSize / 2;
+			// Scores button
+			_scoresButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth, ButtonHeight);
 
-			spriteBatch.DrawString(
-			Font,
-			_startButtonText,
-			_startButtonCenter,
-			Color.White,
-			0f,
-			origin,
-			_fontScale,
-			SpriteEffects.None,
-			0f);
+			_scoresButton = new Button(
+				"High Scores",
+				_scoresButtonRect,
+				Font,
+				DefaultScale,
+				HoverScale,
+				DefaultColor,
+				HoverColor,
+				() => ScreenManager.PushScreen(new ScoresScreen())
+			);
+
+			Buttons.Add(_scoresButton);
+
+			// Tutorial button
+			_tutorialButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth, ButtonHeight);
+
+			_tutorialButton = new Button(
+				"Tutorial",
+				_tutorialButtonRect,
+				Font,
+				DefaultScale,
+				HoverScale,
+				DefaultColor,
+				HoverColor,
+				() => ScreenManager.PushScreen(new TutorialScreen())
+			);
+
+			Buttons.Add(_tutorialButton);
+
+			// About button
+			_aboutButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth, ButtonHeight);
+
+			_aboutButton = new Button(
+				"About",
+				_aboutButtonRect,
+				Font,
+				DefaultScale,
+				HoverScale,
+				DefaultColor,
+				HoverColor,
+				() => ScreenManager.PushScreen(new AboutScreen())
+			);
+
+			Buttons.Add(_aboutButton);
+
+			// Exit button
+			_exitButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth, ButtonHeight);
+
+			_exitButton = new Button(
+				"Exit",
+				_exitButtonRect,
+				Font,
+				DefaultScale,
+				HoverScale,
+				DefaultColor,
+				HoverColor,
+				() => EclipticaGame.Instance.Exit()
+			);
+
+			Buttons.Add(_exitButton);
+
+			_explosion = new AnimatedSprite(Images.FireworksCrystalBlue, 1, 60, 0.05f);
+			_animatedPosition = new Vector2(50, 50);
 		}
 	}
 }

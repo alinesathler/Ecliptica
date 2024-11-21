@@ -41,6 +41,7 @@ namespace Ecliptica.Levels
 				if (TransitionTime >= MaxTransitionTime)
 				{
 					IsTransitioning = false;
+
 					LevelManager.NextLevel();
 				}
 			}

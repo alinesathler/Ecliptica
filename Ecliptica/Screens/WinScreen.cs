@@ -1,10 +1,10 @@
 ﻿using Ecliptica.Arts;
-using Ecliptica.Screens;
+using Ecliptica.Games;
 using Microsoft.Xna.Framework;
 
-namespace Ecliptica.Games
+namespace Ecliptica.Screens
 {
-	public class GameOverScreen : Screen
+	internal class WinScreen : Screen
 	{
 		private Rectangle _restartButtonRect;
 		private Button _restartButton;
@@ -12,17 +12,17 @@ namespace Ecliptica.Games
 		private Rectangle _mainMenuButtonRect;
 		private Button _mainMenuButton;
 
-		private Rectangle _scoresRect;
-		private Button _scoresButton;
+		private Rectangle _scoreButtonRect;
+		private Button _scoreButton;
 
 		private Rectangle _exitButtonRect;
 		private Button _exitButton;
 
-		public GameOverScreen()
+		public WinScreen()
 		{
-			Music = Sounds.GameOver;
-			BackgroundSolid = Images.BackgroundGameOver;
-			BackgroundStars = Images.BackgroundStars;
+			Music = Sounds.GameEnd;
+			BackgroundSolid = Images.BackgroundYouWin;
+			BackgroundStars = Images.BackgroundStars1;
 			Font = Fonts.FontGame;
 			DefaultScale = 1.0f;
 			HoverScale = 1.2f;
@@ -32,7 +32,8 @@ namespace Ecliptica.Games
 			ButtonHeight = 50;
 
 			// Restart button
-			_restartButtonRect = new Rectangle(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2,
+			_restartButtonRect = new Rectangle(
+				((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2,
 				(int)EclipticaGame.ScreenSize.Y / 2 + ButtonHeight,
 				ButtonWidth,
 				ButtonHeight);
@@ -51,7 +52,10 @@ namespace Ecliptica.Games
 			Buttons.Add(_restartButton);
 
 			// Main Menu button
-			_mainMenuButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth, ButtonHeight);
+			_mainMenuButtonRect = new Rectangle
+				(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count,
+				ButtonWidth,
+				ButtonHeight);
 
 			_mainMenuButton = new Button(
 				"Main Menu",
@@ -67,39 +71,25 @@ namespace Ecliptica.Games
 			Buttons.Add(_mainMenuButton);
 
 			// Scores button
-			_scoresRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth, ButtonHeight);
+			_scoreButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth,
+				ButtonHeight);
 
-			_scoresButton = new Button(
+			_scoreButton = new Button(
 				"High Scores",
-				_scoresRect,
+				_scoreButtonRect,
 				Font,
 				DefaultScale,
 				HoverScale,
 				DefaultColor,
 				HoverColor,
 				() => ScreenManager.PushScreen(new ScoresScreen())
-				);
+			);
 
-			Buttons.Add(_scoresButton);
-
-			// Scores button
-			_scoresRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth, ButtonHeight);
-
-			_scoresButton = new Button(
-				"High Scores",
-				_scoresRect,
-				Font,
-				DefaultScale,
-				HoverScale,
-				DefaultColor,
-				HoverColor,
-				() => ScreenManager.PushScreen(new ScoresScreen())
-				);
-
-			Buttons.Add(_scoresButton);
+			Buttons.Add(_scoreButton);
 
 			// Exit button
-			_exitButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth, ButtonHeight);
+			_exitButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth,
+				ButtonHeight);
 
 			_exitButton = new Button(
 				"Exit",
