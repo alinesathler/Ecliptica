@@ -1,11 +1,7 @@
 ﻿using Ecliptica.Games;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Media;
 using Ecliptica.Arts;
 
@@ -15,7 +11,8 @@ namespace Ecliptica.Levels
 	{
 		public int LevelNumber { get; set; }
 		public int EnemyCount { get; set; } = 0;
-		public string BackgroundImage { get; set; }
+		public Texture2D BackgroundSolid { get; set; }
+		public Texture2D BackgroundStars { get; set; }
 		public Song MusicTrack { get; set; }
 		public List<Entity> Enemies { get; set; }
 		private float _soundVolume = 0.25f;
@@ -27,6 +24,8 @@ namespace Ecliptica.Levels
 			LevelNumber = levelNumber;
 			Enemies = new List<Entity>();
 			_levelName = "Level " + levelNumber;
+			BackgroundSolid = Images.BackgroundBlue;
+			BackgroundStars = Images.BackgroundStars;
 		}
 
 		/// <summary>
@@ -35,6 +34,8 @@ namespace Ecliptica.Levels
 		public void LoadLevel()
 		{
 			Sounds.PlayMusic(MusicTrack);
+
+			Background.Load(BackgroundSolid, BackgroundStars);
 
 			EntityManager.Clear();
 
@@ -53,6 +54,11 @@ namespace Ecliptica.Levels
 			Enemies.Add(asteroid);
 
 			EnemyCount++;
+		}
+
+		public bool IsLevelComplete()
+		{
+			return EnemyCount == EntityManager.GetNumberOfEnemiesDestroyedLevel();
 		}
 
 		/// <summary>

@@ -6,7 +6,8 @@ namespace Ecliptica.Arts
 {
     public static class Images
     {
-        public static Texture2D BackgroundBlue { get; set; }
+		public static Texture2D BackgroundTitle { get; set; }
+		public static Texture2D BackgroundBlue { get; set; }
         public static Texture2D BackgroundStars { get; set; }
         public static Texture2D BackgroundStars1 { get; set; }
 		public static Texture2D BackgroundScreens { get; set; }
@@ -15,6 +16,8 @@ namespace Ecliptica.Arts
         public static Texture2D BackgroundYouWin { get; set; }
 
 	    public static Texture2D Cursor { get; set; }
+
+		public static Texture2D Ecliptica { get; set; }
 
 		public static Texture2D AsteroidRedSmall { get; set; }
         public static Texture2D AsteroidRedMedium { get; set; }
@@ -43,7 +46,8 @@ namespace Ecliptica.Arts
 
 		public static void Load(ContentManager content, GraphicsDevice graphicsDevice)
         {
-            BackgroundBlue = content.Load<Texture2D>("Images/background-blue");
+			BackgroundTitle = content.Load<Texture2D>("Images/backgroundTitlePage");
+			BackgroundBlue = content.Load<Texture2D>("Images/background-blue");
             BackgroundStars = content.Load<Texture2D>("Images/background-stars");
 			BackgroundStars1 = content.Load<Texture2D>("Images/backgroud-stars-1");
 			BackgroundScreens = content.Load<Texture2D>("Images/background-black");
@@ -52,6 +56,8 @@ namespace Ecliptica.Arts
 			BackgroundYouWin = content.Load<Texture2D>("Images/background-you-win");
 
 			Cursor = content.Load<Texture2D>("Images/mouse-rocket");
+
+			Ecliptica = content.Load<Texture2D>("Images/Ecliptica");
 
 			AsteroidRedSmall = content.Load<Texture2D>("Images/asteroid-red-small");
             AsteroidRedMedium = content.Load<Texture2D>("Images/asteroid-red-medium");

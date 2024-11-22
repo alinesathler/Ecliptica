@@ -20,6 +20,8 @@ namespace Ecliptica.Screens
 		{
 			Instance = this;
 
+			LevelManager.Clear();
+
 			LevelManager.LoadLevels();
 
 			_shipPlayer = new ShipPlayer();
@@ -28,9 +30,15 @@ namespace Ecliptica.Screens
 		public override void Update(GameTime gameTime)
 		{
 			// Check if the level is completed
-			if (!LevelTransition.IsTransitioning && LevelManager.CurrentLevel.EnemyCount == EntityManager.GetNumberOfEnemiesDestroyedLevel())
+			if (!LevelTransition.IsTransitioning && LevelManager.CurrentLevel?.IsLevelComplete() == true)
 			{
-				LevelTransition.StartTransition();
+				if (!LevelManager.isLastLevel())
+				{
+					LevelTransition.StartTransition();
+				} else
+				{
+					ScreenManager.ReplaceScreen(new WinScreen());
+				}
 			}
 
 			LevelManager.UpdateCurrentLevel(gameTime);

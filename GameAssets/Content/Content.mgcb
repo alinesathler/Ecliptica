@@ -243,6 +243,30 @@
 /processorParam:TextureFormat=Color
 /build:Images/background-you-win.PNG
 
+#begin images/backgroundTitlePage.PNG
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:images/backgroundTitlePage.PNG
+
+#begin Images/Ecliptica.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Ecliptica.png
+
 #begin images/explosion-crystals-blue-sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor

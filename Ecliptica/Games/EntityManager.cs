@@ -167,7 +167,6 @@ namespace Ecliptica.Games
 			}
 
 			_explosion = new AnimatedSprite(Images.Explosion, 5, 5, 0.05f);
-			_animatedPosition = new Vector2(entity.Position.X, entity.Position.Y);
 			_animatedPosition = entity.Position - entity.Size;
 
 			// If the entity is an asteroid, add a new asteroid

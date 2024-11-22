@@ -4,6 +4,7 @@
 * Aline Sathler Delfino, 2024.11.18: Created, content, entities, and levels added.
 * Aline Sathler Delfino, 2024.11.19: Added animated sprites, sound effects, background music, and Menu Screen.
 * Aline Sathler Delfino, 2024.11.20: Added Buttons, Game Screen, Game Over Screen, Win Screen, and Level Transition Screen.
+* Aline Sathler Delfino, 2024.11.21: Added Scores Screen, Title Screen, and About Screen. Fireworks added to the Win Screen. Fixed scrolling background. 
 */
 
 using Microsoft.Xna.Framework;
@@ -32,17 +33,15 @@ namespace Ecliptica
 		private Texture2D cursorTexture;
 		private Vector2 cursorOffset;
 
-		//private ShipPlayer ShipPlayer.Instance;
-		//private float _normalSpeed = 1.0f;
-		//private float _turboSpeed = 5.0f;
-
 		private float _shootCooldown = 0.25f;
 		private float _timeSinceLastShot = 0f;
 		private float _soundVolume = 0.25f;
 
 		private Platform _platform = Platform.Windows;
 
-        public EclipticaGame()
+		public static string PlayerName { get; set; } = "";
+
+		public EclipticaGame()
         {
             Instance = this;
 
@@ -107,7 +106,7 @@ namespace Ecliptica
 				cursorOffset = new Vector2(cursorTexture.Width / 2, 0);
 			}
 
-			ScreenManager.ReplaceScreen(new MenuScreen());
+			ScreenManager.ReplaceScreen(new TitleScreen());
 
 			Fonts.Load(Content);
 		}       
@@ -153,50 +152,7 @@ namespace Ecliptica
 				}
 
 				_keyboardState = Keyboard.GetState();
-				//_timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-				//// Moving the spaceship with the keyboard
-				//if (_keyboardState.IsKeyDown(Keys.Left) && ShipPlayer.Instance.Position.X > ShipPlayer.Instance.Size.X)
-				//{
-				//	// Move faster if the left control key is pressed
-				//	if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.X > ShipPlayer.Instance.Size.X)
-				//	{
-				//		ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X - _turboSpeed, ShipPlayer.Instance.Position.Y);
-				//	}
-
-				//	ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X - _normalSpeed, ShipPlayer.Instance.Position.Y);
-				//}
-				//if (_keyboardState.IsKeyDown(Keys.Right) && ShipPlayer.Instance.Position.X < ScreenSize.X - ShipPlayer.Instance.Size.X)
-				//{
-				//	// Move faster if the left control key is pressed
-				//	if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.X < ScreenSize.X - ShipPlayer.Instance.Size.X)
-				//	{
-				//		ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X + _turboSpeed, ShipPlayer.Instance.Position.Y);
-				//	}
-
-				//	ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X + _normalSpeed, ShipPlayer.Instance.Position.Y);
-				//}
-				//if (_keyboardState.IsKeyDown(Keys.Up) && ShipPlayer.Instance.Position.Y > ShipPlayer.Instance.Size.Y)
-				//{
-				//	// Move faster if the left control key is pressed
-				//	if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.Y > ShipPlayer.Instance.Size.Y)
-				//	{
-				//		ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y - _turboSpeed);
-				//	}
-
-				//	ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y - _normalSpeed);
-				//}
-				//if (_keyboardState.IsKeyDown(Keys.Down) && ShipPlayer.Instance.Position.Y < ScreenSize.Y - ShipPlayer.Instance.Size.Y)
-				//{
-				//	// Move faster if the left control key is pressed
-				//	if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.Y < ScreenSize.Y - ShipPlayer.Instance.Size.Y)
-				//	{
-				//		ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y + _turboSpeed);
-				//	}
-
-				//	ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y + _normalSpeed);
-				//}
-
+				
 				// Spaceship shooting
 				_timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -217,8 +173,6 @@ namespace Ecliptica
 		protected override void Draw(GameTime gameTime)
 		{ 
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-			//string message = $"Level {LevelManager.CurrentLevel.LevelNumber.ToString()}";
 
 			// TODO: Add your drawing code here
 			_spriteBatch.Begin();

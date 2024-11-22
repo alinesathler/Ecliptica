@@ -14,11 +14,13 @@ namespace Ecliptica.Arts
     {
         public static SpriteFont FontArial { get; private set; }
         public static SpriteFont FontGame { get; private set; }
+        //public static SpriteFont FontTitle { get; private set; }
 
-        public static void Load(ContentManager content)
+		public static void Load(ContentManager content)
         {
 			FontArial = content.Load<SpriteFont>("Fonts/MyFont");
 			FontGame = content.Load<SpriteFont>("Fonts/GameFont");
+			//FontTitle = content.Load<SpriteFont>("Fonts/Title");
 		}
     }
 }

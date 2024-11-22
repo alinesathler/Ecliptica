@@ -11,6 +11,8 @@ namespace Ecliptica.Games
 {
 	public class MenuScreen : Screen
 	{
+		private string playerName;
+
 		private Rectangle _startButtonRect;
 		private Button _startButton;
 
@@ -41,9 +43,6 @@ namespace Ecliptica.Games
 			HoverColor = Color.Yellow;
 			ButtonWidth = 450;
 			ButtonHeight = 50;
-			AnimatedSprite _explosion;
-			Vector2 _animatedPosition;
-
 
 			// Start button
 			_startButtonRect = new Rectangle(
@@ -143,9 +142,7 @@ namespace Ecliptica.Games
 			);
 
 			Buttons.Add(_exitButton);
-
-			_explosion = new AnimatedSprite(Images.FireworksCrystalBlue, 1, 60, 0.05f);
-			_animatedPosition = new Vector2(50, 50);
+			this.playerName = playerName;
 		}
 	}
 }

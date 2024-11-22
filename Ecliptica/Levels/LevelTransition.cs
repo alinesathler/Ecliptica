@@ -38,6 +38,7 @@ namespace Ecliptica.Levels
 			if (IsTransitioning)
 			{
 				TransitionTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
 				if (TransitionTime >= MaxTransitionTime)
 				{
 					IsTransitioning = false;

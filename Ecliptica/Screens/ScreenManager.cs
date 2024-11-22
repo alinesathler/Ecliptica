@@ -21,20 +21,19 @@ namespace Ecliptica.Games
 			screen.Load(false);
 		}
 
-		public static void PopScreen(int screensToPop = 1)
+		public static void PopScreen()
 		{
-			for (int i = 0; i < screensToPop; i++)
+
+			if (_screenStack.Count > 0)
 			{
+				Screen screen = _screenStack.Pop();
+
 				if (_screenStack.Count > 0)
 				{
-					Screen screen = _screenStack.Pop();
-
-					if (_screenStack.Count > 0)
-					{
-						_screenStack.Peek().Load(false);
-					}
+					_screenStack.Peek().Load(false);
 				}
 			}
+
 		}
 
 		public static void ReplaceScreen(Screen screen)

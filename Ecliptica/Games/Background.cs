@@ -20,16 +20,6 @@ namespace Ecliptica.Games
 			BackgroundStars = backgroundStars;
 		}
 
-		///// <summary>
-		///// Method to load the background images
-		///// </summary>
-		///// <param name="content"></param>
-		//public static void Load(ContentManager content, Texture2D backgroundSolid, Texture2D backgroundStars)
-		//{
-		//	BackgroundSolid = backgroundSolid;
-		//	BackgroundStars = backgroundStars;
-		//}
-
 		/// <summary>
 		/// Method to update the background
 		/// </summary>
@@ -39,7 +29,16 @@ namespace Ecliptica.Games
 			// Update star offset for scrolling effect
 			_starOffset += (float)gameTime.ElapsedGameTime.TotalSeconds * _starSpeed;
 			if (_starOffset > BackgroundStars.Height)
+			{
 				_starOffset -= BackgroundStars.Height;
+			} else
+			{
+				if (_starOffset < -BackgroundStars.Height)
+				{
+					_starOffset += BackgroundStars.Height;
+				}
+
+			}
 		}
 
 		/// <summary>

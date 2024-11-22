@@ -29,10 +29,19 @@ namespace Ecliptica.Levels
 		/// </summary>
 		static LevelManager()
 		{
-			Background.Load(Images.BackgroundBlue, Images.BackgroundStars);
+			//Background.Load(Images.BackgroundBlue, Images.BackgroundStars);
 
 			levels = new List<Level>();
 			currentLevelIndex = 0;
+		}
+
+		/// <summary>
+		/// Method to check if the current level is the last level
+		/// </summary>
+		/// <returns></returns>
+		public static bool isLastLevel()
+		{
+			return currentLevelIndex == levels.Count - 1;
 		}
 
 		/// <summary>
@@ -43,13 +52,13 @@ namespace Ecliptica.Levels
 			// Define and add levels here
 			var level1 = new Level(1);
 			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
 			level1.MusicTrack = Sounds.MusicTheme;
 			levels.Add(level1);
 
@@ -59,7 +68,7 @@ namespace Ecliptica.Levels
 			level2.AddAsteroid(new Asteroid(Images.AsteroidRedBig, EclipticaGame.ScreenSize, _velocityLevel1, _largeLife));
 			level2.AddAsteroid(new Asteroid(Images.AsteroidRedBig, EclipticaGame.ScreenSize, _velocityLevel1, _largeLife));
 			level2.MusicTrack = Sounds.MusicTheme;
-			//levels.Add(level2);
+			levels.Add(level2);
 
 
 			// Set the first level as the current level
@@ -101,8 +110,6 @@ namespace Ecliptica.Levels
 			} else
 			{
 				CurrentLevel = null;
-
-				ScreenManager.ReplaceScreen(new WinScreen());
 			}
 		}
 
