@@ -47,7 +47,7 @@ namespace Ecliptica.Games
         public float Radius = 20; //used for circular collision detection
         public bool IsExpired = false; //true if the entity was destroyed and should be deleted
 
-        public bool IsActivee = true;
+        public bool IsActive = true;
 
         public Vector2 Size
         {
@@ -69,10 +69,14 @@ namespace Ecliptica.Games
 
         protected void CalculateBoundingBox()
         {
-            _boundingBox = new Rectangle((int)_position.X, (int)_position.Y, (int)(image.Width * _scale), (int)(image.Height * _scale));
-        }
+            _boundingBox = new Rectangle(
+		        (int)(_position.X - image.Width / 2f),
+		        (int)(_position.Y - image.Height / 2f),
+				image.Width,
+				image.Height
+			);
+		}
 
-        //public abstract void Update();
         public abstract void Update(GameTime gametime);
 
         public virtual void Draw(SpriteBatch spriteBatch)

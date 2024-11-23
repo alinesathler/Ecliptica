@@ -48,7 +48,7 @@ namespace Ecliptica.Games
 		/// <param name="graphicsDevice"></param>
 		public static void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
 		{
-			graphicsDevice.Clear(Color.Black);
+			graphicsDevice.Clear(Color.White);
 
 			// Draw the static blue background
 			spriteBatch.Draw(

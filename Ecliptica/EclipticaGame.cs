@@ -4,7 +4,8 @@
 * Aline Sathler Delfino, 2024.11.18: Created, content, entities, and levels added.
 * Aline Sathler Delfino, 2024.11.19: Added animated sprites, sound effects, background music, and Menu Screen.
 * Aline Sathler Delfino, 2024.11.20: Added Buttons, Game Screen, Game Over Screen, Win Screen, and Level Transition Screen.
-* Aline Sathler Delfino, 2024.11.21: Added Scores Screen, Title Screen, and About Screen. Fireworks added to the Win Screen. Fixed scrolling background. 
+* Aline Sathler Delfino, 2024.11.21: Added Scores Screen, Title Screen, and About Screen. Fireworks added to the Win Screen. Fixed scrolling background.
+* Aline Sathler Delfino, 2024.11.22: Changed spaceship life, added life bar for asteroids, and fixed the game over screen, generate asteroids randomly instead of hardcoding, pause screen added, game score added.
 */
 
 using Microsoft.Xna.Framework;
@@ -15,6 +16,7 @@ using Ecliptica.Games;
 using Ecliptica.Levels;
 using Ecliptica.Arts;
 using Ecliptica.Screens;
+using Microsoft.Xna.Framework.Media;
 
 namespace Ecliptica
 {
@@ -36,6 +38,7 @@ namespace Ecliptica
 		private float _shootCooldown = 0.25f;
 		private float _timeSinceLastShot = 0f;
 		private float _soundVolume = 0.25f;
+		public bool isPaused = false;
 
 		private Platform _platform = Platform.Windows;
 
@@ -117,6 +120,18 @@ namespace Ecliptica
 				Exit();
 
 			// TODO: Add your update logic here
+			//If game is paused, update the pause screen only
+			if (PauseScreen.Instance !=null && PauseScreen.Instance.isPaused)
+			{
+				PauseScreen.Instance.Update(gameTime);
+
+				MediaPlayer.Volume = 0.0f;
+
+				return;
+			}
+
+			MediaPlayer.Volume = 1.0f;
+
 			if (_platform == Platform.Android || _platform == Platform.iOS)
 			{
 				while (TouchPanel.IsGestureAvailable)
@@ -148,7 +163,7 @@ namespace Ecliptica
 			{
 				if (ShipPlayer.Instance != null)
 				{
-					GameScreen.Instance.MoveSpaceShip(gameTime);
+					ShipPlayer.Instance.MoveSpaceShip(gameTime);
 				}
 
 				_keyboardState = Keyboard.GetState();
@@ -172,10 +187,31 @@ namespace Ecliptica
 
 		protected override void Draw(GameTime gameTime)
 		{ 
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Transparent);
 
 			// TODO: Add your drawing code here
 			_spriteBatch.Begin();
+
+			//If game is paused, draw the pause screen only
+			if (PauseScreen.Instance != null && PauseScreen.Instance.isPaused)
+			{
+				PauseScreen.Instance.Draw(_spriteBatch);
+
+				//Cursor update
+				MouseState mouseState1 = Mouse.GetState();
+				Vector2 cursorPosition1 = new Vector2(mouseState1.X, mouseState1.Y) - cursorOffset;
+				_spriteBatch.Draw(cursorTexture, cursorPosition1, Color.White);
+
+				_spriteBatch.End();
+
+				return;
+			}
+
+			if (SaveScreen.Instance != null && SaveScreen.Instance.IsActive)
+			{
+				SaveScreen.Instance.Draw(_spriteBatch, GraphicsDevice);
+			}
+
 			Background.Draw(_spriteBatch, GraphicsDevice);
 
 			ScreenManager.Draw(_spriteBatch);

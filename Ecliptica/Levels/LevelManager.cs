@@ -18,19 +18,17 @@ namespace Ecliptica.Levels
 		private static List<Level> levels;
 		private static int currentLevelIndex;
 
-		private static int _smallLife = 1;
-		private static int _mediumLife = 2;
-		private static int _largeLife = 3;
-
 		private static Vector2 _velocityLevel1 = new Vector2(0, 1);
+		private static Vector2 _velocityLevel2 = new Vector2(0, 1.5f);
+		private static Vector2 _velocityLevel3 = new Vector2(0, 2.0f);
+		private static Vector2 _velocityLevel4 = new Vector2(0, 2.5f);
+		private static Vector2 _velocityLevel5 = new Vector2(0, 3.0f);
 
 		/// <summary>
 		/// Constructor to initialize the levels
 		/// </summary>
 		static LevelManager()
 		{
-			//Background.Load(Images.BackgroundBlue, Images.BackgroundStars);
-
 			levels = new List<Level>();
 			currentLevelIndex = 0;
 		}
@@ -51,22 +49,21 @@ namespace Ecliptica.Levels
 		{
 			// Define and add levels here
 			var level1 = new Level(1);
-			level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
-			//level1.AddAsteroid(new Asteroid(Images.AsteroidRedSmall, EclipticaGame.ScreenSize, _velocityLevel1, _smallLife));
+
+			for (int i = 0; i < 2; i++)
+			{
+				level1.AddAsteroid(new Asteroid(_velocityLevel1));
+			}
+
 			level1.MusicTrack = Sounds.MusicTheme;
 			levels.Add(level1);
 
 			var level2 = new Level(2);
-			level2.AddAsteroid(new Asteroid(Images.AsteroidRedMedium, EclipticaGame.ScreenSize, _velocityLevel1, _mediumLife));
-			level2.AddAsteroid(new Asteroid(Images.AsteroidRedMedium, EclipticaGame.ScreenSize, _velocityLevel1, _mediumLife));
-			level2.AddAsteroid(new Asteroid(Images.AsteroidRedBig, EclipticaGame.ScreenSize, _velocityLevel1, _largeLife));
-			level2.AddAsteroid(new Asteroid(Images.AsteroidRedBig, EclipticaGame.ScreenSize, _velocityLevel1, _largeLife));
+
+			for (int i = 0; i < 2; i++)
+			{
+				level2.AddAsteroid(new Asteroid(_velocityLevel2));
+			}
 			level2.MusicTrack = Sounds.MusicTheme;
 			levels.Add(level2);
 

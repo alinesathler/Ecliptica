@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using Ecliptica.Levels;
 using Microsoft.Xna.Framework.Input;
 using System;
+using Ecliptica.Arts;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Ecliptica.Screens
 {
@@ -13,18 +15,49 @@ namespace Ecliptica.Screens
 
 		private ShipPlayer _shipPlayer;
 
-		private float _normalSpeed = 1.0f;
-		private float _turboSpeed = 5.0f;
+		private Rectangle _pausenButtonRect;
+		private Button _pauseButton;
+
+		string _levelScore;
+		string _gameScore;
 
 		public GameScreen()
 		{
-			Instance = this;
+			Font = Fonts.FontGame;
+			DefaultScale = 0.5f;
+			HoverScale = 0.7f;
+			DefaultColor = Color.White;
+			HoverColor = Color.Yellow;
+			ButtonWidth = 450;
+			ButtonHeight = 50;
+
+			// Pause button
+			_pausenButtonRect = new Rectangle(
+				(int)EclipticaGame.ScreenSize.X - ButtonWidth - 10,
+				(int)EclipticaGame.ScreenSize.Y - ButtonHeight - 8,
+				ButtonWidth,
+				ButtonHeight);
+
+			_pauseButton = new Button(
+				"Pause",
+				_pausenButtonRect,
+				Font,
+				DefaultScale,
+				HoverScale,
+				DefaultColor,
+				HoverColor,
+				() => ScreenManager.Pause(new PauseScreen())
+			);
+
+			_shipPlayer = new ShipPlayer();
 
 			LevelManager.Clear();
 
+			EntityManager.ResetEnemiesDestroyedTotal()	;
+
 			LevelManager.LoadLevels();
 
-			_shipPlayer = new ShipPlayer();
+			Buttons.Add(_pauseButton);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -38,65 +71,59 @@ namespace Ecliptica.Screens
 				} else
 				{
 					ScreenManager.ReplaceScreen(new WinScreen());
+
+					EntityManager.Explosion = null;
 				}
 			}
 
 			LevelManager.UpdateCurrentLevel(gameTime);
+
+			base.Update(gameTime);
+
 			_shipPlayer.Update(gameTime);
 		}
 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			LevelManager.DrawCurrentLevel(spriteBatch);
+
+			base.Draw(spriteBatch);
+
+			_gameScore = "Game Score: " + EntityManager.GetNumberOfEnemiesDestroyedTotal() ?? "0";
+
+			Vector2 textSizeGameScore = Font.MeasureString(_gameScore);
+			Vector2 originGameScore = new Vector2(-10, 0);
+			Vector2 positionGameScore = new Vector2(0, EclipticaGame.ScreenSize.Y - textSizeGameScore.Y);
+
+			spriteBatch.DrawString(
+				Font,
+				_gameScore,
+				positionGameScore,
+				DefaultColor,
+				0f,
+				originGameScore,
+				DefaultScale,
+				SpriteEffects.None,
+				0f);
+
+			_levelScore = "Level Score: " + EntityManager.GetNumberOfEnemiesDestroyedLevel() ?? "0";
+
+			Vector2 textSizeLevelScore = Font.MeasureString(_levelScore);
+			Vector2 originLevelScore = new Vector2(textSizeLevelScore.X / 2, 0);
+			Vector2 positionLevelScore = new Vector2((EclipticaGame.ScreenSize.X / 2), EclipticaGame.ScreenSize.Y - textSizeGameScore.Y);
+
+			spriteBatch.DrawString(
+				Font,
+				_levelScore,
+				positionLevelScore,
+				DefaultColor,
+				0f,
+				originLevelScore,
+				DefaultScale,
+				SpriteEffects.None,
+				0f);
+
 			LevelTransition.DrawTransition(spriteBatch);
-			_shipPlayer.Draw(spriteBatch);
-		}
-
-		public void MoveSpaceShip(GameTime gameTime)
-		{
-			KeyboardState _keyboardState = Keyboard.GetState();
-
-			// Moving the spaceship with the keyboard
-			if (_keyboardState.IsKeyDown(Keys.Left) && ShipPlayer.Instance.Position.X > ShipPlayer.Instance.Size.X)
-			{
-				// Move faster if the left control key is pressed
-				if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.X > ShipPlayer.Instance.Size.X)
-				{
-					ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X - _turboSpeed, ShipPlayer.Instance.Position.Y);
-				}
-
-				ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X - _normalSpeed, ShipPlayer.Instance.Position.Y);
-			}
-			if (_keyboardState.IsKeyDown(Keys.Right) && ShipPlayer.Instance.Position.X < EclipticaGame.ScreenSize.X - ShipPlayer.Instance.Size.X)
-			{
-				// Move faster if the left control key is pressed
-				if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.X < EclipticaGame.ScreenSize.X - ShipPlayer.Instance.Size.X)
-				{
-					ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X + _turboSpeed, ShipPlayer.Instance.Position.Y);
-				}
-
-				ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X + _normalSpeed, ShipPlayer.Instance.Position.Y);
-			}
-			if (_keyboardState.IsKeyDown(Keys.Up) && ShipPlayer.Instance.Position.Y > ShipPlayer.Instance.Size.Y)
-			{
-				// Move faster if the left control key is pressed
-				if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.Y > ShipPlayer.Instance.Size.Y)
-				{
-					ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y - _turboSpeed);
-				}
-
-				ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y - _normalSpeed);
-			}
-			if (_keyboardState.IsKeyDown(Keys.Down) && ShipPlayer.Instance.Position.Y < EclipticaGame.ScreenSize.Y - ShipPlayer.Instance.Size.Y)
-			{
-				// Move faster if the left control key is pressed
-				if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.Y < EclipticaGame.ScreenSize.Y - ShipPlayer.Instance.Size.Y)
-				{
-					ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y + _turboSpeed);
-				}
-
-				ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y + _normalSpeed);
-			}
 		}
 	}
 }

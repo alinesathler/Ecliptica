@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Ecliptica.Games
 {
-	internal class AnimatedSprite
+	public class AnimatedSprite
 	{
 		public Texture2D Texture { get; set; }
 		public int Rows { get; set; }

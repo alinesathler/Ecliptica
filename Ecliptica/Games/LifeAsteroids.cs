@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace Ecliptica.Games
 {
-	internal class Life
+	internal class LifeAsteroids
 	{
 		Texture2D _lifeSpriteSheet;
 		int _rows;
 		int _cols;
 
-		public Life(Texture2D lifeSpriteSheet, int rows, int cols)
+		public LifeAsteroids(Texture2D lifeSpriteSheet, int rows, int cols)
 		{
 			_lifeSpriteSheet = lifeSpriteSheet;
 			_rows = rows;

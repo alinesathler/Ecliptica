@@ -54,7 +54,7 @@ namespace Ecliptica.Games
 		public void HasExpired()
 		{
 			IsExpired = true;
-			IsActivee = false;
+			IsActive = false;
 		}
 
 		//public override void Draw(SpriteBatch spriteBatch)

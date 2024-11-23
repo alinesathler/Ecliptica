@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Metadata;
 using Ecliptica.Arts;
+using Ecliptica.Games;
 
 namespace Ecliptica.Levels
 {
@@ -43,7 +44,9 @@ namespace Ecliptica.Levels
 				{
 					IsTransitioning = false;
 
-					LevelManager.NextLevel();
+					ScreenManager.PushScreen(new SaveScreen());
+
+					//LevelManager.NextLevel();
 				}
 			}
 		}

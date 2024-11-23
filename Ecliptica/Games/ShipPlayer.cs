@@ -1,6 +1,7 @@
 ﻿using Ecliptica.Arts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Ecliptica.Games
 {
@@ -8,28 +9,24 @@ namespace Ecliptica.Games
 	{
 		public static ShipPlayer Instance { get; private set; }
 		static private int _maxLife = 4;
-		private Life _shipLife;
+		private LifeShip _shipLife;
+
+		private float _normalSpeed = 1.0f;
+		private float _turboSpeed = 5.0f;
 
 		public ShipPlayer()
 		{
 			Instance = this;
 
 			image = Images.ShipPlayer;
-			_position = new Vector2(EclipticaGame.ScreenSize.X / 2, EclipticaGame.ScreenSize.Y - image.Height - 5);
+			_position = new Vector2(EclipticaGame.ScreenSize.X / 2, EclipticaGame.ScreenSize.Y * 9/10);
 			Radius = 20;
-			Life = 4;
+			Life = 8;
 
-			_shipLife = new Life(Images.ShipLife, 1, 4);
+			_shipLife = new LifeShip(Images.LifeBarShip);
 
 			CalculateBoundingBox();
 		}
-
-		//public void Update(GameTime gameTime, SpriteBatch spriteBatch)
-		//{
-		//	CalculateBoundingBox();
-
-			
-		//}
 
 		public override void Update(GameTime gameTime)
 		{
@@ -40,7 +37,7 @@ namespace Ecliptica.Games
 		{
 			spriteBatch.Draw(image, _position, null, Color.White, Orientation, new Vector2(image.Width / 2, image.Height / 2), 1.0f, SpriteEffects.None, 0);
 
-			_shipLife.Draw(spriteBatch, _position, _maxLife, Life);
+			_shipLife.Draw(spriteBatch, new Vector2(_position.X, _position.Y + image.Height / 2), Life);
 		}
 
 		public void AddLife()
@@ -54,11 +51,59 @@ namespace Ecliptica.Games
 		public void RemoveLife()
 		{
 			Life--;
+
+			if (Life <= 0)
+			{
+				IsExpired = true;
+				IsActive = false;
+			}
 		}
 
-		public int GetMaxLife()
+		public void MoveSpaceShip(GameTime gameTime)
 		{
-			return _maxLife;
+			KeyboardState _keyboardState = Keyboard.GetState();
+
+			// Moving the spaceship with the keyboard
+			if (_keyboardState.IsKeyDown(Keys.Left) && ShipPlayer.Instance.Position.X > ShipPlayer.Instance.Size.X)
+			{
+				// Move faster if the left control key is pressed
+				if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.X > ShipPlayer.Instance.Size.X)
+				{
+					ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X - _turboSpeed, ShipPlayer.Instance.Position.Y);
+				}
+
+				ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X - _normalSpeed, ShipPlayer.Instance.Position.Y);
+			}
+			if (_keyboardState.IsKeyDown(Keys.Right) && ShipPlayer.Instance.Position.X < EclipticaGame.ScreenSize.X - ShipPlayer.Instance.Size.X)
+			{
+				// Move faster if the left control key is pressed
+				if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.X < EclipticaGame.ScreenSize.X - ShipPlayer.Instance.Size.X)
+				{
+					ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X + _turboSpeed, ShipPlayer.Instance.Position.Y);
+				}
+
+				ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X + _normalSpeed, ShipPlayer.Instance.Position.Y);
+			}
+			if (_keyboardState.IsKeyDown(Keys.Up) && ShipPlayer.Instance.Position.Y > ShipPlayer.Instance.Size.Y)
+			{
+				// Move faster if the left control key is pressed
+				if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.Y > ShipPlayer.Instance.Size.Y)
+				{
+					ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y - _turboSpeed);
+				}
+
+				ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y - _normalSpeed);
+			}
+			if (_keyboardState.IsKeyDown(Keys.Down) && ShipPlayer.Instance.Position.Y < EclipticaGame.ScreenSize.Y * 9 / 10)
+			{
+				// Move faster if the left control key is pressed
+				if ((_keyboardState.IsKeyDown(Keys.LeftControl) || _keyboardState.IsKeyDown(Keys.RightControl)) && ShipPlayer.Instance.Position.Y < EclipticaGame.ScreenSize.Y * 9 / 10)
+				{
+					ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y + _turboSpeed);
+				}
+
+				ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y + _normalSpeed);
+			}
 		}
 	}
 }

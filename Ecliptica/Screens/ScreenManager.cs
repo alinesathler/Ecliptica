@@ -48,6 +48,11 @@ namespace Ecliptica.Games
 			screen.Load(true);
 		}
 
+		public static void Pause(Screen screen)
+		{
+			_screenStack.Push(screen);
+		}
+
 		public static void Update(GameTime gameTime)
 		{
 			if (_screenStack.Count > 0)

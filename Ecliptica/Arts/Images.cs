@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using System.Collections.Generic;
 
 namespace Ecliptica.Arts
 {
@@ -14,8 +15,9 @@ namespace Ecliptica.Arts
 		public static Texture2D BackgroundLevelWin { get; set; }
         public static Texture2D BackgroundGameOver { get; set; }
         public static Texture2D BackgroundYouWin { get; set; }
+		public static Texture2D BackgroundAlpha { get; set; }
 
-	    public static Texture2D Cursor { get; set; }
+		public static Texture2D Cursor { get; set; }
 
 		public static Texture2D Ecliptica { get; set; }
 
@@ -23,8 +25,11 @@ namespace Ecliptica.Arts
         public static Texture2D AsteroidRedMedium { get; set; }
         public static Texture2D AsteroidRedBig { get; set; }
 
-        public static Texture2D ShipPlayer { get; set; }
-        public static Texture2D ShipLife { get; set; }
+		public static Texture2D AsteroidBlueSmall { get; set; }
+		public static Texture2D AsteroidBlueMedium { get; set; }
+		public static Texture2D AsteroidBlueBig { get; set; }
+
+		public static Texture2D ShipPlayer { get; set; }
         public static Texture2D LaserYellow { get; set; }
 
         public static Texture2D Explosion { get; set; }
@@ -41,6 +46,9 @@ namespace Ecliptica.Arts
 		public static Texture2D FireworksRocketBlue { get; set; }
 		public static Texture2D FireworksRocketOrange { get; set; }
 
+		public static List<Texture2D> LifeBarShip { get; set; }
+		public static Texture2D Life { get; set; }
+
 
 		public static Texture2D Pixel;
 
@@ -54,6 +62,7 @@ namespace Ecliptica.Arts
 			BackgroundLevelWin = content.Load<Texture2D>("Images/background-level-transition");
 			BackgroundGameOver = content.Load<Texture2D>("Images/background-game-over");
 			BackgroundYouWin = content.Load<Texture2D>("Images/background-you-win");
+			BackgroundAlpha = content.Load<Texture2D>("Images/background-alpha");
 
 			Cursor = content.Load<Texture2D>("Images/mouse-rocket");
 
@@ -63,8 +72,11 @@ namespace Ecliptica.Arts
             AsteroidRedMedium = content.Load<Texture2D>("Images/asteroid-red-medium");
             AsteroidRedBig = content.Load<Texture2D>("Images/asteroid-red-big");
 
-            ShipPlayer = content.Load<Texture2D>("Images/ship-player");
-            ShipLife = content.Load<Texture2D>("Images/life-sheet");
+			AsteroidBlueSmall = content.Load<Texture2D>("Images/asteroid-blue-small");
+			AsteroidBlueMedium = content.Load<Texture2D>("Images/asteroid-blue-medium");
+			AsteroidBlueBig = content.Load<Texture2D>("Images/asteroid-blue-big");
+
+			ShipPlayer = content.Load<Texture2D>("Images/ship-player");
             LaserYellow = content.Load<Texture2D>("Images/laser-yellow");
 
             Explosion = content.Load<Texture2D>("Images/explosion");
@@ -80,6 +92,18 @@ namespace Ecliptica.Arts
 			FireworksLongOrange = content.Load<Texture2D>("Images/explosion-long-orange-sheet");
 			FireworksRocketBlue = content.Load<Texture2D>("Images/explosion-rocket-blue-sheet");
 			FireworksRocketOrange = content.Load<Texture2D>("Images/explosion-rocket-orange-sheet");
+
+			LifeBarShip = new List<Texture2D>();
+			LifeBarShip.Add(content.Load<Texture2D>("Images/life-bar-animated-0"));
+			LifeBarShip.Add(content.Load<Texture2D>("Images/life-bar-animated-1"));
+			LifeBarShip.Add(content.Load<Texture2D>("Images/life-bar-animated-2"));
+			LifeBarShip.Add(content.Load<Texture2D>("Images/life-bar-animated-3"));
+			LifeBarShip.Add(content.Load<Texture2D>("Images/life-bar-animated-4"));
+			LifeBarShip.Add(content.Load<Texture2D>("Images/life-bar-animated-5"));
+			LifeBarShip.Add(content.Load<Texture2D>("Images/life-bar-animated-6"));
+			LifeBarShip.Add(content.Load<Texture2D>("Images/life-bar-animated-7"));
+			LifeBarShip.Add(content.Load<Texture2D>("Images/life-bar-animated-8"));
+			Life = content.Load<Texture2D>("Images/life-sheet");
 
 			Pixel = new Texture2D(graphicsDevice, 1, 1);
 			Pixel.SetData(new[] { Color.White });

@@ -1,14 +1,9 @@
 ﻿using Ecliptica.Arts;
 using Ecliptica.Levels;
-using Ecliptica.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ecliptica.Games
 {
@@ -20,9 +15,13 @@ namespace Ecliptica.Games
 
 		public static List<Entity> entities = new List<Entity>();
 
+		private static float _timeToGameOverWeek = 2f;
+		private static float _timeToGameOverElapsed = 0f;
+
+
 		public static int Count { get { return entities.Count; } }
 
-		private static AnimatedSprite _explosion;
+		public static AnimatedSprite Explosion;
 		private static Vector2 _animatedPosition;
 
 		/// <summary>
@@ -40,16 +39,16 @@ namespace Ecliptica.Games
 		/// <param name="gametime"></param>
 		public static void Update(GameTime gametime, float volume)
 		{
-			HandleCollisions(volume);
+			HandleCollisions(gametime, volume);
 
 			foreach (var entity in entities)
 			{
 				entity.Update(gametime);
 			}
 
-			if (_explosion != null && _explosion.isActive)
+			if (Explosion != null && Explosion.isActive)
 			{
-				_explosion.Update(gametime);
+				Explosion.Update(gametime);
 			}
 
 
@@ -62,44 +61,23 @@ namespace Ecliptica.Games
 		public static void Clear()
 		{
 			entities.Clear();
+
+			if(ShipPlayer.Instance != null) entities.Add(ShipPlayer.Instance);
+
 			_enemiesDestroyedLevel = 0;
 		}
 
 		/// <summary>
 		/// Method to handle collisions between entities
 		/// </summary>
-		private static void HandleCollisions(float volume)
+		private static void HandleCollisions(GameTime gametime, float volume)
 		{
 			if (entities.Count == 0) return;
 
 			for (int i = 0; i < entities.Count; i++)
 			{
 				// Check if the entity is active
-				if (!entities[i].IsActivee) continue;
-
-				// Check collisions between ShipPlayer and entities
-				if (IsColliding(ShipPlayer.Instance, entities[i]))
-				{
-					// If it's a projectile, ignore the collision (no action)
-					if (entities[i] is Projectile)
-					{
-						continue;
-					}
-
-					// If it's not a projectile, decrease the life of the ShipPlayer
-					ShipPlayer.Instance.RemoveLife();
-
-					// Explode the entity if it collides with the ShipPlayer
-					ExplodeEntities(entities[i], volume);
-
-					// If the ShipPlayer has no more life, explode the ShipPlayer
-					if (ShipPlayer.Instance.Life == 0)
-					{
-						ExplodeEntities(ShipPlayer.Instance, volume);
-
-						break;
-					}
-				}
+				if (!entities[i].IsActive) continue;
 
 				// Check for collisions between projectiles and other entities
 				for (int j = 0; j < entities.Count; j++)
@@ -107,8 +85,12 @@ namespace Ecliptica.Games
 					// Avoid self-collision (no need to check for a collision with itself)
 					if (i == j) continue;
 
-					// Check if there's a collision between projectiles and other entities
-					if ((entities[i] is Projectile || entities[j] is Projectile) && IsColliding(entities[i], entities[j]))
+					// Aboid collision between projectiles and the ShipPlayer
+					if (entities[i] is Projectile && entities[j] is ShipPlayer) continue;
+					if (entities[j] is Projectile && entities[i] is ShipPlayer) continue;
+
+					// Check if there's a collision between projectiles/shipPlayer and other entities
+					if ((entities[i] is Projectile || entities[j] is Projectile) && IsColliding(entities[i], entities[j]) || (entities[i] is ShipPlayer || entities[j] is ShipPlayer) && IsColliding(entities[i], entities[j]))
 					{
 						// Decrease the life of the entities
 						entities[i].Life--;
@@ -117,12 +99,12 @@ namespace Ecliptica.Games
 						// If the entities have no more life, explode them
 						if (entities[i].Life == 0)
 						{
-							ExplodeEntities(entities[i], volume);
+							ExplodeEntities(gametime, entities[i], volume);
 						}
 
 						if (entities[j].Life == 0)
 						{
-							ExplodeEntities(entities[j], volume);
+							ExplodeEntities(gametime, entities[j], volume);
 						}
 
 						break;
@@ -147,7 +129,7 @@ namespace Ecliptica.Games
 		/// </summary>
 		/// <param name="entity1"></param>
 		/// <param name="entity2"></param>
-		private static void ExplodeEntities(Entity entity, float volume)
+		private static void ExplodeEntities(GameTime gametime, Entity entity, float volume)
 		{
 			// Explode entity
 			entity.IsExpired = true;
@@ -166,15 +148,8 @@ namespace Ecliptica.Games
 				Sounds.PlaySound(Sounds.Explosion, volume * 4);
 			}
 
-			_explosion = new AnimatedSprite(Images.Explosion, 5, 5, 0.05f);
+			Explosion = new AnimatedSprite(Images.Explosion, 5, 5, 0.05f);
 			_animatedPosition = entity.Position - entity.Size;
-
-			// If the entity is an asteroid, add a new asteroid
-			//if (entity is Asteroid)
-			//{
-			//	EntityManager.Add(new Asteroid(Assets.AsteroidTexture, new Vector2(0, 0), new Vector2(0, 1), 1));
-			//}
-
 		}
 
 		/// <summary>
@@ -182,15 +157,15 @@ namespace Ecliptica.Games
 		/// </summary>
 		private static void KillPlayer()
 		{
-			_explosion = new AnimatedSprite(Images.Explosion, 5, 5, 0.05f);
+			Explosion = new AnimatedSprite(Images.Explosion, 5, 5, 0.05f);
 			_animatedPosition = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y);
 			_animatedPosition = ShipPlayer.Instance.Position - ShipPlayer.Instance.Size;
 
-			ShipPlayer.Instance.IsActivee = false;
+			ShipPlayer.Instance.IsActive = false;
+
+			ShipPlayer.Instance.IsExpired = true;
 
 			ScreenManager.ReplaceScreen(new GameOverScreen());
-
-			LevelManager.Clear();
 		}
 
 		//public static IEnumerable<Entity> GetNearbyEntities(Vector2 position, float radius)
@@ -206,20 +181,22 @@ namespace Ecliptica.Games
 		{
 			foreach (var entity in entities)
 			{
-				if (entity.IsActivee)
+				if (entity.IsActive)
 				{
 					entity.Draw(spriteBatch);
 				}
 			}
 
-			if (_explosion != null && _explosion.isActive)
+			if (Explosion != null && Explosion.isActive)
 			{
-				_explosion.Draw(spriteBatch, _animatedPosition);
+				Explosion.Draw(spriteBatch, _animatedPosition);
 			}
 			
-			if (ShipPlayer.Instance.Life == 0 && _explosion != null && !_explosion.isActive)
+			if (ShipPlayer.Instance.Life == 0 && Explosion != null && !Explosion.isActive)
 			{
 				KillPlayer();
+
+				Explosion = null;
 			}
 		}
 
@@ -232,6 +209,11 @@ namespace Ecliptica.Games
 			return _enemiesDestroyedTotal;
 		}
 
+		public static void ResetEnemiesDestroyedTotal()
+		{
+			_enemiesDestroyedTotal = 0;
+		}
+
 		/// <summary>
 		/// Method to get the number of enemies destroyed in the level
 		/// </summary>
@@ -240,5 +222,7 @@ namespace Ecliptica.Games
 		{
 			return _enemiesDestroyedLevel;
 		}
+
+
 	}
 }
