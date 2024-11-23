@@ -27,6 +27,8 @@ namespace Ecliptica.Screens
 		private Rectangle _exitButtonRect;
 		private Button _exitButton;
 
+		private static float _screenAlpha = 0.6f;
+
 		public static PauseScreen Instance { get; private set; }
 
 		public PauseScreen()
@@ -34,7 +36,7 @@ namespace Ecliptica.Screens
 			Instance = this;
 
 			Music = Sounds.MusicTheme;
-			BackgroundSolid = Images.BackgroundAlpha;
+			BackgroundSolid = Images.BackgroundTitle;
 			BackgroundStars = Images.BackgroundStars1;
 			Font = Fonts.FontGame;
 			DefaultScale = 1.0f;
@@ -141,8 +143,16 @@ namespace Ecliptica.Screens
 		}
 
 		public override void Draw(SpriteBatch spriteBatch)
-		{
+		{ 
 			spriteBatch.Draw(BackgroundSolid, new Rectangle(0, 0, (int)EclipticaGame.ScreenSize.X, (int)EclipticaGame.ScreenSize.Y), Color.White);
+			spriteBatch.Draw(BackgroundStars, new Rectangle(0, 0, (int)EclipticaGame.ScreenSize.X, (int)EclipticaGame.ScreenSize.Y), Color.White);
+
+			// Draw the background with alpha
+			spriteBatch.Draw(
+				texture: CreateBlankTexture(spriteBatch.GraphicsDevice, Color.Black),
+				destinationRectangle: new Rectangle(0, 0, (int)EclipticaGame.ScreenSize.X, (int)EclipticaGame.ScreenSize.Y),
+				color: Color.Black * _screenAlpha
+			);
 
 			base.Draw(spriteBatch);
 		}

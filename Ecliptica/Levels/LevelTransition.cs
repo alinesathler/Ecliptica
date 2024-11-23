@@ -1,21 +1,20 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Reflection.Metadata;
 using Ecliptica.Arts;
 using Ecliptica.Games;
 
 namespace Ecliptica.Levels
 {
-    public static class LevelTransition
+	public static class LevelTransition
 	{
 		public static bool IsTransitioning { get; private set; }
 		public static float TransitionTime { get; private set; }
 		public static float MaxTransitionTime { get; private set; } = 5.0f;
+
+		static LevelTransition()
+		{
+			ScreenManager.OnScreenPopped += HandleScreenPopped;
+		}
 
 		/// <summary>
 		/// Marks the start of a transition between levels.
@@ -45,8 +44,6 @@ namespace Ecliptica.Levels
 					IsTransitioning = false;
 
 					ScreenManager.PushScreen(new SaveScreen());
-
-					//LevelManager.NextLevel();
 				}
 			}
 		}
@@ -62,6 +59,14 @@ namespace Ecliptica.Levels
 				float alpha = MathHelper.Clamp(TransitionTime / MaxTransitionTime, 0f, 1f);
 
 				spriteBatch.Draw(Images.BackgroundLevelWin, new Rectangle(0, 0, (int)EclipticaGame.ScreenSize.X, (int)EclipticaGame.ScreenSize.Y), Color.White * alpha);
+			}
+		}
+
+		private static void HandleScreenPopped()
+		{
+			if (!IsTransitioning && ScreenManager.CurrentScreen() is SaveScreen)
+			{
+				LevelManager.NextLevel();
 			}
 		}
 	}

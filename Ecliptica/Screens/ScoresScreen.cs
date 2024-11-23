@@ -1,6 +1,7 @@
 ﻿using Ecliptica.Arts;
 using Ecliptica.Screens;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Ecliptica.Games
 {

@@ -9,8 +9,6 @@ namespace Ecliptica.Screens
 {
 	internal class TitleScreen : Screen
 	{
-		private SpriteFont font;
-
 		private Rectangle _startButtonRect;
 		private Button _startButton;
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace Ecliptica.Games
@@ -7,7 +8,7 @@ namespace Ecliptica.Games
 	public class ScreenManager
 	{
 		private static Stack<Screen> _screenStack;
-		private SpriteBatch _spriteBatch;
+		public static event Action OnScreenPopped;
 
 		static ScreenManager()
 		{
@@ -23,17 +24,16 @@ namespace Ecliptica.Games
 
 		public static void PopScreen()
 		{
-
 			if (_screenStack.Count > 0)
 			{
 				Screen screen = _screenStack.Pop();
+				OnScreenPopped?.Invoke();
 
 				if (_screenStack.Count > 0)
 				{
 					_screenStack.Peek().Load(false);
 				}
 			}
-
 		}
 
 		public static void ReplaceScreen(Screen screen)

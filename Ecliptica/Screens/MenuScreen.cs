@@ -142,7 +142,6 @@ namespace Ecliptica.Games
 			);
 
 			Buttons.Add(_exitButton);
-			this.playerName = playerName;
 		}
 	}
 }

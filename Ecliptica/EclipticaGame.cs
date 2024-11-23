@@ -6,6 +6,7 @@
 * Aline Sathler Delfino, 2024.11.20: Added Buttons, Game Screen, Game Over Screen, Win Screen, and Level Transition Screen.
 * Aline Sathler Delfino, 2024.11.21: Added Scores Screen, Title Screen, and About Screen. Fireworks added to the Win Screen. Fixed scrolling background.
 * Aline Sathler Delfino, 2024.11.22: Changed spaceship life, added life bar for asteroids, and fixed the game over screen, generate asteroids randomly instead of hardcoding, pause screen added, game score added.
+* Aline Sathler Delfino, 2024.11.23: Added Save Screen to save the game state, write to file.
 */
 
 using Microsoft.Xna.Framework;
@@ -20,7 +21,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Ecliptica
 {
-    public class EclipticaGame : Microsoft.Xna.Framework.Game
+    public class EclipticaGame : Game
     {
         public static EclipticaGame Instance { get; private set; }
         public static Viewport Viewport { get { return Instance.GraphicsDevice.Viewport; } }
@@ -195,6 +196,7 @@ namespace Ecliptica
 			//If game is paused, draw the pause screen only
 			if (PauseScreen.Instance != null && PauseScreen.Instance.isPaused)
 			{
+
 				PauseScreen.Instance.Draw(_spriteBatch);
 
 				//Cursor update
@@ -209,7 +211,7 @@ namespace Ecliptica
 
 			if (SaveScreen.Instance != null && SaveScreen.Instance.IsActive)
 			{
-				SaveScreen.Instance.Draw(_spriteBatch, GraphicsDevice);
+				SaveScreen.Instance.Draw(_spriteBatch);
 			}
 
 			Background.Draw(_spriteBatch, GraphicsDevice);

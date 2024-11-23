@@ -58,6 +58,13 @@ namespace Ecliptica.Games
 				button.Draw(spriteBatch);
 			}
 		}
+
+		public static Texture2D CreateBlankTexture(GraphicsDevice graphicsDevice, Color color)
+		{
+			Texture2D texture = new Texture2D(graphicsDevice, 1, 1);
+			texture.SetData(new[] { color });
+			return texture;
+		}
 	}
 }
 
