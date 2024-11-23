@@ -65,7 +65,7 @@ namespace Ecliptica.Screens
 			// Check if the level is completed
 			if (!LevelTransition.IsTransitioning && LevelManager.CurrentLevel?.IsLevelComplete() == true)
 			{
-				if (!LevelManager.isLastLevel())
+				if (!LevelManager.IsLastLevel())
 				{
 					LevelTransition.StartTransition();
 				} else
@@ -92,8 +92,8 @@ namespace Ecliptica.Screens
 			_gameScore = "Game Score: " + EntityManager.GetNumberOfEnemiesDestroyedTotal() ?? "0";
 
 			Vector2 textSizeGameScore = Font.MeasureString(_gameScore);
-			Vector2 originGameScore = new Vector2(-10, 0);
-			Vector2 positionGameScore = new Vector2(0, EclipticaGame.ScreenSize.Y - textSizeGameScore.Y);
+			Vector2 originGameScore = new (-10, 0);
+			Vector2 positionGameScore = new (0, EclipticaGame.ScreenSize.Y - textSizeGameScore.Y);
 
 			spriteBatch.DrawString(
 				Font,
@@ -109,8 +109,8 @@ namespace Ecliptica.Screens
 			_levelScore = "Level Score: " + EntityManager.GetNumberOfEnemiesDestroyedLevel() ?? "0";
 
 			Vector2 textSizeLevelScore = Font.MeasureString(_levelScore);
-			Vector2 originLevelScore = new Vector2(textSizeLevelScore.X / 2, 0);
-			Vector2 positionLevelScore = new Vector2((EclipticaGame.ScreenSize.X / 2), EclipticaGame.ScreenSize.Y - textSizeGameScore.Y);
+			Vector2 originLevelScore = new (textSizeLevelScore.X / 2, 0);
+			Vector2 positionLevelScore = new ((EclipticaGame.ScreenSize.X / 2), EclipticaGame.ScreenSize.Y - textSizeGameScore.Y);
 
 			spriteBatch.DrawString(
 				Font,

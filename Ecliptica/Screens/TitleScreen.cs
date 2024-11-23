@@ -9,9 +9,6 @@ namespace Ecliptica.Screens
 {
 	internal class TitleScreen : Screen
 	{
-		private Rectangle _startButtonRect;
-		private Button _startButton;
-
 		public TitleScreen()
 		{
 			Music = Sounds.TitleScreen;
@@ -25,23 +22,9 @@ namespace Ecliptica.Screens
 			ButtonWidth = 450;
 			ButtonHeight = 50;
 
-			_startButtonRect = new Rectangle(
-				((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2,
-				((int)EclipticaGame.ScreenSize.Y - 2 * ButtonHeight),
-				ButtonWidth,
-				ButtonHeight);
-
-			_startButton = new Button(
-				"Start Game",
-				_startButtonRect,
-				Font,
-				DefaultScale,
-				HoverScale,
-				DefaultColor,
-				HoverColor,
-				() => ScreenManager.ReplaceScreen(new MenuScreen()));
-
-			Buttons.Add(_startButton);
+			// Buttons
+			AddButton("Start Game", () => ScreenManager.ReplaceScreen(new MenuScreen()), new Vector2 (((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2,
+				((int)EclipticaGame.ScreenSize.Y - 2 * ButtonHeight)));
 		}
 
 		private void HandleKeyPress(Keys key)
@@ -79,7 +62,7 @@ namespace Ecliptica.Screens
 			// Start the game when Enter is pressed
 			if (KeyboardHandler.IsKeyPressed(Keys.Enter))
 			{
-				_startButton.OnClick();
+				Buttons[0].OnClick();
 			}
 		}
 

@@ -18,18 +18,18 @@ namespace Ecliptica.Levels
 		private static List<Level> levels;
 		private static int currentLevelIndex;
 
-		private static Vector2 _velocityLevel1 = new Vector2(0, 1);
-		private static Vector2 _velocityLevel2 = new Vector2(0, 1.5f);
-		private static Vector2 _velocityLevel3 = new Vector2(0, 2.0f);
-		private static Vector2 _velocityLevel4 = new Vector2(0, 2.5f);
-		private static Vector2 _velocityLevel5 = new Vector2(0, 3.0f);
+		private static Vector2 _velocityLevel1 = new (0, 1);
+		private static Vector2 _velocityLevel2 = new (0, 1.5f);
+		private static Vector2 _velocityLevel3 = new (0, 2.0f);
+		private static Vector2 _velocityLevel4 = new (0, 2.5f);
+		private static Vector2 _velocityLevel5 = new (0, 3.0f);
 
 		/// <summary>
 		/// Constructor to initialize the levels
 		/// </summary>
 		static LevelManager()
 		{
-			levels = new List<Level>();
+			levels = new ();
 			currentLevelIndex = 0;
 		}
 
@@ -37,7 +37,7 @@ namespace Ecliptica.Levels
 		/// Method to check if the current level is the last level
 		/// </summary>
 		/// <returns></returns>
-		public static bool isLastLevel()
+		public static bool IsLastLevel()
 		{
 			return currentLevelIndex == levels.Count - 1;
 		}
@@ -50,7 +50,7 @@ namespace Ecliptica.Levels
 			// Define and add levels here
 			var level1 = new Level(1);
 
-			for (int i = 0; i < 2; i++)
+			for (int i = 0; i < 1; i++)
 			{
 				level1.AddAsteroid(new Asteroid(_velocityLevel1));
 			}

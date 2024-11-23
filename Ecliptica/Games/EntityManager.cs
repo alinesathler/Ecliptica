@@ -13,11 +13,7 @@ namespace Ecliptica.Games
 
 		private static int _enemiesDestroyedLevel = 0;
 
-		public static List<Entity> entities = new List<Entity>();
-
-		private static float _timeToGameOverWeek = 2f;
-		private static float _timeToGameOverElapsed = 0f;
-
+		public static List<Entity> entities = new();
 
 		public static int Count { get { return entities.Count; } }
 
@@ -39,7 +35,7 @@ namespace Ecliptica.Games
 		/// <param name="gametime"></param>
 		public static void Update(GameTime gametime, float volume)
 		{
-			HandleCollisions(gametime, volume);
+			HandleCollisions(volume);
 
 			foreach (var entity in entities)
 			{
@@ -70,7 +66,7 @@ namespace Ecliptica.Games
 		/// <summary>
 		/// Method to handle collisions between entities
 		/// </summary>
-		private static void HandleCollisions(GameTime gametime, float volume)
+		private static void HandleCollisions(float volume)
 		{
 			if (entities.Count == 0) return;
 
@@ -99,12 +95,12 @@ namespace Ecliptica.Games
 						// If the entities have no more life, explode them
 						if (entities[i].Life == 0)
 						{
-							ExplodeEntities(gametime, entities[i], volume);
+							ExplodeEntities(entities[i], volume);
 						}
 
 						if (entities[j].Life == 0)
 						{
-							ExplodeEntities(gametime, entities[j], volume);
+							ExplodeEntities(entities[j], volume);
 						}
 
 						break;
@@ -129,7 +125,7 @@ namespace Ecliptica.Games
 		/// </summary>
 		/// <param name="entity1"></param>
 		/// <param name="entity2"></param>
-		private static void ExplodeEntities(GameTime gametime, Entity entity, float volume)
+		private static void ExplodeEntities(Entity entity, float volume)
 		{
 			// Explode entity
 			entity.IsExpired = true;

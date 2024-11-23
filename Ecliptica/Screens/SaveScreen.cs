@@ -12,15 +12,6 @@ namespace Ecliptica.Games
 {
 	internal class SaveScreen : Screen
 	{
-		private Rectangle _saveButtonRect;
-		private Button _saveButton;
-
-		private Rectangle _returnButtonRect;
-		private Button _returnButton;
-
-		private Rectangle _exitButtonRect;
-		private Button _exitButton;
-
 		private static int _selectedSlot = 1;
 		private static int _totalSlots = 3;
 
@@ -32,11 +23,6 @@ namespace Ecliptica.Games
 		private string _saveMessage;
 		private double _saveMessageTime;
 		private List<Button> slotButtons;
-
-		private int _levelNumber;
-		private int _score;
-		private int _lives;
-
 
 		public SaveScreen()
 		{
@@ -52,54 +38,19 @@ namespace Ecliptica.Games
 			ButtonWidth = 450;
 			ButtonHeight = 50;
 
-			// Save button
-			_saveButtonRect = new Rectangle(
-				((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2,
-				((int)EclipticaGame.ScreenSize.Y - ButtonHeight) / 2,
-				ButtonWidth,
-				ButtonHeight);
+			// Buttons
+			AddButton("Save", () => { SaveGame(_selectedSlot); }, new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y - ButtonHeight) / 2));
+			AddButton("Continue", () => { IsActive = false; ScreenManager.PopScreen(); }, new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y - ButtonHeight) / 2 + 60));
+			AddButton("Exit", () => EclipticaGame.Instance.Exit(), new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y - ButtonHeight) / 2 + 120));
 
-			_saveButton = new Button(
-			"Save",
-			_saveButtonRect,
-			Font,
-			DefaultScale,
-			HoverScale,
-			DefaultColor,
-			HoverColor,
-			() => { SaveGame(_selectedSlot); }
-			);
-
-			Buttons.Add(_saveButton);
-
-			// Return button
-			_returnButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth,
-				ButtonHeight);
-
-			_returnButton = new Button("Continue", _returnButtonRect, Font, DefaultScale, HoverScale, DefaultColor, HoverColor, () =>
-			{
-				IsActive = false;
-				ScreenManager.PopScreen();
-			});
-
-			Buttons.Add(_returnButton);
-
-			// Exit button
-			_exitButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth,
-				ButtonHeight);
-
-			_exitButton = new Button("Exit", _exitButtonRect, Font, DefaultScale, HoverScale, DefaultColor, HoverColor, () => EclipticaGame.Instance.Exit());
-
-			Buttons.Add(_exitButton);
-
-			slotButtons = new List<Button>();
+			slotButtons = new();
 
 			for (int i = 0; i < _totalSlots; i++)
 			{
 				int slotIndex = i;
 				string slotStatus = GetSaveSlotStatus(slotIndex + 1);
 
-				Button slotButton = new Button(
+				Button slotButton = new (
 					 $"Slot {slotIndex + 1} - {slotStatus}",
 					new Rectangle(
 						((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2,
@@ -119,6 +70,7 @@ namespace Ecliptica.Games
 				slotButtons.Add(slotButton);
 			}
 
+			// Select the first slot by default
 			SelectSlot(0);
 		}
 
@@ -160,7 +112,7 @@ namespace Ecliptica.Games
 			// Draw the title
 			string title = "Save Your Game";
 			Vector2 titleSize = Font.MeasureString(title);
-			Vector2 titlePosition = new Vector2(
+			Vector2 titlePosition = new (
 				(EclipticaGame.ScreenSize.X - titleSize.X) / 2,
 				100
 			);
@@ -176,7 +128,7 @@ namespace Ecliptica.Games
 			// Draw the instructions
 			string instructions = "Select a slot and save your game";
 			Vector2 instructionsSize = Font.MeasureString(instructions);
-			Vector2 instructionsPosition = new Vector2(
+			Vector2 instructionsPosition = new (
 				(spriteBatch.GraphicsDevice.Viewport.Width - instructionsSize.X) / 2,
 				spriteBatch.GraphicsDevice.Viewport.Height - 100
 			);
@@ -186,7 +138,7 @@ namespace Ecliptica.Games
 			if (!string.IsNullOrEmpty(_saveMessage))
 			{
 				Vector2 messageSize = Font.MeasureString(_saveMessage);
-				Vector2 messagePosition = new Vector2(
+				Vector2 messagePosition = new (
 					(EclipticaGame.ScreenSize.X - messageSize.X) / 2,
 					EclipticaGame.ScreenSize.Y - 150
 				);
@@ -196,7 +148,7 @@ namespace Ecliptica.Games
 
 		private static void SaveGame(int slot)
 		{
-			string saveData = $"Slot: {slot}\nLevel: {LevelManager.CurrentLevel.LevelNumber}\nGame Score: {EntityManager.GetNumberOfEnemiesDestroyedTotal()}\nShip Lifes: {ShipPlayer.Instance.Life}";
+			string saveData = $"Slot: {slot}\nPlayer Name: {EclipticaGame.PlayerName}\nLevel: {LevelManager.CurrentLevel.LevelNumber}\nGame Score: {EntityManager.GetNumberOfEnemiesDestroyedTotal()}\nShip Lifes: {ShipPlayer.Instance.Life}";
 			string savePath = GetSaveSlotPath(slot);
 
 			// Write save data to the slot file

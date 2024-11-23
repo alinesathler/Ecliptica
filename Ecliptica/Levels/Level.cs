@@ -22,7 +22,7 @@ namespace Ecliptica.Levels
 		public Level(int levelNumber)
 		{
 			LevelNumber = levelNumber;
-			Enemies = new List<Entity>();
+			Enemies = new ();
 			_levelName = "Level " + levelNumber;
 			BackgroundSolid = Images.BackgroundBlue;
 			BackgroundStars = Images.BackgroundStars;
@@ -85,12 +85,12 @@ namespace Ecliptica.Levels
 		/// </summary>
 		public void FireProjectile()
 		{
-			Vector2 projectileStartPosition = new Vector2(
+			Vector2 projectileStartPosition = new (
 				ShipPlayer.Instance.Position.X,
 				ShipPlayer.Instance.Position.Y - ShipPlayer.Instance.Size.Y
 			);
 
-			Vector2 projectileVelocity = new Vector2(0, -10);
+			Vector2 projectileVelocity = new (0, -10);
 
 			var newProjectile = new Projectile(Images.LaserYellow, projectileStartPosition, projectileVelocity);
 

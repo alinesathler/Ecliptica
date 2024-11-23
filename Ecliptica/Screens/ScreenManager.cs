@@ -26,8 +26,9 @@ namespace Ecliptica.Games
 		{
 			if (_screenStack.Count > 0)
 			{
-				Screen screen = _screenStack.Pop();
 				OnScreenPopped?.Invoke();
+
+				Screen screen = _screenStack.Pop();
 
 				if (_screenStack.Count > 0)
 				{

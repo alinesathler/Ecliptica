@@ -7,9 +7,6 @@ namespace Ecliptica.Games
 {
 	public class ScoresScreen : Screen
 	{
-		private Rectangle _returnButtonRect;
-		private Button _returnButton;
-
 		public ScoresScreen()
 		{
 			Music = Sounds.MenuScreen;
@@ -23,24 +20,8 @@ namespace Ecliptica.Games
 			ButtonWidth = 450;
 			ButtonHeight = 50;
 
-			// Return button
-			_returnButtonRect = new Rectangle(
-				((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2,
-				10,
-				ButtonWidth,
-				ButtonHeight);
-			
-			_returnButton = new Button(
-			"Return",
-			_returnButtonRect,
-			Font,
-			DefaultScale,
-			HoverScale,
-			DefaultColor,
-			HoverColor,
-			() => ScreenManager.PopScreen());
-			
-			Buttons.Add(_returnButton);
+			// Buttons
+			AddButton("Return", () => ScreenManager.PopScreen(), new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, 10));
 		}
 	}
 }

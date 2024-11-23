@@ -6,7 +6,7 @@
 * Aline Sathler Delfino, 2024.11.20: Added Buttons, Game Screen, Game Over Screen, Win Screen, and Level Transition Screen.
 * Aline Sathler Delfino, 2024.11.21: Added Scores Screen, Title Screen, and About Screen. Fireworks added to the Win Screen. Fixed scrolling background.
 * Aline Sathler Delfino, 2024.11.22: Changed spaceship life, added life bar for asteroids, and fixed the game over screen, generate asteroids randomly instead of hardcoding, pause screen added, game score added.
-* Aline Sathler Delfino, 2024.11.23: Added Save Screen to save the game state, write to file.
+* Aline Sathler Delfino, 2024.11.23: Added Save Screen to save the game state, write to file, refactroing screen class to not hadcording buttons.
 */
 
 using Microsoft.Xna.Framework;
@@ -38,7 +38,6 @@ namespace Ecliptica
 
 		private float _shootCooldown = 0.25f;
 		private float _timeSinceLastShot = 0f;
-		private float _soundVolume = 0.25f;
 		public bool isPaused = false;
 
 		private Platform _platform = Platform.Windows;

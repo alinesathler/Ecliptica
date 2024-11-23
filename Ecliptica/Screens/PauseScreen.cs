@@ -15,18 +15,6 @@ namespace Ecliptica.Screens
 	{
 		public bool isPaused;
 
-		private Rectangle _resumeButtonRect;
-		private Button _resumeButton;
-
-		private Rectangle _restartButtonRect;
-		private Button _restartButton;
-
-		private Rectangle _mainMenuButtonRect;
-		private Button _mainMenuButton;
-
-		private Rectangle _exitButtonRect;
-		private Button _exitButton;
-
 		private static float _screenAlpha = 0.6f;
 
 		public static PauseScreen Instance { get; private set; }
@@ -48,98 +36,11 @@ namespace Ecliptica.Screens
 
 			isPaused = true;
 
-			// Resume button
-			_resumeButtonRect = new Rectangle(
-				((int)EclipticaGame.ScreenSize.X - ButtonWidth)/ 2,
-				((int)EclipticaGame.ScreenSize.Y - ButtonHeight)/ 2,
-				ButtonWidth,
-				ButtonHeight);
-
-			_resumeButton = new Button(
-			"Resume",
-			_resumeButtonRect,
-			Font,
-			DefaultScale,
-			HoverScale,
-			DefaultColor,
-			HoverColor,
-			() => {
-				isPaused = false;
-
-				ScreenManager.PopScreen();
-			});
-
-			Buttons.Add(_resumeButton);
-
-			// Restart button
-			_restartButtonRect = new Rectangle(
-				Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count,
-				ButtonWidth,
-				ButtonHeight);
-
-			_restartButton = new Button(
-				"Restart",
-				_restartButtonRect,
-				Font,
-				DefaultScale,
-				HoverScale,
-				DefaultColor,
-				HoverColor,
-				() =>
-				{
-					isPaused = false;
-
-					ScreenManager.ReplaceScreen(new GameScreen());
-				}
-			);
-
-			Buttons.Add(_restartButton);
-
-			// Main Menu button
-			_mainMenuButtonRect = new Rectangle
-				(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count,
-				ButtonWidth,
-				ButtonHeight);
-
-			_mainMenuButton = new Button(
-				"Main Menu",
-				_mainMenuButtonRect,
-				Font,
-				DefaultScale,
-				HoverScale,
-				DefaultColor,
-				HoverColor,
-				() =>
-				{
-					isPaused = false;
-
-					ScreenManager.ReplaceScreen(new MenuScreen());
-				}
-			);
-
-			Buttons.Add(_mainMenuButton);
-
-			// Exit button
-			_exitButtonRect = new Rectangle(Buttons[0].Bounds.X, Buttons[0].Bounds.Y + (ButtonHeight + 10) * Buttons.Count, ButtonWidth,
-				ButtonHeight);
-
-			_exitButton = new Button(
-				"Exit",
-				_exitButtonRect,
-				Font,
-				DefaultScale,
-				HoverScale,
-				DefaultColor,
-				HoverColor,
-				() =>
-				{
-					isPaused = false;
-
-					EclipticaGame.Instance.Exit();
-				}
-			);
-
-			Buttons.Add(_exitButton);
+			// Buttons
+			AddButton("Resume", () => { isPaused = false; ScreenManager.PopScreen(); }, new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y - ButtonHeight) / 2));
+			AddButton("Restart", () => { isPaused = false; ScreenManager.ReplaceScreen(new GameScreen()); });
+			AddButton("Main Menu", () => { isPaused = false; ScreenManager.ReplaceScreen(new MenuScreen()); });
+			AddButton("Exit", () => { isPaused = false; EclipticaGame.Instance.Exit(); });
 		}
 
 		public override void Draw(SpriteBatch spriteBatch)
