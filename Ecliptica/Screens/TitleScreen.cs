@@ -74,7 +74,7 @@ namespace Ecliptica.Screens
 
 			//spriteBatch.DrawString(Fonts.FontTitle, title, new Vector2((EclipticaGame.ScreenSize.X - Fonts.FontTitle.MeasureString(title).X) / 2, EclipticaGame.ScreenSize.Y / 4), DefaultColor);
 
-			spriteBatch.Draw(Images.Ecliptica, new Rectangle(((int)EclipticaGame.ScreenSize.X - Images.Ecliptica.Width) / 2, 0, (int)EclipticaGame.ScreenSize.X/2, (int)EclipticaGame.ScreenSize.Y/5), Color.White);
+			spriteBatch.Draw(Images.Ecliptica, new Rectangle((int)EclipticaGame.ScreenSize.X / 4, 0, (int)EclipticaGame.ScreenSize.X/2, (int)EclipticaGame.ScreenSize.Y/5), Color.White);
 
 			string prompt = "Enter your name:";
 

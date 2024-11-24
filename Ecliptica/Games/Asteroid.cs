@@ -10,25 +10,6 @@ namespace Ecliptica.Games
 		private Random _random;
 		private LifeAsteroids _asteroidLife;
 
-		//public Asteroid(Texture2D texture, Vector2 startPosition, Vector2 velocity)
-		//{
-		//	_random = new Random();
-
-		//	this.image = texture;
-
-		//	_position = new Vector2(_random.Next(0, (int)startPosition.X - (int)image.Width), 0);
-
-
-		//	_velocity = velocity;
-		//	this.life = life;
-
-		//	_asteroidLife = new LifeAsteroids(Images.Life, 1, 4);
-
-
-
-		//	CalculateBoundingBox();
-		//}
-
 		public Asteroid(Vector2 velocity)
 		{
 			_random = new Random();
@@ -38,27 +19,33 @@ namespace Ecliptica.Games
 			{
 				case 0:
 					image = Images.AsteroidRedSmall;
-					life = 1;
+					MaxLife = 1;
+					Life = MaxLife;
 					break;
 				case 1:
 					image = Images.AsteroidRedMedium;
-					life = 2;
+					MaxLife = 2;
+					Life = MaxLife;
 					break;
 				case 2:
 					image = Images.AsteroidRedBig;
-					life = 3;
+					MaxLife = 3;
+					Life = MaxLife;
 					break;
 				case 3:
 					image = Images.AsteroidBlueSmall;
-					life = 2;
+					MaxLife = 2;
+					Life = MaxLife;
 					break;
 				case 4:
 					image = Images.AsteroidBlueMedium;
-					life = 3;
+					MaxLife = 3;
+					Life = MaxLife;
 					break;
 				case 5:
 					image = Images.AsteroidBlueBig;
-					life = 4;
+					MaxLife = 4;
+					Life = MaxLife;
 					break;
 			}
 

@@ -7,6 +7,7 @@
 * Aline Sathler Delfino, 2024.11.21: Added Scores Screen, Title Screen, and About Screen. Fireworks added to the Win Screen. Fixed scrolling background.
 * Aline Sathler Delfino, 2024.11.22: Changed spaceship life, added life bar for asteroids, and fixed the game over screen, generate asteroids randomly instead of hardcoding, pause screen added, game score added.
 * Aline Sathler Delfino, 2024.11.23: Added Save Screen to save the game state, write to file, refactroing screen class to not hadcording buttons.
+* Aline Satheer Delfino, 2024.11.24: Added Load Screen to load the game state, refactored game screen to use the load game method, added the ability to save the game state, refactored game screen to use the save game method.
 */
 
 using Microsoft.Xna.Framework;
@@ -18,6 +19,7 @@ using Ecliptica.Levels;
 using Ecliptica.Arts;
 using Ecliptica.Screens;
 using Microsoft.Xna.Framework.Media;
+using Ecliptica.UI;
 
 namespace Ecliptica
 {

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Media;
 using Ecliptica.Arts;
+using Ecliptica.UI;
 
 namespace Ecliptica.Levels
 {

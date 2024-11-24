@@ -11,7 +11,8 @@ namespace Ecliptica.Games
         public Vector2 _velocity;
         protected Vector2 _position;
 
-        public int life;
+		protected int life;
+		protected int maxLife;
 
 		public Vector2 Velocity
 		{
@@ -31,6 +32,12 @@ namespace Ecliptica.Games
         {
 			get { return life; }
 			set { life = value; }
+		}
+
+        public int MaxLife
+		{
+			get { return maxLife; }
+			set { maxLife = value; }
 		}
 
 		protected float _scale = 1f;

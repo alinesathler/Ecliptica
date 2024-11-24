@@ -1,5 +1,6 @@
 ﻿using Ecliptica.Arts;
 using Ecliptica.Levels;
+using Ecliptica.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,9 +10,10 @@ namespace Ecliptica.Games
 {
 	public class EntityManager
 	{
-		private static int _enemiesDestroyedTotal = 0;
-
 		private static int _enemiesDestroyedLevel = 0;
+
+		private static int _levelScore = 0;
+		private static int _totalScore = 0;
 
 		public static List<Entity> entities = new();
 
@@ -58,9 +60,10 @@ namespace Ecliptica.Games
 		{
 			entities.Clear();
 
-			if(ShipPlayer.Instance != null) entities.Add(ShipPlayer.Instance);
+			if (ShipPlayer.Instance != null) entities.Add(ShipPlayer.Instance);
 
-			_enemiesDestroyedLevel = 0;
+			ResetLevelScore();
+			ResetNumberOfEnemiesDestroyedLevel();
 		}
 
 		/// <summary>
@@ -132,7 +135,9 @@ namespace Ecliptica.Games
 
 			if (entity is Asteroid)
 			{
-				_enemiesDestroyedTotal++;
+				_levelScore += entity.MaxLife * (int)(100 * (Math.Abs(entity.Velocity.X) + entity.Velocity.Y));
+				_totalScore += entity.MaxLife * (int)(100 * (Math.Abs(entity.Velocity.X) + entity.Velocity.Y));
+
 				_enemiesDestroyedLevel++;
 			}
 
@@ -187,27 +192,13 @@ namespace Ecliptica.Games
 			{
 				Explosion.Draw(spriteBatch, _animatedPosition);
 			}
-			
+
 			if (ShipPlayer.Instance.Life == 0 && Explosion != null && !Explosion.isActive)
 			{
 				KillPlayer();
 
 				Explosion = null;
 			}
-		}
-
-		/// <summary>
-		/// Method to get the number of enemies destroyed total
-		/// </summary>
-		/// <returns></returns>
-		public static int GetNumberOfEnemiesDestroyedTotal()
-		{
-			return _enemiesDestroyedTotal;
-		}
-
-		public static void ResetEnemiesDestroyedTotal()
-		{
-			_enemiesDestroyedTotal = 0;
 		}
 
 		/// <summary>
@@ -219,6 +210,34 @@ namespace Ecliptica.Games
 			return _enemiesDestroyedLevel;
 		}
 
+		public static void ResetNumberOfEnemiesDestroyedLevel()
+		{
+			_enemiesDestroyedLevel = 0;
+		}
 
+		public static int GetLevelScore()
+		{
+			return _levelScore;
+		}
+
+		public static int GetTotalScore()
+		{
+			return _totalScore;
+		}
+
+		public static void ResetLevelScore()
+		{
+			_levelScore = 0;
+		}
+
+		public static void ResetTotalScore()
+		{
+			_totalScore = 0;
+		}
+
+		public static void SetTotalScore(int score)
+		{
+			_totalScore = score;
+		}
 	}
 }

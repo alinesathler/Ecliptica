@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecliptica.Games
+namespace Ecliptica.Files
 {
-	public enum WhereToExpire
+	internal class FileIO
 	{
-		Top,
-		Bottom
+		internal const string SaveDirectory = "Saves";
 	}
 }

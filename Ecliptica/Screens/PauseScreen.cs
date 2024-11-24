@@ -37,7 +37,7 @@ namespace Ecliptica.Screens
 			isPaused = true;
 
 			// Buttons
-			AddButton("Resume", () => { isPaused = false; ScreenManager.PopScreen(); }, new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y - ButtonHeight) / 2));
+			AddButton("Resume", () => { isPaused = false; ScreenManager.PopScreen(); }, new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y) * 2/3));
 			AddButton("Restart", () => { isPaused = false; ScreenManager.ReplaceScreen(new GameScreen()); });
 			AddButton("Main Menu", () => { isPaused = false; ScreenManager.ReplaceScreen(new MenuScreen()); });
 			AddButton("Exit", () => { isPaused = false; EclipticaGame.Instance.Exit(); });
@@ -54,6 +54,8 @@ namespace Ecliptica.Screens
 				destinationRectangle: new Rectangle(0, 0, (int)EclipticaGame.ScreenSize.X, (int)EclipticaGame.ScreenSize.Y),
 				color: Color.Black * _screenAlpha
 			);
+
+			spriteBatch.Draw(Images.Ecliptica, new Rectangle((int)EclipticaGame.ScreenSize.X / 4, ((int)EclipticaGame.ScreenSize.Y - Images.Ecliptica.Height) / 2, (int)EclipticaGame.ScreenSize.X / 2, (int)EclipticaGame.ScreenSize.Y / 5), Color.White);
 
 			base.Draw(spriteBatch);
 		}

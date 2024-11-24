@@ -8,7 +8,6 @@ namespace Ecliptica.Games
     public class ShipPlayer : Entity
 	{
 		public static ShipPlayer Instance { get; private set; }
-		static private int _maxLife = 4;
 		private LifeShip _shipLife;
 
 		private float _normalSpeed = 1.0f;
@@ -21,7 +20,8 @@ namespace Ecliptica.Games
 			image = Images.ShipPlayer;
 			_position = new Vector2(EclipticaGame.ScreenSize.X / 2, EclipticaGame.ScreenSize.Y * 9/10);
 			Radius = 20;
-			Life = 8;
+			MaxLife = 8;
+			Life = MaxLife;
 
 			_shipLife = new LifeShip(Images.LifeBarShip);
 
@@ -42,7 +42,7 @@ namespace Ecliptica.Games
 
 		public void AddLife()
 		{
-			if (Life < _maxLife)
+			if (Life < MaxLife)
 			{
 				Life++;
 			}

@@ -6,10 +6,11 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using Ecliptica.Arts;
 using static System.Net.Mime.MediaTypeNames;
+using Ecliptica.UI;
 
 namespace Ecliptica.Screens
 {
-	internal class GameScreen : Screen
+    internal class GameScreen : Screen
 	{
 		public static GameScreen Instance { get; private set; }
 
@@ -21,7 +22,7 @@ namespace Ecliptica.Screens
 		string _levelScore;
 		string _gameScore;
 
-		public GameScreen()
+		public GameScreen(bool isLoad = false, int shipLife = 0, int levelNumber = 1, int totalScore = 0)
 		{
 			Font = Fonts.FontGame;
 			DefaultScale = 0.5f;
@@ -49,13 +50,17 @@ namespace Ecliptica.Screens
 				() => ScreenManager.Pause(new PauseScreen())
 			);
 
-			_shipPlayer = new ShipPlayer();
-
+			_shipPlayer = new ();
 			LevelManager.Clear();
+			EntityManager.ResetTotalScore();
 
-			EntityManager.ResetEnemiesDestroyedTotal()	;
+			if (isLoad)
+			{
+				_shipPlayer.Life = shipLife;
+				EntityManager.SetTotalScore(totalScore);
+			}
 
-			LevelManager.LoadLevels();
+			LevelManager.LoadLevels(levelNumber);
 
 			Buttons.Add(_pauseButton);
 		}
@@ -89,7 +94,7 @@ namespace Ecliptica.Screens
 
 			base.Draw(spriteBatch);
 
-			_gameScore = "Game Score: " + EntityManager.GetNumberOfEnemiesDestroyedTotal() ?? "0";
+			_gameScore = "Game Score: " + EntityManager.GetTotalScore() ?? "0";
 
 			Vector2 textSizeGameScore = Font.MeasureString(_gameScore);
 			Vector2 originGameScore = new (-10, 0);
@@ -106,7 +111,7 @@ namespace Ecliptica.Screens
 				SpriteEffects.None,
 				0f);
 
-			_levelScore = "Level Score: " + EntityManager.GetNumberOfEnemiesDestroyedLevel() ?? "0";
+			_levelScore = "Level Score: " + EntityManager.GetLevelScore() ?? "0";
 
 			Vector2 textSizeLevelScore = Font.MeasureString(_levelScore);
 			Vector2 originLevelScore = new (textSizeLevelScore.X / 2, 0);

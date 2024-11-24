@@ -1,5 +1,6 @@
 ﻿using Ecliptica.Arts;
 using Ecliptica.Games;
+using Ecliptica.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Ecliptica.Screens
 {
-	internal class WinScreen : Screen
+    internal class WinScreen : Screen
 	{
 		List<Firework> fireworks = new List<Firework>();
 

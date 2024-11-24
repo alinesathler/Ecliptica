@@ -1,6 +1,7 @@
 ﻿using Ecliptica.Arts;
+using Ecliptica.Files;
 using Ecliptica.Levels;
-using Ecliptica.Screens;
+using Ecliptica.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -10,7 +11,7 @@ using System.IO;
 
 namespace Ecliptica.Games
 {
-	internal class SaveScreen : Screen
+    internal class SaveScreen : Screen
 	{
 		private static int _selectedSlot = 1;
 		private static int _totalSlots = 3;
@@ -30,6 +31,8 @@ namespace Ecliptica.Games
 			IsActive = true;
 
 			Music = Sounds.MusicTheme;
+			BackgroundSolid = Images.BackgroundBlue;
+			BackgroundStars = Images.BackgroundStars;
 			Font = Fonts.FontGame;
 			DefaultScale = 1.0f;
 			HoverScale = 1.2f;
@@ -39,16 +42,17 @@ namespace Ecliptica.Games
 			ButtonHeight = 50;
 
 			// Buttons
-			AddButton("Save", () => { SaveGame(_selectedSlot); }, new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y - ButtonHeight) / 2));
-			AddButton("Continue", () => { IsActive = false; ScreenManager.PopScreen(); }, new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y - ButtonHeight) / 2 + 60));
-			AddButton("Exit", () => EclipticaGame.Instance.Exit(), new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y - ButtonHeight) / 2 + 120));
+			AddButton("Save", () => { SaveGame(_selectedSlot); }, new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y * 2 / 3)));
+			AddButton("Continue", () => { IsActive = false; ScreenManager.PopScreen(); });
+			AddButton("Main Menu", () => { IsActive = false; ScreenManager.ReplaceScreen(new MenuScreen()); });
+			AddButton("Exit", () => EclipticaGame.Instance.Exit());
 
 			slotButtons = new();
 
 			for (int i = 0; i < _totalSlots; i++)
 			{
 				int slotIndex = i;
-				string slotStatus = GetSaveSlotStatus(slotIndex + 1);
+				string slotStatus = SaveManager.IsSlotOccupied(slotIndex + 1) ? "Occupied" : "Empty";
 
 				Button slotButton = new (
 					 $"Slot {slotIndex + 1} - {slotStatus}",
@@ -78,14 +82,6 @@ namespace Ecliptica.Games
 		{
 			base.Update(gameTime);
 
-			if (KeyboardHandler.IsKeyPressed(Keys.Up))
-			{
-				_selectedSlot = Math.Max(1, _selectedSlot - 1);
-			} else if (KeyboardHandler.IsKeyPressed(Keys.Down))
-			{
-				_selectedSlot = Math.Min(_totalSlots, _selectedSlot + 1);
-			}
-
 			if (!string.IsNullOrEmpty(_saveMessage))
 			{
 				_saveMessageTime -= gameTime.ElapsedGameTime.TotalSeconds;
@@ -97,7 +93,7 @@ namespace Ecliptica.Games
 				slotButton.Update(Mouse.GetState());
             }
         }
-
+		 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			// Draw the background with alpha
@@ -148,8 +144,8 @@ namespace Ecliptica.Games
 
 		private static void SaveGame(int slot)
 		{
-			string saveData = $"Slot: {slot}\nPlayer Name: {EclipticaGame.PlayerName}\nLevel: {LevelManager.CurrentLevel.LevelNumber}\nGame Score: {EntityManager.GetNumberOfEnemiesDestroyedTotal()}\nShip Lifes: {ShipPlayer.Instance.Life}";
-			string savePath = GetSaveSlotPath(slot);
+			string saveData = $"Slot: {slot}\nPlayer Name: {EclipticaGame.PlayerName}\nLevel: {LevelManager.CurrentLevel.LevelNumber}\nGame Score: {EntityManager.GetTotalScore()}\nShip Lifes: {ShipPlayer.Instance.Life}";
+			string savePath = SaveManager.GetSaveSlotPath(slot);
 
 			// Write save data to the slot file
 			try
@@ -159,27 +155,12 @@ namespace Ecliptica.Games
 			} catch (Exception ex)
 			{
 				Console.WriteLine($"Failed to save game: {ex.Message}");
+				SaveScreen.Instance._saveMessage = $"Failed to save Slot {slot}: {ex.Message}";
 			}
 
 			SaveScreen.Instance._saveMessage = $"Slot {slot} saved successfully!";
 			SaveScreen.Instance.slotButtons[slot - 1].text = $"Slot {slot} - Occupied";
 			SaveScreen.Instance._saveMessageTime = 2.0;
-		}
-
-		private static string GetSaveSlotStatus(int slot)
-		{
-			string savePath = GetSaveSlotPath(slot);
-			return File.Exists(savePath) ? "Occupied" : "Empty";
-		}
-
-		private static string GetSaveSlotPath(int slot)
-		{
-			string saveDirectory = "Saves";
-			if (!Directory.Exists(saveDirectory))
-			{
-				Directory.CreateDirectory(saveDirectory);
-			}
-			return Path.Combine(saveDirectory, $"savegame_slot_{slot}.txt");
 		}
 
 		private void SelectSlot(int slotIndex)
