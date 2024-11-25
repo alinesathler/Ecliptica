@@ -49,6 +49,10 @@ namespace Ecliptica.Arts
 		public static List<Texture2D> LifeBarShip { get; set; }
 		public static Texture2D Life { get; set; }
 
+		public static Texture2D BonusLife { get; set; }
+		public static Texture2D BonusShield { get; set; }
+		public static Texture2D BonusTime { get; set; }
+
 
 		public static Texture2D Pixel;
 
@@ -104,6 +108,10 @@ namespace Ecliptica.Arts
 			LifeBarShip.Add(content.Load<Texture2D>("Images/life-bar-animated-7"));
 			LifeBarShip.Add(content.Load<Texture2D>("Images/life-bar-animated-8"));
 			Life = content.Load<Texture2D>("Images/life-sheet");
+
+			BonusLife = content.Load<Texture2D>("Images/bonus-life");
+			BonusShield = content.Load<Texture2D>("Images/bonus-shield");
+			BonusTime = content.Load<Texture2D>("Images/bonus-time");
 
 			Pixel = new Texture2D(graphicsDevice, 1, 1);
 			Pixel.SetData(new[] { Color.White });

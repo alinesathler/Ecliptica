@@ -19,14 +19,25 @@ namespace Ecliptica.Levels
 		public List<Entity> Enemies { get; set; }
 		private float _soundVolume = 0.25f;
 		private string _levelName;
+		private double _levelInitialTime;
 		private double _levelRemaningTime;
 
+		private int _emenyIndex;
+		private int _step;
+		private int _stepCounter;
+		
+		private bool _isBonusLifeCreated = false;
+		private bool _isBonusTimeCreated = false;
 
-		public Level(int levelNumber, double levelTime)
+
+		public Level(int levelNumber, double levelTime, int timeStep)
 		{
 			LevelNumber = levelNumber;
-			_levelRemaningTime = levelTime;
+			_levelInitialTime = levelTime;
+			_levelRemaningTime = _levelInitialTime;
 			_levelName = "Level " + LevelNumber;
+			_step = timeStep;
+			_stepCounter = 1;
 
 			Enemies = new ();
 			BackgroundSolid = Images.BackgroundBlue;
@@ -44,10 +55,18 @@ namespace Ecliptica.Levels
 
 			EntityManager.Clear();
 
-			foreach (var enemy in Enemies)
+			// Add the first 5 enemies to the level
+			for (int i = 0; i < 5; i++)
 			{
-				EntityManager.Add(enemy);
+				EntityManager.Add(Enemies[i]);
+
+				_emenyIndex = i;
 			}
+
+			//foreach (var enemy in Enemies)
+			//{
+			//	EntityManager.Add(enemy);
+			//}
 		}
 
 		/// <summary>
@@ -98,7 +117,38 @@ namespace Ecliptica.Levels
 				levelTimeText = "00:00";
 			}
 
-            spriteBatch.DrawString(Fonts.FontGame, levelTimeText, new Vector2((EclipticaGame.ScreenSize.X - Fonts.FontGame.MeasureString(levelTimeText).X) - 10, 10), Color.White);
+			if(_levelRemaningTime <= _levelInitialTime / 2 && !_isBonusLifeCreated)
+			{
+				EntityManager.Add(new BonusLife());
+				_isBonusLifeCreated = true;
+			}
+
+			if (_levelRemaningTime <= _levelInitialTime / 3 && !_isBonusTimeCreated)
+			{
+				EntityManager.Add(new BonusTime());
+				_isBonusTimeCreated = true;
+			}
+
+				spriteBatch.DrawString(Fonts.FontGame, levelTimeText, new Vector2((EclipticaGame.ScreenSize.X - Fonts.FontGame.MeasureString(levelTimeText).X) - 10, 10), Color.White);
+
+			int aux = _emenyIndex;
+
+			// Add the next 5 enemies to the level each _step seconds
+			if (_levelRemaningTime < _levelInitialTime - _step * _stepCounter)
+			{
+				for (int i = _emenyIndex; i < aux + 5; i++)
+				{
+					if (i < Enemies.Count)
+					{
+						EntityManager.Add(Enemies[i]);
+					}
+
+					_emenyIndex = i;
+				}
+
+				 _stepCounter++;
+			}
+
 			EntityManager.Draw(spriteBatch);
 		}
 
@@ -121,9 +171,14 @@ namespace Ecliptica.Levels
 			Sounds.PlaySound(Sounds.Shoot, _soundVolume);
 		}
 
-		public double GetLevelRemaingTime()
+		public void Clear()
 		{
-			return _levelRemaningTime;
+			Enemies.Clear();
+		}
+
+		public void AddTime()
+		{
+			_levelRemaningTime += 10;
 		}
 	}
 

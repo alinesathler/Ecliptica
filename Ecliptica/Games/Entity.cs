@@ -14,6 +14,8 @@ namespace Ecliptica.Games
 		protected int life;
 		protected int maxLife;
 
+		protected float _scale = 1.0f;
+
 		public Vector2 Velocity
 		{
 			get { return _velocity; }
@@ -40,7 +42,11 @@ namespace Ecliptica.Games
 			set { maxLife = value; }
 		}
 
-		protected float _scale = 1f;
+        public float Scale
+        {
+            get { return _scale; }
+            set { _scale = value; }
+        }
 
 		protected float _speed = 0.3f;
 
@@ -88,7 +94,7 @@ namespace Ecliptica.Games
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(image, Position, null, color, Orientation, Size / 2f, 1f, 0, 0);
+            spriteBatch.Draw(image, Position, null, color, Orientation, Size / 2f, Scale, 0, 0);
         }
     }
 }

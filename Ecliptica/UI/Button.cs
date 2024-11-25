@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Ecliptica.Arts;
 using Ecliptica.Games;
 using System;
+using Ecliptica.InputHandler;
 
 namespace Ecliptica.UI
 {
@@ -39,7 +40,7 @@ namespace Ecliptica.UI
             {
                 _scale = _hoverScale;
 
-                if (mouseState.LeftButton == ButtonState.Pressed)
+                if (MouseHandler.IsLeftClick(Bounds))
                 {
                     OnClick?.Invoke();
                 }

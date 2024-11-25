@@ -1,5 +1,6 @@
 ﻿using Ecliptica.Arts;
 using Ecliptica.Games;
+using Ecliptica.InputHandler;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -7,7 +8,7 @@ using System;
 
 namespace Ecliptica.Screens
 {
-	internal class TitleScreen : Screen
+    internal class TitleScreen : Screen
 	{
 		private string _message;
 		private double _messageTime;

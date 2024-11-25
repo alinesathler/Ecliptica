@@ -70,6 +70,9 @@ namespace Ecliptica.Screens
 			// Check if the level is completed
 			if (!LevelTransition.IsTransitioning && LevelManager.CurrentLevel?.IsLevelComplete() == true)
 			{
+				EntityManager.Clear();
+				LevelManager.CurrentLevel?.Clear();
+
 				if (!LevelManager.IsLastLevel())
 				{
 					LevelTransition.StartTransition();

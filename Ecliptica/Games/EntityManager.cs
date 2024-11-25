@@ -84,9 +84,38 @@ namespace Ecliptica.Games
 					// Avoid self-collision (no need to check for a collision with itself)
 					if (i == j) continue;
 
-					// Aboid collision between projectiles and the ShipPlayer
+					// Avoid collision between projectiles and the ShipPlayer
 					if (entities[i] is Projectile && entities[j] is ShipPlayer) continue;
 					if (entities[j] is Projectile && entities[i] is ShipPlayer) continue;
+
+					// Avoid collision between projectiles and bonus life
+					if (entities[i] is BonusLife && entities[j] is Projectile) continue;
+					if (entities[j] is BonusLife && entities[i] is Projectile) continue;
+
+					// Avoid collision between projectiles and bonus time
+					if (entities[i] is BonusTime && entities[j] is Projectile) continue;
+					if (entities[j] is BonusTime && entities[i] is Projectile) continue;
+
+
+					// Check if there's a collision between the ShipPlayer and a bonus life
+					if ((entities[i] is ShipPlayer && entities[j] is BonusLife) || (entities[j] is ShipPlayer && entities[i] is BonusLife))
+					{
+						if (IsColliding(entities[i], entities[j]))
+						{
+							ShipPlayer.Instance.AddLife();
+							BonusLife.Instance.IsExpired = true;
+						}
+					}
+
+					// Check if there's a collision between the ShipPlayer and a bonus time
+					if ((entities[i] is ShipPlayer && entities[j] is BonusTime) || (entities[j] is ShipPlayer && entities[i] is BonusTime))
+					{
+						if (IsColliding(entities[i], entities[j]))
+						{
+							LevelManager.CurrentLevel?.AddTime();
+							BonusTime.Instance.IsExpired = true;
+						}
+					}
 
 					// Check if there's a collision between projectiles/shipPlayer and other entities
 					if ((entities[i] is Projectile || entities[j] is Projectile) && IsColliding(entities[i], entities[j]) || (entities[i] is ShipPlayer || entities[j] is ShipPlayer) && IsColliding(entities[i], entities[j]))

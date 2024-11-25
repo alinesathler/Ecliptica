@@ -1,4 +1,5 @@
 ﻿using Ecliptica.Arts;
+using Ecliptica.InputHandler;
 using Ecliptica.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -47,6 +48,8 @@ namespace Ecliptica.Games
 		public virtual void Update(GameTime gameTime)
 		{
 			MouseState mouseState = Mouse.GetState();
+
+			MouseHandler.Update();
 
 			foreach (var button in Buttons)
 			{

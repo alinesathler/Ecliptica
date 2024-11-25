@@ -10,12 +10,37 @@ namespace Ecliptica.Games
 		private Random _random;
 		private LifeAsteroids _asteroidLife;
 
-		public Asteroid(Vector2 velocity)
+		public Asteroid(int levelNumber, Vector2 velocity)
 		{
 			_random = new Random();
 
+			int maxLevelOfAsteroid;
+
+			// Set the maximum level of the asteroid based on the level number
+			switch (levelNumber) { 
+				case 1:
+					maxLevelOfAsteroid = 2;
+					break;
+				case 2:
+					maxLevelOfAsteroid = 3;
+					break;
+				case 3:
+					maxLevelOfAsteroid = 4;
+					break;
+				case 4:
+					maxLevelOfAsteroid = 5;
+					break;
+				case 5:
+					maxLevelOfAsteroid = 6;
+					break;
+				default:
+					maxLevelOfAsteroid = 1;
+					break;
+			}
+
+			// Set the asteroid based on the maximum level of the asteroid
 			switch
-				(_random.Next(0, 6))
+				(_random.Next(0, maxLevelOfAsteroid))
 			{
 				case 0:
 					image = Images.AsteroidRedSmall;

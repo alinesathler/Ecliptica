@@ -19,8 +19,11 @@ namespace Ecliptica.Levels
 		private static int currentLevelIndex;
 		private static double elapsedLevelTime;
 
-		private static double initialLevelTime = 10;
-		private static double levelTimeIncrement = 5;
+		//private static double initialLevelTime = 50;
+		//private static double levelTimeIncrement = 10;
+
+		private static double initialLevelTime = 50;
+		private static double levelTimeIncrement = 10;
 
 		/// <summary>
 		/// Constructor to initialize the levels
@@ -48,66 +51,21 @@ namespace Ecliptica.Levels
 		{
 			Random random = new();
 
-			for(int i = levelNumber; i < 5; i++)
+			for(int i = levelNumber; i < 6; i++)
 			{
 				double levelTime = initialLevelTime + (i * levelTimeIncrement);
+				int levelStep = 10 - i;
 
-				Level level = new(i, levelTime);
+				Level level = new(i, levelTime, levelStep);
 
-				for (int j = 0; j < 5; j++)
+				for (int j = 0; j < 100; j++)
 				{
-					level.AddAsteroid(new Asteroid(new Vector2(random.NextFloat(-1.00f * (i + 1), 1.00f * (i + 1)), random.NextFloat(0.10f * (i + 1), 1.00f * (i + 1)))));
+					level.AddAsteroid(new Asteroid(i, new Vector2(random.NextFloat(-1.00f * (i + 1), 1.00f * (i + 1)), random.NextFloat(0.10f * (i + 1), 1.00f * (i + 1)))));
 				}
 
 				level.MusicTrack = Sounds.MusicTheme;
 				levels.Add(level);
 			}
-			//// Level1
-			//var level1 = new Level(1);
-			//for (int i = 0; i < 2; i++)
-			//{
-			//	level1.AddAsteroid(new Asteroid(new Vector2(random.NextFloat(-1.00f, 1.00f), random.NextFloat(0.10f, 1.00f))));
-			//}
-
-			//level1.MusicTrack = Sounds.MusicTheme;
-			//levels.Add(level1);
-
-			//// Level2
-			//var level2 = new Level(2);
-			//for (int i = 0; i < 2; i++)
-			//{
-			//	level2.AddAsteroid(new Asteroid(new Vector2(random.NextFloat(-1.50f, 1.50f), random.NextFloat(0.10f, 1.50f))));
-			//}
-			//level2.MusicTrack = Sounds.MusicTheme;
-			//levels.Add(level2);
-
-			//// Level3
-			//var level3 = new Level(3);
-			//for (int i = 0; i < 2; i++)
-			//{
-			//	level3.AddAsteroid(new Asteroid(new Vector2(random.NextFloat(-2.00f, 2.00f), random.NextFloat(0.10f, 2.00f))));
-			//}
-			//level3.MusicTrack = Sounds.MusicTheme;
-			//levels.Add(level3);
-
-			//// Level4
-			//var level4 = new Level(4);
-			//for (int i = 0; i < 2; i++)
-			//{
-			//	level4.AddAsteroid(new Asteroid(new Vector2(random.NextFloat(-2.50f, 2.50f), random.NextFloat(0.10f, 2.50f))));
-			//}
-			//level4.MusicTrack = Sounds.MusicTheme;
-			//levels.Add(level4);
-
-			//// Level5
-			//var level5 = new Level(5);
-			//for (int i = 0; i < 2; i++)
-			//{
-			//	level5.AddAsteroid(new Asteroid(new Vector2(random.NextFloat(-3.00f, 3.00f), random.NextFloat(0.10f, 3.00f))));
-			//}
-			//level5.MusicTrack = Sounds.MusicTheme;
-			//levels.Add(level5);
-
 
 			// Set the first level as the current level
 			CurrentLevel = levels[currentLevelIndex];
