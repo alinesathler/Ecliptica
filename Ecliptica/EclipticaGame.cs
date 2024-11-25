@@ -10,6 +10,7 @@
 * Aline Satheer Delfino, 2024.11.24: Added Load Screen to load the game state, refactored game screen to use the load game method, added the ability to save the game state, refactored game screen to use the save game method.
 * Aline Sathler Delfino, 2024.11.24: Added the ability to read and write high scores to a file, added the Scores Screen to display the high scores, changed the game logic to finish the level based on time.
 * Aline Sathler Delfino, 2024.11.24: Levels are generated randomly with increased speed and enemy level, added mouse handler, added bonus life and time, levels design.
+* Aline Sathler Delfino, 2024.11.25: Added About and Tutorial screens.
 */
 
 using Microsoft.Xna.Framework;
