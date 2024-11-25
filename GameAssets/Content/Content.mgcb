@@ -87,6 +87,20 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/GameFont.spritefont
 
+#begin Fonts/GameFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/GameFont.spritefont
+
+#begin Fonts/GameFontSmaller.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/GameFontSmaller.spritefont
+
 #begin Images/asteroid-blue-medium.png
 /importer:TextureImporter
 /processor:TextureProcessor

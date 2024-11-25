@@ -9,5 +9,7 @@ namespace Ecliptica.Files
 	internal class FileIO
 	{
 		internal const string SaveDirectory = "Saves";
+
+		internal const string ScoresDirectory = "Scores";
 	}
 }

@@ -22,5 +22,14 @@ namespace Ecliptica.Files
 		{
 			return File.Exists(GetSaveSlotPath(slot));
 		}
+
+		public static string GetScoresPath()
+		{
+			if (!Directory.Exists(FileIO.ScoresDirectory))
+			{
+				Directory.CreateDirectory(FileIO.ScoresDirectory);
+			}
+			return Path.Combine(FileIO.ScoresDirectory, "scores.txt");
+		}
 	}
 }

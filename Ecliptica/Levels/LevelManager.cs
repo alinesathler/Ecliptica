@@ -17,6 +17,10 @@ namespace Ecliptica.Levels
 		public static Level CurrentLevel { get; private set; }
 		private static List<Level> levels;
 		private static int currentLevelIndex;
+		private static double elapsedLevelTime;
+
+		private static double initialLevelTime = 10;
+		private static double levelTimeIncrement = 5;
 
 		/// <summary>
 		/// Constructor to initialize the levels
@@ -25,6 +29,7 @@ namespace Ecliptica.Levels
 		{
 			levels = new();
 			currentLevelIndex = 0;
+			elapsedLevelTime = 0;
 		}
 
 		/// <summary>
@@ -45,7 +50,10 @@ namespace Ecliptica.Levels
 
 			for(int i = levelNumber; i < 5; i++)
 			{
-				Level level = new(i);
+				double levelTime = initialLevelTime + (i * levelTimeIncrement);
+
+				Level level = new(i, levelTime);
+
 				for (int j = 0; j < 5; j++)
 				{
 					level.AddAsteroid(new Asteroid(new Vector2(random.NextFloat(-1.00f * (i + 1), 1.00f * (i + 1)), random.NextFloat(0.10f * (i + 1), 1.00f * (i + 1)))));
@@ -130,6 +138,8 @@ namespace Ecliptica.Levels
 		public static void NextLevel()
 		{
 			currentLevelIndex++;
+
+			ScoresScreen.UpdateHighScores();
 
 			// If there are more levels, load the next one
 			if (currentLevelIndex < levels.Count)

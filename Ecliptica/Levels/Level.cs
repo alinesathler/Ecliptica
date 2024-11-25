@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Media;
 using Ecliptica.Arts;
 using Ecliptica.UI;
+using System;
 
 namespace Ecliptica.Levels
 {
@@ -18,13 +19,16 @@ namespace Ecliptica.Levels
 		public List<Entity> Enemies { get; set; }
 		private float _soundVolume = 0.25f;
 		private string _levelName;
+		private double _levelRemaningTime;
 
 
-		public Level(int levelNumber)
+		public Level(int levelNumber, double levelTime)
 		{
 			LevelNumber = levelNumber;
+			_levelRemaningTime = levelTime;
+			_levelName = "Level " + LevelNumber;
+
 			Enemies = new ();
-			_levelName = "Level " + levelNumber;
 			BackgroundSolid = Images.BackgroundBlue;
 			BackgroundStars = Images.BackgroundStars;
 		}
@@ -59,7 +63,7 @@ namespace Ecliptica.Levels
 
 		public bool IsLevelComplete()
 		{
-			return EnemyCount == EntityManager.GetNumberOfEnemiesDestroyedLevel();
+			return _levelRemaningTime <= 0;
 		}
 
 		/// <summary>
@@ -69,6 +73,8 @@ namespace Ecliptica.Levels
 		public void Update(GameTime gameTime)
 		{
 			EntityManager.Update(gameTime, _soundVolume);
+
+			_levelRemaningTime -= gameTime.ElapsedGameTime.TotalSeconds;
 		}
 
 		/// <summary>
@@ -78,6 +84,21 @@ namespace Ecliptica.Levels
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			spriteBatch.DrawString(Fonts.FontGame, _levelName, new Vector2((EclipticaGame.ScreenSize.X - Fonts.FontGame.MeasureString(_levelName).X) / 2, 10), Color.White);
+
+			TimeSpan remainingTime = TimeSpan.FromSeconds(_levelRemaningTime);
+
+			string levelTimeText;
+
+			if (remainingTime.TotalSeconds > 0)
+			{
+				levelTimeText = $"{remainingTime.Minutes:00}:{remainingTime.Seconds:00}";
+			}
+            else
+            {
+				levelTimeText = "00:00";
+			}
+
+            spriteBatch.DrawString(Fonts.FontGame, levelTimeText, new Vector2((EclipticaGame.ScreenSize.X - Fonts.FontGame.MeasureString(levelTimeText).X) - 10, 10), Color.White);
 			EntityManager.Draw(spriteBatch);
 		}
 
@@ -98,6 +119,11 @@ namespace Ecliptica.Levels
 			EntityManager.Add(newProjectile);
 
 			Sounds.PlaySound(Sounds.Shoot, _soundVolume);
+		}
+
+		public double GetLevelRemaingTime()
+		{
+			return _levelRemaningTime;
 		}
 	}
 

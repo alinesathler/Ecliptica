@@ -9,8 +9,14 @@ namespace Ecliptica.Screens
 {
 	internal class TitleScreen : Screen
 	{
+		private string _message;
+		private double _messageTime;
+
 		public TitleScreen()
 		{
+			_message = "";
+			_messageTime = 0.0;
+
 			Music = Sounds.TitleScreen;
 			BackgroundSolid = Images.BackgroundTitle;
 			BackgroundStars = Images.BackgroundStars1;
@@ -23,7 +29,7 @@ namespace Ecliptica.Screens
 			ButtonHeight = 50;
 
 			// Buttons
-			AddButton("Start Game", () => ScreenManager.ReplaceScreen(new MenuScreen()), new Vector2 (((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2,
+			AddButton("Start Game", () => CheckName(), new Vector2 (((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2,
 				((int)EclipticaGame.ScreenSize.Y - 2 * ButtonHeight)));
 		}
 
@@ -44,11 +50,25 @@ namespace Ecliptica.Screens
 			}
 		}
 
+		private void CheckName()
+		{
+			string name = EclipticaGame.PlayerName.Trim();
+
+			if (string.IsNullOrEmpty(name) || name.Length > 12)
+			{
+				_message = $"Please enter a name between 1 and 12 caracteres";
+				_messageTime = 2.0;
+			} else
+			{
+				ScreenManager.ReplaceScreen(new MenuScreen());
+			}
+		}
+
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
 
-			KeyboardHandler.Update(); // Update the keyboard state
+			KeyboardHandler.Update();
 
 			// Handle key presses
 			foreach (Keys key in Enum.GetValues(typeof(Keys)))
@@ -63,6 +83,13 @@ namespace Ecliptica.Screens
 			if (KeyboardHandler.IsKeyPressed(Keys.Enter))
 			{
 				Buttons[0].OnClick();
+			}
+
+			// Update time for the message
+			if (!string.IsNullOrEmpty(_message))
+			{
+				_messageTime -= gameTime.ElapsedGameTime.TotalSeconds;
+				if (_messageTime <= 0) _message = null;
 			}
 		}
 
@@ -90,6 +117,17 @@ namespace Ecliptica.Screens
 
 			spriteBatch.DrawString(Font, prompt, promptPosition, DefaultColor);
 			spriteBatch.DrawString(Font, EclipticaGame.PlayerName, namePosition, DefaultColor);
+
+			// Draw the save message if it exists
+			if (!string.IsNullOrEmpty(_message))
+			{
+				Vector2 messageSize = Fonts.FontGameSmall.MeasureString(_message);
+				Vector2 messagePosition = new(
+					(EclipticaGame.ScreenSize.X - messageSize.X) / 2,
+					Buttons[0].Bounds.Y - messageSize.Y - 15
+				);
+				spriteBatch.DrawString(Fonts.FontGameSmall, _message, messagePosition, HoverColor);
+			}
 		}
 	}
 }

@@ -126,7 +126,7 @@ namespace Ecliptica.Games
 			Vector2 instructionsSize = Font.MeasureString(instructions);
 			Vector2 instructionsPosition = new (
 				(spriteBatch.GraphicsDevice.Viewport.Width - instructionsSize.X) / 2,
-				spriteBatch.GraphicsDevice.Viewport.Height - 100
+				spriteBatch.GraphicsDevice.Viewport.Height - instructionsSize.Y
 			);
 			spriteBatch.DrawString(Font, instructions, instructionsPosition, Color.White);
 
@@ -136,7 +136,7 @@ namespace Ecliptica.Games
 				Vector2 messageSize = Font.MeasureString(_saveMessage);
 				Vector2 messagePosition = new (
 					(EclipticaGame.ScreenSize.X - messageSize.X) / 2,
-					EclipticaGame.ScreenSize.Y - 150
+					EclipticaGame.ScreenSize.Y - instructionsSize.Y - messageSize.Y - 10
 				);
 				spriteBatch.DrawString(Font, _saveMessage, messagePosition, HoverColor);
 			}

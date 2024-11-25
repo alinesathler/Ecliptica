@@ -8,6 +8,7 @@
 * Aline Sathler Delfino, 2024.11.22: Changed spaceship life, added life bar for asteroids, and fixed the game over screen, generate asteroids randomly instead of hardcoding, pause screen added, game score added.
 * Aline Sathler Delfino, 2024.11.23: Added Save Screen to save the game state, write to file, refactroing screen class to not hadcording buttons.
 * Aline Satheer Delfino, 2024.11.24: Added Load Screen to load the game state, refactored game screen to use the load game method, added the ability to save the game state, refactored game screen to use the save game method.
+* Aline Sathler Delfino, 2024.11.24: Added the ability to read and write high scores to a file, added the Scores Screen to display the high scores, changed the game logic to finish the level based on time.
 */
 
 using Microsoft.Xna.Framework;
