@@ -97,8 +97,6 @@ namespace Ecliptica.Levels
 		{
 			_currentLevelIndex++;
 
-			ScoresScreen.UpdateHighScores();
-
 			// If there are more levels, load the next one
 			if (_currentLevelIndex < _levels.Count)
 			{

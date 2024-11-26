@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_03B850159E9540D1BFE5919B0FA55043"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_08A6464E5E294CCE82D6736AD19CB3A6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -51,6 +57,30 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_137CDAF4EE034FBE9FA3FECDCF66C265"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_16503C476B634E2392CF84EF6DA53720"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1848B3E7BBE249D6B3F44D015A9FA79D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1FFB20EFF7274B60AB619A200A590E31"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_210F7117D643491CB063692D0B5073A1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -63,13 +93,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_221B1E9C2F8C4D3EBE34DED02C165147"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_23C7929F8C4B4A12B0CF660B8C8428D0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_2618761E43684C9494F1B71C2A8A3038"
+        "MsmKey" = "8:_279FFB29411341FAB579E8B9F0FB7466"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -99,12 +135,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3154A83B1A2A4E20806BD006401F8B8C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_33B647173B0849F0B4E5EE7CD8E289A6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -123,19 +153,13 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3DA13CE4599143399E6F9A402E6E2767"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3E62ECDAFE07448B9A32E34C1685014A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3EB736CA02DF4BE9AB098D2B1927F5C2"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_44ED3F47F56A41B883B82FDB61A0A163"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -183,18 +207,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_54E018EC6CA0476A964A3D6800DF02A7"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_571202DB61364178BAFC751EC338B454"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5C5DC824FBCF480B8CADE77DB686C207"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -213,13 +225,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_610176E25BED4EB7A4EE31BF0F6102C7"
+        "MsmKey" = "8:_620D2F36CAFC4565A783B9E8F5B6DCC9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_620D2F36CAFC4565A783B9E8F5B6DCC9"
+        "MsmKey" = "8:_62B1F20D61AF40EBB323C4C403B0B333"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -232,12 +244,6 @@
         "Entry"
         {
         "MsmKey" = "8:_67CEFC71CA12475A974BA0547C72CE38"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6A3DDE10AB38494285FEAC8254348505"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -267,13 +273,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_77D811C69ED34987942A10C988377589"
+        "MsmKey" = "8:_74AA0076B8554C38A3731753F566F9BF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7834F8C062044BD293F6F98DC8C1F744"
+        "MsmKey" = "8:_77D811C69ED34987942A10C988377589"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -291,13 +297,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7AADE07CE0DE459D9E621E66234FD4FC"
+        "MsmKey" = "8:_7B30CB557F2F4DB8A8D571F5EF5ACE8D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_7D0AC3B9CE6A4EFBA8333C12726666C4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7D845B622F9D4CB28EFF10CAA0C124EF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -339,6 +351,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9536C8664E8E478E9C552F24BEE7D6D6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_96E63B40866A490CBC8BBDEE777A85D3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_99E1B67487F7488FA1B6AA16BAB0616D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -357,7 +381,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9D4891D026324FE988F08067AE9E6898"
+        "MsmKey" = "8:_9D208122CADD419ABC799AC1A5E82910"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -369,13 +393,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A50117881A1E40FCB4DA9E597C5E09FA"
+        "MsmKey" = "8:_A1DCAFD015D647FB8AA5E1C1F17F38D0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A7AD6739448E49D0973DCF46C9F76A76"
+        "MsmKey" = "8:_A50117881A1E40FCB4DA9E597C5E09FA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -387,7 +411,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AC237E168BE44188921A1B5DC5B183C7"
+        "MsmKey" = "8:_AE36669C030A41BB998AD64122D04499"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -399,19 +423,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B51B8A11B4BF4E8B83173872A6219FE8"
+        "MsmKey" = "8:_B629CB2EA1AD4EB185C3E2ED28655866"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_BF311BEA45AD4A149D62B0F9B0DE3BC1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C240472056D0427096F84513F63EEB4D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -495,7 +513,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EA9F6FB4F35049859AD52DBD57E642E7"
+        "MsmKey" = "8:_E99D502F62A24E75897D05053D570ADB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -507,7 +525,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_ECF629C9601E4963B21E60F55E31F7B9"
+        "MsmKey" = "8:_ED65054E03E347E5909F5BD0AD418D67"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -531,19 +549,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F9039880FD814F9E9D2B8A45ABF2CE28"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_FBD7B09BAB374926BE9400987AA64D04"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FD611F83822343B2B856319C72339E26"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -562,12 +568,6 @@
         "Entry"
         {
         "MsmKey" = "8:_FE25B373D3F94F58BFDE6038FF8704CB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FF45CA04AE154B77B37AD676FD1642E0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -642,6 +642,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_03B850159E9540D1BFE5919B0FA55043"
+            {
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\epic-end.xnb"
+            "TargetName" = "8:epic-end.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_08A6464E5E294CCE82D6736AD19CB3A6"
             {
             "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Images\\laser-blue.xnb"
@@ -762,6 +782,86 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_137CDAF4EE034FBE9FA3FECDCF66C265"
+            {
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\defeated-game-over-tune.ogg"
+            "TargetName" = "8:defeated-game-over-tune.ogg"
+            "Tag" = "8:"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_16503C476B634E2392CF84EF6DA53720"
+            {
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\sky-fire-title-screen.xnb"
+            "TargetName" = "8:sky-fire-title-screen.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1848B3E7BBE249D6B3F44D015A9FA79D"
+            {
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\arcade-retro-game-over.xnb"
+            "TargetName" = "8:arcade-retro-game-over.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1FFB20EFF7274B60AB619A200A590E31"
+            {
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\epic-end.ogg"
+            "TargetName" = "8:epic-end.ogg"
+            "Tag" = "8:"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_210F7117D643491CB063692D0B5073A1"
             {
             "SourcePath" = "8:..\\EclipticaDesktopApp\\Icon.ico"
@@ -802,6 +902,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_221B1E9C2F8C4D3EBE34DED02C165147"
+            {
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\death-match-boss-theme.ogg"
+            "TargetName" = "8:death-match-boss-theme.ogg"
+            "Tag" = "8:"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_23C7929F8C4B4A12B0CF660B8C8428D0"
             {
             "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Images\\explosion-crystals-green-sheet.xnb"
@@ -822,10 +942,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2618761E43684C9494F1B71C2A8A3038"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_279FFB29411341FAB579E8B9F0FB7466"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\falling-hit.xnb"
-            "TargetName" = "8:falling-hit.xnb"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\bonus-sound.xnb"
+            "TargetName" = "8:bonus-sound.xnb"
             "Tag" = "8:"
             "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
@@ -902,26 +1022,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3154A83B1A2A4E20806BD006401F8B8C"
-            {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\epic-end.xnb"
-            "TargetName" = "8:epic-end.xnb"
-            "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_33B647173B0849F0B4E5EE7CD8E289A6"
             {
             "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Images\\SmileyWalk.xnb"
@@ -982,52 +1082,32 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3DA13CE4599143399E6F9A402E6E2767"
+            {
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\sound-laser.xnb"
+            "TargetName" = "8:sound-laser.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3E62ECDAFE07448B9A32E34C1685014A"
             {
             "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Images\\yellow-gift-box.xnb"
             "TargetName" = "8:yellow-gift-box.xnb"
             "Tag" = "8:"
             "Folder" = "8:_1FBF48CADAA141D38217F1D6BA15761D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3EB736CA02DF4BE9AB098D2B1927F5C2"
-            {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\short-laser-gun-shot.xnb"
-            "TargetName" = "8:short-laser-gun-shot.xnb"
-            "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_44ED3F47F56A41B883B82FDB61A0A163"
-            {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\victory-tune.ogg"
-            "TargetName" = "8:victory-tune.ogg"
-            "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1182,46 +1262,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_54E018EC6CA0476A964A3D6800DF02A7"
-            {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\arcade-retro-game-over.xnb"
-            "TargetName" = "8:arcade-retro-game-over.xnb"
-            "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_571202DB61364178BAFC751EC338B454"
-            {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\rain-of-lasers-level-theme.ogg"
-            "TargetName" = "8:rain-of-lasers-level-theme.ogg"
-            "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5C5DC824FBCF480B8CADE77DB686C207"
             {
             "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Images\\walking_black_sm.xnb"
@@ -1282,12 +1322,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_610176E25BED4EB7A4EE31BF0F6102C7"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_620D2F36CAFC4565A783B9E8F5B6DCC9"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\brave-pilots-menu-screen.xnb"
-            "TargetName" = "8:brave-pilots-menu-screen.xnb"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Images\\bonus-shield.xnb"
+            "TargetName" = "8:bonus-shield.xnb"
             "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Folder" = "8:_1FBF48CADAA141D38217F1D6BA15761D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1302,12 +1342,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_620D2F36CAFC4565A783B9E8F5B6DCC9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_62B1F20D61AF40EBB323C4C403B0B333"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Images\\bonus-shield.xnb"
-            "TargetName" = "8:bonus-shield.xnb"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\death-match-boss-theme.xnb"
+            "TargetName" = "8:death-match-boss-theme.xnb"
             "Tag" = "8:"
-            "Folder" = "8:_1FBF48CADAA141D38217F1D6BA15761D"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1348,26 +1388,6 @@
             "TargetName" = "8:red-gift-box.xnb"
             "Tag" = "8:"
             "Folder" = "8:_1FBF48CADAA141D38217F1D6BA15761D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6A3DDE10AB38494285FEAC8254348505"
-            {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\rain-of-lasers-level-theme.xnb"
-            "TargetName" = "8:rain-of-lasers-level-theme.xnb"
-            "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1462,12 +1482,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_77D811C69ED34987942A10C988377589"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_74AA0076B8554C38A3731753F566F9BF"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Images\\north_star.xnb"
-            "TargetName" = "8:north_star.xnb"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\defeated-game-over-tune.xnb"
+            "TargetName" = "8:defeated-game-over-tune.xnb"
             "Tag" = "8:"
-            "Folder" = "8:_1FBF48CADAA141D38217F1D6BA15761D"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1482,12 +1502,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7834F8C062044BD293F6F98DC8C1F744"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_77D811C69ED34987942A10C988377589"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\jingle-bells.ogg"
-            "TargetName" = "8:jingle-bells.ogg"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Images\\north_star.xnb"
+            "TargetName" = "8:north_star.xnb"
             "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Folder" = "8:_1FBF48CADAA141D38217F1D6BA15761D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1542,10 +1562,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7AADE07CE0DE459D9E621E66234FD4FC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B30CB557F2F4DB8A8D571F5EF5ACE8D"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\defeated-game-over-tune.ogg"
-            "TargetName" = "8:defeated-game-over-tune.ogg"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\brave-pilots-menu-screen.xnb"
+            "TargetName" = "8:brave-pilots-menu-screen.xnb"
             "Tag" = "8:"
             "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
@@ -1568,6 +1588,26 @@
             "TargetName" = "8:asteroid-red-medium.xnb"
             "Tag" = "8:"
             "Folder" = "8:_1FBF48CADAA141D38217F1D6BA15761D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7D845B622F9D4CB28EFF10CAA0C124EF"
+            {
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\victory-tune.xnb"
+            "TargetName" = "8:victory-tune.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1702,6 +1742,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9536C8664E8E478E9C552F24BEE7D6D6"
+            {
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\rain-of-lasers-level-theme.xnb"
+            "TargetName" = "8:rain-of-lasers-level-theme.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_96E63B40866A490CBC8BBDEE777A85D3"
+            {
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\brave-pilots-menu-screen.ogg"
+            "TargetName" = "8:brave-pilots-menu-screen.ogg"
+            "Tag" = "8:"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_99E1B67487F7488FA1B6AA16BAB0616D"
             {
             "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Images\\purple-gift-box.xnb"
@@ -1762,10 +1842,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9D4891D026324FE988F08067AE9E6898"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9D208122CADD419ABC799AC1A5E82910"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\victory-tune.xnb"
-            "TargetName" = "8:victory-tune.xnb"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\short-laser-gun-shot.xnb"
+            "TargetName" = "8:short-laser-gun-shot.xnb"
             "Tag" = "8:"
             "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
@@ -1802,12 +1882,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A50117881A1E40FCB4DA9E597C5E09FA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A1DCAFD015D647FB8AA5E1C1F17F38D0"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Fonts\\GameFont.xnb"
-            "TargetName" = "8:GameFont.xnb"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\falling-hit.xnb"
+            "TargetName" = "8:falling-hit.xnb"
             "Tag" = "8:"
-            "Folder" = "8:_011592D5ECC2482F8E88425BAC711699"
+            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1822,12 +1902,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A7AD6739448E49D0973DCF46C9F76A76"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A50117881A1E40FCB4DA9E597C5E09FA"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\epic-end.ogg"
-            "TargetName" = "8:epic-end.ogg"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Fonts\\GameFont.xnb"
+            "TargetName" = "8:GameFont.xnb"
             "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
+            "Folder" = "8:_011592D5ECC2482F8E88425BAC711699"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1862,10 +1942,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AC237E168BE44188921A1B5DC5B183C7"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AE36669C030A41BB998AD64122D04499"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\sky-fire-title-screen.ogg"
-            "TargetName" = "8:sky-fire-title-screen.ogg"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\rain-of-lasers-level-theme.ogg"
+            "TargetName" = "8:rain-of-lasers-level-theme.ogg"
             "Tag" = "8:"
             "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
@@ -1902,10 +1982,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B51B8A11B4BF4E8B83173872A6219FE8"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B629CB2EA1AD4EB185C3E2ED28655866"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\death-match-boss-theme.xnb"
-            "TargetName" = "8:death-match-boss-theme.xnb"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\sky-fire-title-screen.ogg"
+            "TargetName" = "8:sky-fire-title-screen.ogg"
             "Tag" = "8:"
             "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
@@ -1928,26 +2008,6 @@
             "TargetName" = "8:explosion-rocket-orange-sheet.xnb"
             "Tag" = "8:"
             "Folder" = "8:_1FBF48CADAA141D38217F1D6BA15761D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C240472056D0427096F84513F63EEB4D"
-            {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\sound-laser.xnb"
-            "TargetName" = "8:sound-laser.xnb"
-            "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2222,10 +2282,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EA9F6FB4F35049859AD52DBD57E642E7"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E99D502F62A24E75897D05053D570ADB"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\sky-fire-title-screen.xnb"
-            "TargetName" = "8:sky-fire-title-screen.xnb"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\victory-tune.ogg"
+            "TargetName" = "8:victory-tune.ogg"
             "Tag" = "8:"
             "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
@@ -2262,10 +2322,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ECF629C9601E4963B21E60F55E31F7B9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ED65054E03E347E5909F5BD0AD418D67"
             {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\death-match-boss-theme.ogg"
-            "TargetName" = "8:death-match-boss-theme.ogg"
+            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\button-sound.xnb"
+            "TargetName" = "8:button-sound.xnb"
             "Tag" = "8:"
             "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
@@ -2342,52 +2402,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9039880FD814F9E9D2B8A45ABF2CE28"
-            {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\brave-pilots-menu-screen.ogg"
-            "TargetName" = "8:brave-pilots-menu-screen.ogg"
-            "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FBD7B09BAB374926BE9400987AA64D04"
             {
             "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Images\\blue-gift-box.xnb"
             "TargetName" = "8:blue-gift-box.xnb"
             "Tag" = "8:"
             "Folder" = "8:_1FBF48CADAA141D38217F1D6BA15761D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FD611F83822343B2B856319C72339E26"
-            {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\defeated-game-over-tune.xnb"
-            "TargetName" = "8:defeated-game-over-tune.xnb"
-            "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2448,26 +2468,6 @@
             "TargetName" = "8:explosion-crystals-white-sheet.xnb"
             "Tag" = "8:"
             "Folder" = "8:_1FBF48CADAA141D38217F1D6BA15761D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FF45CA04AE154B77B37AD676FD1642E0"
-            {
-            "SourcePath" = "8:..\\EclipticaDesktopApp\\bin\\Debug\\net8.0\\Content\\Audio\\jingle-bells.xnb"
-            "TargetName" = "8:jingle-bells.xnb"
-            "Tag" = "8:"
-            "Folder" = "8:_128E4F2C1CB346F4862C322ABAE2AAF2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2636,7 +2636,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ecliptica"
         "ProductCode" = "8:{ABFDFFC0-A47E-4F21-9AF0-880D4BD27642}"
-        "PackageCode" = "8:{CA411E30-B99F-4378-9B3A-345FC1CF449B}"
+        "PackageCode" = "8:{96E4B2CE-0F87-43AC-8E45-6FC1AE96CEAC}"
         "UpgradeCode" = "8:{6E2924E4-DBD1-4C51-B614-75452472863A}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"

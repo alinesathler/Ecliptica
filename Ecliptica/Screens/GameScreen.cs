@@ -67,9 +67,12 @@ namespace Ecliptica.Screens
 		/// <param name="gameTime"></param>
 		public override void Update(GameTime gameTime)
 		{
-			// Check if the level is completed
+			// Check if the level is complete
 			if (!LevelTransition.IsTransitioning && LevelManager.CurrentLevel?.IsLevelComplete() == true)
 			{
+				// Update high scores
+				ScoresScreen.UpdateHighScores();
+
 				EntityManager.Clear();
 				LevelManager.CurrentLevel?.Clear();
 

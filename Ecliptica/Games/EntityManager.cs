@@ -202,6 +202,9 @@ namespace Ecliptica.Games
 			ShipPlayer.Instance.IsActive = false;
 			ShipPlayer.Instance.IsExpired = true;
 
+			// Update high scores
+			ScoresScreen.UpdateHighScores();
+
 			ScreenManager.ReplaceScreen(new GameOverScreen());
 		}
 
