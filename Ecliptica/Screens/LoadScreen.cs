@@ -1,34 +1,5 @@
-﻿//using Ecliptica.Games;
-//using Microsoft.Xna.Framework;
-//using Ecliptica.Arts;
-
-//namespace Ecliptica.Screens
-//{
-//	internal class LoadScreen : Screen
-//	{
-//		public LoadScreen()
-//		{
-//			Music = Sounds.MenuScreen;
-//			BackgroundSolid = Images.BackgroundScreens;
-//			BackgroundStars = Images.BackgroundStars1;
-//			Font = Fonts.FontGame;
-//			DefaultScale = 1.0f;
-//			HoverScale = 1.2f;
-//			DefaultColor = Color.White;
-//			HoverColor = Color.Yellow;
-//			ButtonWidth = 450;
-//			ButtonHeight = 50;
-
-//			// Buttons
-//			AddButton("Return", () => ScreenManager.PopScreen(), new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, 10));
-//		}
-//	}
-//}
-
-using Ecliptica.Arts;
+﻿using Ecliptica.Arts;
 using Ecliptica.Files;
-using Ecliptica.Levels;
-using Ecliptica.Screens;
 using Ecliptica.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -37,28 +8,37 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Ecliptica.Games
+namespace Ecliptica.Screens
 {
 	internal class LoadScreen : Screen
 	{
+		#region Fields
 		private static int _selectedSlot = 1;
-		private static int _totalSlots = 3;
+		private readonly static int _totalSlots = 3;
 
-		private static float _screenAlpha = 0.6f;
-
-		public bool IsActive;
-		public static LoadScreen Instance { get; private set; }
+		private readonly static float _screenAlpha = 0.6f;
 
 		private string _loadMessage;
 		private double _loadMessageTime;
-		private List<Button> slotButtons;
+
+		private readonly List<Button> _slotButtons;
 
 		private static bool _isLoadSuccessful;
 		private static string _playerName;
 		private static int _levelNumber;
 		private static int _gameScore;
 		private static int _shipLifes;
+		#endregion
 
+		#region Properties
+		public bool IsActive { get; private set; }
+		public static LoadScreen Instance { get; private set; }
+		#endregion
+
+		#region Constructors
+		/// <summary>
+		/// Constructor to initialize the load screen
+		/// </summary>
 		public LoadScreen()
 		{
 			Instance = this;
@@ -80,12 +60,22 @@ namespace Ecliptica.Games
 			AddButton("Return", () => { IsActive = false; ScreenManager.PopScreen(); });
 			AddButton("Exit", () => EclipticaGame.Instance.Exit());
 
-			slotButtons = new();
+			// Slots Buttons
+			_slotButtons = new();
 
 			for (int i = 0; i < _totalSlots; i++)
 			{
 				int slotIndex = i;
-				string slotStatus = SaveManager.IsSlotOccupied(slotIndex + 1) ? "Occupied" : "Empty";
+				string slotStatus = "";
+
+				try
+				{
+					slotStatus = SaveManager.IsSlotOccupied(slotIndex + 1) ? "Occupied" : "Empty";
+				} catch
+				{
+					Instance._loadMessage = $"Failed to get slot status.";
+					Instance._loadMessageTime = 2.0;
+				}
 
 				Button slotButton = new(
 					$"Slot {slotIndex + 1} - {slotStatus}",
@@ -102,13 +92,19 @@ namespace Ecliptica.Games
 					HoverColor,
 					() => { SelectSlot(slotIndex); }
 				);
-				slotButtons.Add(slotButton);
+				_slotButtons.Add(slotButton);
 			}
 
 			// Select the first slot by default
 			SelectSlot(0);
 		}
+		#endregion
 
+		#region Methods
+		/// <summary>
+		/// Method to update the load screen
+		/// </summary>
+		/// <param name="gameTime"></param>
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
@@ -125,12 +121,16 @@ namespace Ecliptica.Games
 				}
 			}
 
-			foreach (var slotButton in slotButtons)
+			foreach (var slotButton in _slotButtons)
 			{
 				slotButton.Update(Mouse.GetState());
 			}
 		}
 
+		/// <summary>
+		/// Method to draw the load screen
+		/// </summary>
+		/// <param name="spriteBatch"></param>
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			// Draw the background with alpha
@@ -151,7 +151,8 @@ namespace Ecliptica.Games
 			);
 			spriteBatch.DrawString(Font, title, titlePosition, Color.White);
 
-			foreach (var slotButton in slotButtons)
+			// Draw the slot buttons
+			foreach (var slotButton in _slotButtons)
 			{
 				slotButton.Draw(spriteBatch);
 			}
@@ -177,21 +178,25 @@ namespace Ecliptica.Games
 			}
 		}
 
+		/// <summary>
+		/// Method to load a game from a save slot
+		/// </summary>
+		/// <param name="slot"></param>
 		private static void LoadGame(int slot)
 		{
 			_isLoadSuccessful = false;
 
-			string savePath = SaveManager.GetSaveSlotPath(slot);
-
-			if (!File.Exists(savePath))
-			{
-				Instance._loadMessage = $"Slot {slot} is empty!";
-				Instance._loadMessageTime = 2.0;
-				return;
-			}
-
 			try
 			{
+				string savePath = SaveManager.GetSaveSlotPath(slot);
+
+				if (!File.Exists(savePath))
+				{
+					Instance._loadMessage = $"Slot {slot} is empty!";
+					Instance._loadMessageTime = 2.0;
+					return;
+				}
+
 				string[] saveData = File.ReadAllLines(savePath);
 
 				_playerName = "";
@@ -220,6 +225,7 @@ namespace Ecliptica.Games
 					}
 				}
 
+				// Validation
 				if (!isLevelNumber || !isGameScore || !isShipLifes || string.IsNullOrEmpty(_playerName))
 				{
 					throw new Exception("Invalid save data");
@@ -238,16 +244,21 @@ namespace Ecliptica.Games
 			Instance._loadMessageTime = 2.0;
 		}
 
+		/// <summary>
+		/// Method to select a slot
+		/// </summary>
+		/// <param name="slotIndex"></param>
 		private void SelectSlot(int slotIndex)
 		{
 			_selectedSlot = slotIndex + 1;
 
-			foreach (var button in slotButtons)
+			foreach (var button in _slotButtons)
 			{
 				button.CurrentColor = DefaultColor;
 			}
 
-			slotButtons[slotIndex].CurrentColor = Color.Blue;
+			_slotButtons[slotIndex].CurrentColor = Color.Blue;
 		}
+		#endregion
 	}
 }

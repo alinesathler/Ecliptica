@@ -7,16 +7,21 @@ namespace Ecliptica.InputHandler
 {
 	public static class MouseHandler
 	{
+		#region Fields
 		private static MouseState _currentState;
 		private static MouseState _previousState;
+		#endregion
 
+		#region Properties
 		public static Point Position => _currentState.Position;
 		public static bool IsLeftButtonPressed => _currentState.LeftButton == ButtonState.Pressed;
 		public static bool IsLeftButtonReleased => _previousState.LeftButton == ButtonState.Pressed && _currentState.LeftButton == ButtonState.Released;
 		public static bool IsLeftButtonDown => _currentState.LeftButton == ButtonState.Pressed;
 		public static bool IsRightButtonPressed => _currentState.RightButton == ButtonState.Pressed;
 		public static bool IsRightButtonReleased => _previousState.RightButton == ButtonState.Pressed && _currentState.RightButton == ButtonState.Released;
+		#endregion
 
+		#region Methods
 		/// <summary>
 		/// Method to update the mouse state
 		/// </summary>
@@ -41,12 +46,6 @@ namespace Ecliptica.InputHandler
 		{
 			return IsHovering(bounds) && IsLeftButtonReleased;
 		}
-
-		//public static int ScrollDelta => _currentState.ScrollWheelValue - _previousState.ScrollWheelValue;
-
-		//public static void Reset()
-		//{
-		//	_previousState = _currentState = Mouse.GetState();
-		//}
+		#endregion
 	}
 }

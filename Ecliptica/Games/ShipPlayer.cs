@@ -7,19 +7,27 @@ namespace Ecliptica.Games
 {
     public class ShipPlayer : Entity
 	{
+		#region Fields
+		private readonly LifeShip _shipLife;
+
+		private readonly float _normalSpeed = 1.0f;
+		private readonly float _turboSpeed = 5.0f;
+		#endregion
+
+		#region Properties
 		public static ShipPlayer Instance { get; private set; }
-		private LifeShip _shipLife;
+		#endregion
 
-		private float _normalSpeed = 1.0f;
-		private float _turboSpeed = 5.0f;
-
+		#region Constructors
+		/// <summary>
+		/// Constructor to initialize the player's spaceship
+		/// </summary>
 		public ShipPlayer()
 		{
 			Instance = this;
 
 			image = Images.ShipPlayer;
-			_position = new Vector2(EclipticaGame.ScreenSize.X / 2, EclipticaGame.ScreenSize.Y * 9/10);
-			Radius = 20;
+			Position = new Vector2(EclipticaGame.ScreenSize.X / 2, EclipticaGame.ScreenSize.Y * 9/10);
 			MaxLife = 8;
 			Life = MaxLife;
 
@@ -27,19 +35,32 @@ namespace Ecliptica.Games
 
 			CalculateBoundingBox();
 		}
+		#endregion
 
+		#region Methods
+		/// <summary>
+		/// Method to update the player's spaceship
+		/// </summary>
+		/// <param name="gameTime"></param>
 		public override void Update(GameTime gameTime)
 		{
 			CalculateBoundingBox();
 		}
 
+		/// <summary>
+		/// Method to draw the player's spaceship
+		/// </summary>
+		/// <param name="spriteBatch"></param>
 		public override void Draw(SpriteBatch spriteBatch)
 		{
-			spriteBatch.Draw(image, _position, null, Color.White, Orientation, new Vector2(image.Width / 2, image.Height / 2), 1.0f, SpriteEffects.None, 0);
+			spriteBatch.Draw(image, Position, null, Color.White, Orientation, new Vector2(image.Width / 2, image.Height / 2), 1.0f, SpriteEffects.None, 0);
 
-			_shipLife.Draw(spriteBatch, new Vector2(_position.X, _position.Y + image.Height / 2), Life);
+			_shipLife.Draw(spriteBatch, new Vector2(Position.X, Position.Y + image.Height / 2), Life);
 		}
 
+		/// <summary>
+		/// Method to add life to the player's spaceship
+		/// </summary>
 		public void AddLife()
 		{
 			if (Life < MaxLife)
@@ -48,18 +69,10 @@ namespace Ecliptica.Games
 			}
 		}
 
-		public void RemoveLife()
-		{
-			Life--;
-
-			if (Life <= 0)
-			{
-				IsExpired = true;
-				IsActive = false;
-			}
-		}
-
-		public void MoveSpaceShip(GameTime gameTime)
+		/// <summary>
+		/// Method to Move the player's spaceship with the keyboard
+		/// </summary>
+		public void MoveSpaceShip()
 		{
 			KeyboardState _keyboardState = Keyboard.GetState();
 
@@ -105,5 +118,6 @@ namespace Ecliptica.Games
 				ShipPlayer.Instance.Position = new Vector2(ShipPlayer.Instance.Position.X, ShipPlayer.Instance.Position.Y + _normalSpeed);
 			}
 		}
+		#endregion
 	}
 }

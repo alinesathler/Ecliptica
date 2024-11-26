@@ -2,26 +2,31 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Ecliptica.Levels;
-using Microsoft.Xna.Framework.Input;
-using System;
 using Ecliptica.Arts;
-using static System.Net.Mime.MediaTypeNames;
-using Ecliptica.UI;
 
 namespace Ecliptica.Screens
 {
     internal class GameScreen : Screen
 	{
+		#region Fields
+		private readonly ShipPlayer _shipPlayer;
+
+		private string _levelScore;
+		private string _gameScore;
+		#endregion
+
+		#region Properties
 		public static GameScreen Instance { get; private set; }
+		#endregion
 
-		private ShipPlayer _shipPlayer;
-
-		private Rectangle _pausenButtonRect;
-		private Button _pauseButton;
-
-		string _levelScore;
-		string _gameScore;
-
+		#region Constructors
+		/// <summary>
+		/// Constructor to initialize the game screen
+		/// </summary>
+		/// <param name="isLoad"></param>
+		/// <param name="shipLife"></param>
+		/// <param name="levelNumber"></param>
+		/// <param name="totalScore"></param>
 		public GameScreen(bool isLoad = false, int shipLife = 0, int levelNumber = 1, int totalScore = 0)
 		{
 			Font = Fonts.FontGame;
@@ -32,39 +37,34 @@ namespace Ecliptica.Screens
 			ButtonWidth = 450;
 			ButtonHeight = 50;
 
-			// Pause button
-			_pausenButtonRect = new Rectangle(
-				(int)EclipticaGame.ScreenSize.X - ButtonWidth - 10,
-				(int)EclipticaGame.ScreenSize.Y - ButtonHeight - 8,
-				ButtonWidth,
-				ButtonHeight);
+			// Buttons
+			AddButton("Pause", () => ScreenManager.Pause(new PauseScreen()), new Vector2((int)EclipticaGame.ScreenSize.X - ButtonWidth - 10,
+				(int)EclipticaGame.ScreenSize.Y - ButtonHeight - 8));
 
-			_pauseButton = new Button(
-				"Pause",
-				_pausenButtonRect,
-				Font,
-				DefaultScale,
-				HoverScale,
-				DefaultColor,
-				HoverColor,
-				() => ScreenManager.Pause(new PauseScreen())
-			);
-
+			// Initialize the ship player
 			_shipPlayer = new ();
+
+			// Clear level and entity managers
 			LevelManager.Clear();
 			EntityManager.ResetTotalScore();
 
+			// Load the game if it is a load
 			if (isLoad)
 			{
 				_shipPlayer.Life = shipLife;
 				EntityManager.SetTotalScore(totalScore);
 			}
 
+			// Load the level
 			LevelManager.LoadLevels(levelNumber);
-
-			Buttons.Add(_pauseButton);
 		}
+		#endregion
 
+		#region Methods
+		/// <summary>
+		/// Method to update the game screen
+		/// </summary>
+		/// <param name="gameTime"></param>
 		public override void Update(GameTime gameTime)
 		{
 			// Check if the level is completed
@@ -91,12 +91,17 @@ namespace Ecliptica.Screens
 			_shipPlayer.Update(gameTime);
 		}
 
+		/// <summary>
+		/// Method to draw the game screen
+		/// </summary>
+		/// <param name="spriteBatch"></param>
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			LevelManager.DrawCurrentLevel(spriteBatch);
 
 			base.Draw(spriteBatch);
 
+			// Draw scores
 			_gameScore = "Game Score: " + EntityManager.GetTotalScore() ?? "0";
 
 			Vector2 textSizeGameScore = Font.MeasureString(_gameScore);
@@ -133,5 +138,6 @@ namespace Ecliptica.Screens
 
 			LevelTransition.DrawTransition(spriteBatch);
 		}
+		#endregion
 	}
 }

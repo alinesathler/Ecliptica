@@ -8,10 +8,11 @@ using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 
-namespace Ecliptica.Games
+namespace Ecliptica.Screens
 {
     public abstract class Screen
 	{
+		#region Fields
 		internal Song Music;
 		internal SpriteFont Font;
 		internal Texture2D BackgroundSolid;
@@ -23,10 +24,14 @@ namespace Ecliptica.Games
 		internal int ButtonWidth;
 		internal int ButtonHeight;
 
-		internal Vector2 Position;
-
 		internal List<Button> Buttons = new();
+		#endregion
 
+		#region Methods
+		/// <summary>
+		/// Method to load the screen
+		/// </summary>
+		/// <param name="isLoadMusic"></param>
 		public void Load(bool isLoadMusic)
 		{
 			// Choose to load the music
@@ -45,6 +50,10 @@ namespace Ecliptica.Games
 			}
 		}
 
+		/// <summary>
+		/// Method to update the screen
+		/// </summary>
+		/// <param name="gameTime"></param>
 		public virtual void Update(GameTime gameTime)
 		{
 			MouseState mouseState = Mouse.GetState();
@@ -57,6 +66,10 @@ namespace Ecliptica.Games
 			}
 		}
 
+		/// <summary>
+		/// Method to draw the screen
+		/// </summary>
+		/// <param name="spriteBatch"></param>
 		public virtual void Draw(SpriteBatch spriteBatch)
 		{
 			foreach (var button in Buttons)
@@ -65,6 +78,12 @@ namespace Ecliptica.Games
 			}
 		}
 
+		/// <summary>
+		/// Method to create a blank texture
+		/// </summary>
+		/// <param name="graphicsDevice"></param>
+		/// <param name="color"></param>
+		/// <returns>A Texture2D in the size of the screen in the color selected</returns>
 		public static Texture2D CreateBlankTexture(GraphicsDevice graphicsDevice, Color color)
 		{
 			Texture2D texture = new (graphicsDevice, 1, 1);
@@ -72,6 +91,12 @@ namespace Ecliptica.Games
 			return texture;
 		}
 
+		/// <summary>
+		/// Method to add a button to the list of buttons
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="onClick"></param>
+		/// <param name="position"></param>
 		protected void AddButton(string text, Action onClick, Vector2? position = null)
 		{
 			Rectangle buttonRect;
@@ -92,7 +117,7 @@ namespace Ecliptica.Games
 				ButtonHeight);
 			}
 
-			Button button = new Button(
+			Button button = new(
 				text,
 				buttonRect,
 				Font,
@@ -105,6 +130,7 @@ namespace Ecliptica.Games
 
 			Buttons.Add(button);
 		}
+		#endregion
 	}
 }
 

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ecliptica.Games
+﻿namespace Ecliptica.Games
 {
+	#region Fields
 	public enum Platform
 	{
 		Android,
@@ -13,4 +8,5 @@ namespace Ecliptica.Games
 		Windows,
 		Linux
 	}
+	#endregion
 }

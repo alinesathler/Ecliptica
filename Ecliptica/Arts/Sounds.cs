@@ -1,18 +1,14 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ecliptica.Arts
 {
     internal class Sounds
     {
-        //Music
-        public static Song MusicTheme { get; private set; }
+		#region Properties
+		//Music
+		public static Song MusicTheme { get; private set; }
         public static Song TitleScreen { get; private set; }
         public static Song MenuScreen { get; private set; }
         public static Song GameOver { get; private set; }
@@ -23,12 +19,16 @@ namespace Ecliptica.Arts
         public static SoundEffect Shoot { get; private set; }
         public static SoundEffect Explosion { get; private set; }
         public static SoundEffect PlayerKilled { get; private set; }
+		public static SoundEffect BonusSound { get; private set; }
+		public static SoundEffect ButtonSound { get; private set; }
+		#endregion
 
-        /// <summary>
-        /// Method to load all the sounds
-        /// </summary>
-        /// <param name="content"></param>
-        public static void Load(ContentManager content)
+		#region Methods
+		/// <summary>
+		/// Method to load the sounds
+		/// </summary>
+		/// <param name="content"></param>
+		public static void Load(ContentManager content)
         {
             //Musics
 			TitleScreen = content.Load<Song>("Audio/sky-fire-title-screen");
@@ -42,13 +42,15 @@ namespace Ecliptica.Arts
 			Shoot = content.Load<SoundEffect>("Audio/sound-laser");
             Explosion = content.Load<SoundEffect>("Audio/falling-hit");
             PlayerKilled = content.Load<SoundEffect>("Audio/arcade-retro-game-over");
-        }
+			BonusSound = content.Load<SoundEffect>("Audio/bonus-sound");
+			ButtonSound = content.Load<SoundEffect>("Audio/button-sound");
+		}
 
-        /// <summary>
-        /// Method to play music
-        /// </summary>
-        /// <param name="song"></param>
-        public static void PlayMusic(Song song)
+		/// <summary>
+		/// Method to play music
+		/// </summary>
+		/// <param name="song"></param>
+		public static void PlayMusic(Song song)
         {
             MediaPlayer.Play(song);
             MediaPlayer.IsRepeating = true;
@@ -62,11 +64,12 @@ namespace Ecliptica.Arts
             MediaPlayer.Stop();
         }
 
-        /// <summary>
-        /// Method to play sound effects
-        /// </summary>
-        /// <param name="soundEffect"></param>
-        public static void PlaySound(SoundEffect soundEffect, float volume)
+		/// <summary>
+		/// Method to play sound effects
+		/// </summary>
+		/// <param name="soundEffect"></param>
+		/// <param name="volume"></param>
+		public static void PlaySound(SoundEffect soundEffect, float volume)
         {
             SetSoundEffectVolume(volume);
 
@@ -81,5 +84,6 @@ namespace Ecliptica.Arts
         {
             SoundEffect.MasterVolume = volume;
         }
-    }
+		#endregion
+	}
 }

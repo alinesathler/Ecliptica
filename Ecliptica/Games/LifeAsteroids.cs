@@ -1,28 +1,24 @@
-﻿using Ecliptica.Games;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ecliptica.Games
 {
-	internal class LifeAsteroids
+	internal class LifeAsteroids (Texture2D lifeSpriteSheet, int rows, int cols)
 	{
-		Texture2D _lifeSpriteSheet;
-		int _rows;
-		int _cols;
+		#region Fields
+		private readonly Texture2D _lifeSpriteSheet = lifeSpriteSheet;
+		private readonly int _rows = rows;
+		private readonly int _cols = cols;
+		#endregion
 
-		public LifeAsteroids(Texture2D lifeSpriteSheet, int rows, int cols)
-		{
-			_lifeSpriteSheet = lifeSpriteSheet;
-			_rows = rows;
-			_cols = cols;
-		}
-
+		#region Methods
+		/// <summary>
+		/// Method to draw the astecoid life
+		/// </summary>
+		/// <param name="spriteBatch"></param>
+		/// <param name="location"></param>
+		/// <param name="maxLifes"></param>
+		/// <param name="currentLives"></param>
 		public void Draw(SpriteBatch spriteBatch, Vector2 location, int maxLifes, int currentLives)
 		{
 			int width = _lifeSpriteSheet.Width / _cols;
@@ -38,11 +34,11 @@ namespace Ecliptica.Games
 			int row = frameIndex / _cols;
 			int col = frameIndex % _cols;
 
-			Rectangle sourceRect = new Rectangle(col * width, row * height, width, height);
-			Vector2 position = new Vector2(location.X - width / 2, location.Y + 10);
+			Rectangle sourceRect = new(col * width, row * height, width, height);
+			Vector2 position = new(location.X - width / 2, location.Y + 10);
 
 			spriteBatch.Draw(_lifeSpriteSheet, position, sourceRect, Color.White);
-
 		}
+		#endregion
 	}
 }

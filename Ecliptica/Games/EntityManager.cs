@@ -5,30 +5,38 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using Ecliptica.Screens;
 
 namespace Ecliptica.Games
 {
 	public class EntityManager
 	{
-		private static int _enemiesDestroyedLevel = 0;
-
+		#region Fields
 		private static int _levelScore = 0;
 		private static int _totalScore = 0;
 
-		public static List<Entity> entities = new();
-
-		public static int Count { get { return entities.Count; } }
-
-		public static AnimatedSprite Explosion;
+		private static AnimatedSprite _explosion;
 		private static Vector2 _animatedPosition;
 
+		private readonly static List<Entity> _entities = new();
+		#endregion
+
+		#region Properties
+		public static int Count { get { return Entities.Count; } }
+
+		public static AnimatedSprite Explosion { get { return _explosion; } set { _explosion = value; } }
+
+		public static List<Entity> Entities { get { return _entities; } }
+		#endregion
+
+		#region Methods
 		/// <summary>
 		/// Method to add an entity to the list of entities
 		/// </summary>
 		/// <param name="entity"></param>
 		public static void Add(Entity entity)
 		{
-			entities.Add(entity);
+			Entities.Add(entity);
 		}
 
 		/// <summary>
@@ -39,31 +47,30 @@ namespace Ecliptica.Games
 		{
 			HandleCollisions(volume);
 
-			foreach (var entity in entities)
+			foreach (var entity in Entities)
 			{
 				entity.Update(gametime);
 			}
 
-			if (Explosion != null && Explosion.isActive)
+			if (Explosion != null && Explosion.IsActive)
 			{
 				Explosion.Update(gametime);
 			}
 
-
-			entities.RemoveAll(x => x.IsExpired);
+			// Remove expired entities
+			Entities.RemoveAll(x => x.IsExpired);
 		}
 
 		/// <summary>
-		/// Method to clear the list of entities
+		/// Method to clear the entity manager
 		/// </summary>
 		public static void Clear()
 		{
-			entities.Clear();
+			Entities.Clear();
 
-			if (ShipPlayer.Instance != null) entities.Add(ShipPlayer.Instance);
+			if (ShipPlayer.Instance != null) Entities.Add(ShipPlayer.Instance);
 
 			ResetLevelScore();
-			ResetNumberOfEnemiesDestroyedLevel();
 		}
 
 		/// <summary>
@@ -71,68 +78,70 @@ namespace Ecliptica.Games
 		/// </summary>
 		private static void HandleCollisions(float volume)
 		{
-			if (entities.Count == 0) return;
+			if (Entities.Count == 0) return;
 
-			for (int i = 0; i < entities.Count; i++)
+			for (int i = 0; i < Entities.Count; i++)
 			{
 				// Check if the entity is active
-				if (!entities[i].IsActive) continue;
+				if (!Entities[i].IsActive) continue;
 
-				// Check for collisions between projectiles and other entities
-				for (int j = 0; j < entities.Count; j++)
+				for (int j = 0; j < Entities.Count; j++)
 				{
 					// Avoid self-collision (no need to check for a collision with itself)
 					if (i == j) continue;
 
 					// Avoid collision between projectiles and the ShipPlayer
-					if (entities[i] is Projectile && entities[j] is ShipPlayer) continue;
-					if (entities[j] is Projectile && entities[i] is ShipPlayer) continue;
+					if (Entities[i] is Projectile && Entities[j] is ShipPlayer) continue;
+					if (Entities[j] is Projectile && Entities[i] is ShipPlayer) continue;
 
 					// Avoid collision between projectiles and bonus life
-					if (entities[i] is BonusLife && entities[j] is Projectile) continue;
-					if (entities[j] is BonusLife && entities[i] is Projectile) continue;
+					if (Entities[i] is BonusLife && Entities[j] is Projectile) continue;
+					if (Entities[j] is BonusLife && Entities[i] is Projectile) continue;
 
 					// Avoid collision between projectiles and bonus time
-					if (entities[i] is BonusTime && entities[j] is Projectile) continue;
-					if (entities[j] is BonusTime && entities[i] is Projectile) continue;
-
+					if (Entities[i] is BonusTime && Entities[j] is Projectile) continue;
+					if (Entities[j] is BonusTime && Entities[i] is Projectile) continue;
 
 					// Check if there's a collision between the ShipPlayer and a bonus life
-					if ((entities[i] is ShipPlayer && entities[j] is BonusLife) || (entities[j] is ShipPlayer && entities[i] is BonusLife))
+					if ((Entities[i] is ShipPlayer && Entities[j] is BonusLife) || (Entities[j] is ShipPlayer && Entities[i] is BonusLife))
 					{
-						if (IsColliding(entities[i], entities[j]))
+						if (IsColliding(Entities[i], Entities[j]))
 						{
+							Entities[i].PlaySoundPicked();
+							Entities[j].PlaySoundPicked();
 							ShipPlayer.Instance.AddLife();
 							BonusLife.Instance.IsExpired = true;
 						}
 					}
 
 					// Check if there's a collision between the ShipPlayer and a bonus time
-					if ((entities[i] is ShipPlayer && entities[j] is BonusTime) || (entities[j] is ShipPlayer && entities[i] is BonusTime))
+					if ((Entities[i] is ShipPlayer && Entities[j] is BonusTime) || (Entities[j] is ShipPlayer && Entities[i] is BonusTime))
 					{
-						if (IsColliding(entities[i], entities[j]))
+						if (IsColliding(Entities[i], Entities[j]))
 						{
+							Entities[i].PlaySoundPicked();
+							Entities[j].PlaySoundPicked();
 							LevelManager.CurrentLevel?.AddTime();
 							BonusTime.Instance.IsExpired = true;
 						}
 					}
 
 					// Check if there's a collision between projectiles/shipPlayer and other entities
-					if ((entities[i] is Projectile || entities[j] is Projectile) && IsColliding(entities[i], entities[j]) || (entities[i] is ShipPlayer || entities[j] is ShipPlayer) && IsColliding(entities[i], entities[j]))
+					if ((Entities[i] is Projectile || Entities[j] is Projectile) && IsColliding(Entities[i], Entities[j]) || (Entities[i] is ShipPlayer || Entities[j] is ShipPlayer) && IsColliding(Entities[i], Entities[j]))
 					{
 						// Decrease the life of the entities
-						entities[i].Life--;
-						entities[j].Life--;
+						Entities[i].Life--;
+						Entities[j].Life--;
 
 						// If the entities have no more life, explode them
-						if (entities[i].Life == 0)
+						if (Entities[i].Life == 0)
 						{
-							ExplodeEntities(entities[i], volume);
+							ExplodeEntities(Entities[i], volume);
 						}
 
-						if (entities[j].Life == 0)
+						if (Entities[j].Life == 0)
 						{
-							ExplodeEntities(entities[j], volume);
+							ExplodeEntities(Entities[j], volume);
 						}
 
 						break;
@@ -146,7 +155,7 @@ namespace Ecliptica.Games
 		/// </summary>
 		/// <param name="a"></param>
 		/// <param name="b"></param>
-		/// <returns></returns>
+		/// <returns>True is entities ae colliding, false if they ar not.</returns>
 		private static bool IsColliding(Entity a, Entity b)
 		{
 			return !a.IsExpired && !b.IsExpired && a.BoundingBox.Intersects(b.BoundingBox);
@@ -155,19 +164,18 @@ namespace Ecliptica.Games
 		/// <summary>
 		/// Method to explode entities
 		/// </summary>
-		/// <param name="entity1"></param>
-		/// <param name="entity2"></param>
+		/// <param name="entity"></param>
+		/// <param name="volume"></param>
 		private static void ExplodeEntities(Entity entity, float volume)
 		{
-			// Explode entity
+			// Expire entity
 			entity.IsExpired = true;
 
+			// Increase the score based and asteroid speed and life
 			if (entity is Asteroid)
 			{
 				_levelScore += entity.MaxLife * (int)(100 * (Math.Abs(entity.Velocity.X) + entity.Velocity.Y));
 				_totalScore += entity.MaxLife * (int)(100 * (Math.Abs(entity.Velocity.X) + entity.Velocity.Y));
-
-				_enemiesDestroyedLevel++;
 			}
 
 			if (entity is ShipPlayer)
@@ -192,16 +200,10 @@ namespace Ecliptica.Games
 			_animatedPosition = ShipPlayer.Instance.Position - ShipPlayer.Instance.Size;
 
 			ShipPlayer.Instance.IsActive = false;
-
 			ShipPlayer.Instance.IsExpired = true;
 
 			ScreenManager.ReplaceScreen(new GameOverScreen());
 		}
-
-		//public static IEnumerable<Entity> GetNearbyEntities(Vector2 position, float radius)
-		//      {
-		//          return entities.Where(x => Vector2.DistanceSquared(position, x.Position) < radius * radius);
-		//      }
 
 		/// <summary>
 		/// Method to draw the entities
@@ -209,7 +211,7 @@ namespace Ecliptica.Games
 		/// <param name="spriteBatch"></param>
 		public static void Draw(SpriteBatch spriteBatch)
 		{
-			foreach (var entity in entities)
+			foreach (var entity in Entities)
 			{
 				if (entity.IsActive)
 				{
@@ -217,12 +219,12 @@ namespace Ecliptica.Games
 				}
 			}
 
-			if (Explosion != null && Explosion.isActive)
+			if (Explosion != null && Explosion.IsActive)
 			{
 				Explosion.Draw(spriteBatch, _animatedPosition);
 			}
 
-			if (ShipPlayer.Instance.Life == 0 && Explosion != null && !Explosion.isActive)
+			if (ShipPlayer.Instance.Life == 0 && Explosion != null && !Explosion.IsActive)
 			{
 				KillPlayer();
 
@@ -231,42 +233,47 @@ namespace Ecliptica.Games
 		}
 
 		/// <summary>
-		/// Method to get the number of enemies destroyed in the level
+		/// Method to get the level score
 		/// </summary>
-		/// <returns></returns>
-		public static int GetNumberOfEnemiesDestroyedLevel()
-		{
-			return _enemiesDestroyedLevel;
-		}
-
-		public static void ResetNumberOfEnemiesDestroyedLevel()
-		{
-			_enemiesDestroyedLevel = 0;
-		}
-
+		/// <returns>An int with the gae score</returns>
 		public static int GetLevelScore()
 		{
 			return _levelScore;
 		}
 
+		/// <summary>
+		/// Method to get the total score
+		/// </summary>
+		/// <returns>An int wwith game score</returns>
 		public static int GetTotalScore()
 		{
 			return _totalScore;
 		}
 
+		/// <summary>
+		/// Method to reset the level score
+		/// </summary>
 		public static void ResetLevelScore()
 		{
 			_levelScore = 0;
 		}
 
+		/// <summary>
+		/// Method to reset the total score
+		/// </summary>
 		public static void ResetTotalScore()
 		{
 			_totalScore = 0;
 		}
 
+		/// <summary>
+		/// Method to set the total score
+		/// </summary>
+		/// <param name="score"></param>
 		public static void SetTotalScore(int score)
 		{
 			_totalScore = score;
 		}
+		#endregion
 	}
 }

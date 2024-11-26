@@ -1,11 +1,14 @@
 ﻿using Ecliptica.Arts;
-using Ecliptica.Screens;
 using Microsoft.Xna.Framework;
 
-namespace Ecliptica.Games
+namespace Ecliptica.Screens
 {
 	public class GameOverScreen : Screen
 	{
+		#region Constructors
+		/// <summary>
+		/// Constructor to initialize the game over screen
+		/// </summary>
 		public GameOverScreen()
 		{
 			Music = Sounds.GameOver;
@@ -26,5 +29,6 @@ namespace Ecliptica.Games
 			AddButton("High Scores", () => ScreenManager.PushScreen(new ScoresScreen()));
 			AddButton("Exit", () => EclipticaGame.Instance.Exit());
 		}
+		#endregion
 	}
 }

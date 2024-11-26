@@ -1,35 +1,44 @@
 ﻿using Ecliptica.Arts;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ecliptica.Games
 {
 	internal class BonusTime : Entity
 	{
-		public static BonusTime Instance { get; private set; }
+		#region Fields
+		private readonly Random _ramdon;
+		#endregion
 
-		Random ramdon;
+		#region Properties
+		public static BonusTime Instance { get; private set; }
+		#endregion
+
+		#region Constructors
 		public BonusTime()
 		{
 			Instance = this;
 
-			ramdon = new();
+			_ramdon = new();
 
 			image = Images.BonusTime;
-			Position = ramdon.NextFloat(0.0f, 0.90f) * EclipticaGame.ScreenSize;
+			Position = _ramdon.NextFloat(0.0f, 0.90f) * EclipticaGame.ScreenSize;
 			Velocity = Vector2.Zero;
 			MaxLife = 1;
 			Life = MaxLife;
 			Scale = 0.5f;
-		}
 
-		public override void Update(GameTime gameTime)
-		{
+			SoundPicked = Sounds.BonusSound;
 		}
+		#endregion
+
+		#region Methods
+		/// <summary>
+		/// Method to update the bonus time
+		/// </summary>
+		/// <param name="gameTime"></param>
+		public override void Update(GameTime gameTime)
+		{}
+		#endregion
 	}
 }

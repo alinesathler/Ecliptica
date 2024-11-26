@@ -5,6 +5,7 @@ namespace Ecliptica.Games
 {
 	public class Projectile : Entity
 	{
+		#region Constructors
 		/// <summary>
 		/// Constructor for a projectile
 		/// </summary>
@@ -14,22 +15,25 @@ namespace Ecliptica.Games
 		public Projectile(Texture2D texture, Vector2 startPosition, Vector2 velocity)
 		{
 			this.image = texture;
-			_position = startPosition;
-			_velocity = velocity;
-			life = 1;
+			Position = startPosition;
+			Velocity = velocity;
+			Life = 1;
 		}
+		#endregion
 
+		#region Methods
 		/// <summary>
 		/// Method to update the projectile
 		/// </summary>
 		/// <param name="gameTime"></param>
 		public override void Update(GameTime gameTime)
 		{
-			Position += _velocity;
+			Position += Velocity;
 
 			// Expire if it goes off-screen
 			if (Position.Y < -image.Height)
 				IsExpired = true;
 		}
+		#endregion
 	}
 }

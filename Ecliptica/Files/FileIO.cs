@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ecliptica.Files
+﻿namespace Ecliptica.Files
 {
 	internal class FileIO
 	{
+
+		#region Properties
+		// Save Directory
 		internal const string SaveDirectory = "Saves";
 
+		// High Scores Directory
 		internal const string ScoresDirectory = "Scores";
+		#endregion
 	}
 }

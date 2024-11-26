@@ -11,25 +11,37 @@ namespace Ecliptica.Levels
 {
     public class Level
 	{
+
+		#region Fields
+		private readonly float _soundVolume = 0.25f;
+		private readonly string _levelName;
+		private readonly double _levelInitialTime;
+		private double _levelRemaningTime;
+
+		private int _emenyIndex;
+		private readonly int _step;
+		private int _stepCounter;
+		
+		private bool _isBonusLifeCreated = false;
+		private bool _isBonusTimeCreated = false;
+		#endregion
+
+		#region Properties
 		public int LevelNumber { get; set; }
 		public int EnemyCount { get; set; } = 0;
 		public Texture2D BackgroundSolid { get; set; }
 		public Texture2D BackgroundStars { get; set; }
 		public Song MusicTrack { get; set; }
 		public List<Entity> Enemies { get; set; }
-		private float _soundVolume = 0.25f;
-		private string _levelName;
-		private double _levelInitialTime;
-		private double _levelRemaningTime;
+		#endregion
 
-		private int _emenyIndex;
-		private int _step;
-		private int _stepCounter;
-		
-		private bool _isBonusLifeCreated = false;
-		private bool _isBonusTimeCreated = false;
-
-
+		#region Constructors
+		/// <summary>
+		/// Constructor to initialize the level
+		/// </summary>
+		/// <param name="levelNumber"></param>
+		/// <param name="levelTime"></param>
+		/// <param name="timeStep"></param>
 		public Level(int levelNumber, double levelTime, int timeStep)
 		{
 			LevelNumber = levelNumber;
@@ -39,11 +51,13 @@ namespace Ecliptica.Levels
 			_step = timeStep;
 			_stepCounter = 1;
 
-			Enemies = new ();
+			Enemies = new();
 			BackgroundSolid = Images.BackgroundBlue;
 			BackgroundStars = Images.BackgroundStars;
 		}
+		#endregion
 
+		#region Methods
 		/// <summary>
 		/// Method to load the level
 		/// </summary>
@@ -62,11 +76,6 @@ namespace Ecliptica.Levels
 
 				_emenyIndex = i;
 			}
-
-			//foreach (var enemy in Enemies)
-			//{
-			//	EntityManager.Add(enemy);
-			//}
 		}
 
 		/// <summary>
@@ -80,6 +89,10 @@ namespace Ecliptica.Levels
 			EnemyCount++;
 		}
 
+		/// <summary>
+		/// Method to check if the level is complete
+		/// </summary>
+		/// <returns>True if level remaining time has reached 0</returns>
 		public bool IsLevelComplete()
 		{
 			return _levelRemaningTime <= 0;
@@ -108,6 +121,7 @@ namespace Ecliptica.Levels
 
 			string levelTimeText;
 
+			// Time
 			if (remainingTime.TotalSeconds > 0)
 			{
 				levelTimeText = $"{remainingTime.Minutes:00}:{remainingTime.Seconds:00}";
@@ -116,20 +130,21 @@ namespace Ecliptica.Levels
             {
 				levelTimeText = "00:00";
 			}
+			spriteBatch.DrawString(Fonts.FontGame, levelTimeText, new Vector2((EclipticaGame.ScreenSize.X - Fonts.FontGame.MeasureString(levelTimeText).X) - 10, 10), Color.White);
 
-			if(_levelRemaningTime <= _levelInitialTime / 2 && !_isBonusLifeCreated)
+			// Add bonus life when the level time is less than half
+			if (_levelRemaningTime <= _levelInitialTime / 2 && !_isBonusLifeCreated)
 			{
 				EntityManager.Add(new BonusLife());
 				_isBonusLifeCreated = true;
 			}
 
+			// Add bonus time when the level time is less than a third
 			if (_levelRemaningTime <= _levelInitialTime / 3 && !_isBonusTimeCreated)
 			{
 				EntityManager.Add(new BonusTime());
 				_isBonusTimeCreated = true;
 			}
-
-				spriteBatch.DrawString(Fonts.FontGame, levelTimeText, new Vector2((EclipticaGame.ScreenSize.X - Fonts.FontGame.MeasureString(levelTimeText).X) - 10, 10), Color.White);
 
 			int aux = _emenyIndex;
 
@@ -171,15 +186,21 @@ namespace Ecliptica.Levels
 			Sounds.PlaySound(Sounds.Shoot, _soundVolume);
 		}
 
+		/// <summary>
+		/// Method to clear the level
+		/// </summary>
 		public void Clear()
 		{
 			Enemies.Clear();
 		}
 
+		/// <summary>
+		/// Method to add time to the level
+		/// </summary>
 		public void AddTime()
 		{
 			_levelRemaningTime += 10;
 		}
+		#endregion
 	}
-
 }

@@ -1,22 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Ecliptica.Games
 {
-	internal class LifeShip
+	internal class LifeShip(List<Texture2D> lifeTextureList)
 	{
-		private List<Texture2D> _lifeTextureList;
+		#region Fields
+		private readonly List<Texture2D> _lifeTextureList = lifeTextureList;
+		#endregion
 
-		public LifeShip(List<Texture2D> lifeTextureList)
-		{
-			_lifeTextureList = lifeTextureList;
-		}
-
+		#region Methods
+		/// <summary>
+		/// Method to draw the ship life
+		/// </summary>
+		/// <param name="spriteBatch"></param>
+		/// <param name="position"></param>
+		/// <param name="currentLife"></param>
 		public void Draw(SpriteBatch spriteBatch, Vector2 position, int currentLife)
 		{
 			if (currentLife < 0)
@@ -33,5 +34,6 @@ namespace Ecliptica.Games
 
 			spriteBatch.Draw(lifebar, new Vector2(position.X - lifebar.Width / 2, position.Y), null, Color.White);
 		}
+		#endregion
 	}
 }

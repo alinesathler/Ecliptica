@@ -3,16 +3,15 @@ using Ecliptica.Games;
 using Ecliptica.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 namespace Ecliptica.Screens
 {
     internal class WinScreen : Screen
 	{
-		List<Firework> fireworks = new List<Firework>();
+		private readonly List<Firework> fireworks = new();
 
-		List<Firework> fireworksStore = new List<Firework>();
+		private readonly List<Firework> fireworksStore = new();
 
 		public WinScreen()
 		{
@@ -79,7 +78,6 @@ namespace Ecliptica.Screens
 			{
 				if (fireworks[i].IsFinished)
 				{
-					var index = i;
 					fireworks[i] = Firework.Clone(fireworksStore[i]);
 				}
 			}

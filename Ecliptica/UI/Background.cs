@@ -1,20 +1,26 @@
-﻿using Ecliptica.Arts;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Ecliptica.UI
 {
     internal class Background
     {
-        private static Texture2D BackgroundSolid;
+		#region Fields
+		private static Texture2D BackgroundSolid;
         private static Texture2D BackgroundStars;
 
-        // Scrolling star background
-        private static float _starOffset = 0f;
-        private static float _starSpeed = -50f;
+		// Scrolling star background
+		private static float _starOffset = 0f;
+		private readonly static float _starSpeed = -50f;
+		#endregion
 
-        public static void Load(Texture2D backgroundSolid, Texture2D backgroundStars)
+		#region Methods
+		/// <summary>
+		/// Method to load the background
+		/// </summary>
+		/// <param name="backgroundSolid"></param>
+		/// <param name="backgroundStars"></param>
+		public static void Load(Texture2D backgroundSolid, Texture2D backgroundStars)
         {
             BackgroundSolid = backgroundSolid;
             BackgroundStars = backgroundStars;
@@ -72,5 +78,6 @@ namespace Ecliptica.UI
                 Color.White
             );
         }
-    }
+		#endregion
+	}
 }

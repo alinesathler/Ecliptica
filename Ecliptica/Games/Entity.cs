@@ -1,21 +1,34 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Ecliptica.Arts;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Ecliptica.Games
 {
     public abstract class Entity
     {
-        protected Texture2D image;
+		#region Fields
+		protected Texture2D image;
         protected Color color = Color.White;
 
-        public Vector2 _velocity;
-        protected Vector2 _position;
+        private Vector2 _velocity;
+		private Vector2 _position;
+		private Rectangle _boundingBox;
 
-		protected int life;
-		protected int maxLife;
+		private int _life;
+		private int _maxLife;
 
-		protected float _scale = 1.0f;
+		private float _scale = 1.0f;
 
+		private SoundEffect _soundPicked;
+
+		public float Radius = 20;
+		public float Orientation;
+		public bool IsActive = true;
+		public bool IsExpired = false;
+		#endregion
+
+		#region Properties
 		public Vector2 Velocity
 		{
 			get { return _velocity; }
@@ -30,16 +43,24 @@ namespace Ecliptica.Games
             }
         }
 
-        public int Life
+		public Rectangle BoundingBox
+		{
+			get
+			{
+				return _boundingBox;
+			}
+		}
+
+		public int Life
         {
-			get { return life; }
-			set { life = value; }
+			get { return _life; }
+			set { _life = value; }
 		}
 
         public int MaxLife
 		{
-			get { return maxLife; }
-			set { maxLife = value; }
+			get { return _maxLife; }
+			set { _maxLife = value; }
 		}
 
         public float Scale
@@ -48,39 +69,26 @@ namespace Ecliptica.Games
             set { _scale = value; }
         }
 
-		protected float _speed = 0.3f;
+		public SoundEffect SoundPicked
+		{
+			get { return _soundPicked; }
+			set { _soundPicked = value; }
+		}
 
-        public float Speed
-        {
-            get { return _speed; }
-            set { _speed = value; }
-        }
+		public Vector2 Size
+		{
+			get
+			{
+				return image == null ? Vector2.Zero : new Vector2(image.Width, image.Height);
+			}
+		}
+		#endregion
 
-        public float Orientation;
-        public float Radius = 20; //used for circular collision detection
-        public bool IsExpired = false; //true if the entity was destroyed and should be deleted
-
-        public bool IsActive = true;
-
-        public Vector2 Size
-        {
-            get
-            {
-                return image == null ? Vector2.Zero : new Vector2(image.Width, image.Height);
-            }
-        }
-
-        protected Rectangle _boundingBox;
-
-        public Rectangle BoundingBox
-        {
-            get
-            {
-                return _boundingBox;
-            }
-        }
-
-        protected void CalculateBoundingBox()
+		#region Methods
+		/// <summary>
+		/// Method to calculate the bounding box of the entity to use in the collision detection
+		/// </summary>
+		protected void CalculateBoundingBox()
         {
             _boundingBox = new Rectangle(
 		        (int)(_position.X - image.Width / 2f),
@@ -90,11 +98,31 @@ namespace Ecliptica.Games
 			);
 		}
 
-        public abstract void Update(GameTime gametime);
+		/// <summary>
+		/// Method to play the sound when the entity is picked
+		/// </summary>
+		public void PlaySoundPicked()
+		{
+            if (SoundPicked != null)
+			{
+				Sounds.PlaySound(SoundPicked, 1.0f);
+			}
+		}
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+		/// <summary>
+		/// Method to update the entity
+		/// </summary>
+		/// <param name="gametime"></param>
+		public abstract void Update(GameTime gametime);
+
+		/// <summary>
+		/// Method to draw the entity
+		/// </summary>
+		/// <param name="spriteBatch"></param>
+		public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(image, Position, null, color, Orientation, Size / 2f, Scale, 0, 0);
         }
-    }
+		#endregion
+	}
 }

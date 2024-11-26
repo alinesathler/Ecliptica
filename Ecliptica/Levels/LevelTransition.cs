@@ -1,21 +1,29 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Ecliptica.Arts;
-using Ecliptica.Games;
+using Ecliptica.Screens;
 
 namespace Ecliptica.Levels
 {
 	public static class LevelTransition
 	{
+		#region Properties
 		public static bool IsTransitioning { get; private set; }
 		public static float TransitionTime { get; private set; }
 		public static float MaxTransitionTime { get; private set; } = 5.0f;
+		#endregion
 
+		#region Constructors
+		/// <summary>
+		/// Constructor to initialize the level transition
+		/// </summary>
 		static LevelTransition()
 		{
 			ScreenManager.OnScreenPopped += HandleScreenPopped;
 		}
+		#endregion
 
+		#region Methods
 		/// <summary>
 		/// Marks the start of a transition between levels.
 		/// </summary>
@@ -62,6 +70,9 @@ namespace Ecliptica.Levels
 			}
 		}
 
+		/// <summary>
+		/// Method to handle the screen popped event of the Save Screen
+		/// </summary>
 		private static void HandleScreenPopped()
 		{
 			if (!IsTransitioning && ScreenManager.CurrentScreen() is SaveScreen)
@@ -69,6 +80,6 @@ namespace Ecliptica.Levels
 				LevelManager.NextLevel();
 			}
 		}
+		#endregion
 	}
-
 }

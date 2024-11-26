@@ -1,12 +1,15 @@
 ﻿using Ecliptica.Arts;
-using Ecliptica.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Ecliptica.Games
+namespace Ecliptica.Screens
 {
 	public class MenuScreen : Screen
 	{
+		#region Constructors
+		/// <summary>
+		/// Constructor to initialize the menu screen
+		/// </summary>
 		public MenuScreen()
 		{
 			Music = Sounds.MenuScreen;
@@ -28,12 +31,20 @@ namespace Ecliptica.Games
 			AddButton("About", () => ScreenManager.PushScreen(new AboutScreen()));
 			AddButton("Exit", () => EclipticaGame.Instance.Exit());
 		}
+		#endregion
 
+		#region Methods
+		/// <summary>
+		/// Method to draw the menu screen
+		/// </summary>
+		/// <param name="spriteBatch"></param>
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			base.Draw(spriteBatch);
 
+			// Draw logo
 			spriteBatch.Draw(Images.Ecliptica, new Rectangle((int)EclipticaGame.ScreenSize.X / 4, 0, (int)EclipticaGame.ScreenSize.X / 2, (int)EclipticaGame.ScreenSize.Y / 5), Color.White);
 		}
+		#endregion
 	}
 }

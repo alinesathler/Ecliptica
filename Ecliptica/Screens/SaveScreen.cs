@@ -1,5 +1,6 @@
 ﻿using Ecliptica.Arts;
 using Ecliptica.Files;
+using Ecliptica.Games;
 using Ecliptica.Levels;
 using Ecliptica.UI;
 using Microsoft.Xna.Framework;
@@ -9,22 +10,31 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Ecliptica.Games
+namespace Ecliptica.Screens
 {
     internal class SaveScreen : Screen
 	{
+		#region Fields
 		private static int _selectedSlot = 1;
-		private static int _totalSlots = 3;
+		private readonly static int _totalSlots = 3;
 
-		private static float _screenAlpha = 0.6f;
-
-		public bool IsActive;
-		public static SaveScreen Instance { get; private set; }
+		private static readonly float _screenAlpha = 0.6f;
 
 		private string _saveMessage;
 		private double _saveMessageTime;
-		private List<Button> slotButtons;
 
+		private readonly List<Button> _slotButtons;
+		#endregion
+
+		#region Properties
+		public bool IsActive { get; private set; }
+		public static SaveScreen Instance { get; private set; }
+		#endregion
+
+		#region Constructors
+		/// <summary>
+		/// Constructor to initialize the save screen
+		/// </summary>
 		public SaveScreen()
 		{
 			Instance = this;
@@ -47,12 +57,23 @@ namespace Ecliptica.Games
 			AddButton("Main Menu", () => { IsActive = false; ScreenManager.ReplaceScreen(new MenuScreen()); });
 			AddButton("Exit", () => EclipticaGame.Instance.Exit());
 
-			slotButtons = new();
+			// Slot buttons
+			_slotButtons = new();
 
 			for (int i = 0; i < _totalSlots; i++)
 			{
 				int slotIndex = i;
-				string slotStatus = SaveManager.IsSlotOccupied(slotIndex + 1) ? "Occupied" : "Empty";
+
+				string slotStatus = "";
+
+				try
+				{
+					slotStatus = SaveManager.IsSlotOccupied(slotIndex + 1) ? "Occupied" : "Empty";
+				} catch
+				{
+					Instance._saveMessage = $"Failed to get slot status.";
+					Instance._saveMessageTime = 2.0;
+				}
 
 				Button slotButton = new (
 					 $"Slot {slotIndex + 1} - {slotStatus}",
@@ -71,13 +92,19 @@ namespace Ecliptica.Games
 						SelectSlot(slotIndex);
 					}
 				);
-				slotButtons.Add(slotButton);
+				_slotButtons.Add(slotButton);
 			}
 
 			// Select the first slot by default
 			SelectSlot(0);
 		}
+		#endregion
 
+		#region Methods
+		/// <summary>
+		/// Method to update the save screen
+		/// </summary>
+		/// <param name="gameTime"></param>
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
@@ -88,12 +115,16 @@ namespace Ecliptica.Games
 				if (_saveMessageTime <= 0) _saveMessage = null;
 			}
 
-            foreach (var slotButton in slotButtons)
+            foreach (var slotButton in _slotButtons)
             {
 				slotButton.Update(Mouse.GetState());
             }
         }
-		 
+
+		/// <summary>
+		/// Method to draw the save screen
+		/// </summary>
+		/// <param name="spriteBatch"></param>
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			// Draw the background with alpha
@@ -112,13 +143,12 @@ namespace Ecliptica.Games
 				(EclipticaGame.ScreenSize.X - titleSize.X) / 2,
 				100
 			);
-			spriteBatch.DrawString(Font, title, titlePosition, Color.White);
+			spriteBatch.DrawString(Font, title, titlePosition, DefaultColor);
 
-			for (int i = 0; i < slotButtons.Count; i++)
+			// Draw the slot buttons
+			for (int i = 0; i < _slotButtons.Count; i++)
 			{
-				Color slotColor = (i == _selectedSlot) ? Color.Yellow : Color.White;
-
-				slotButtons[i].Draw(spriteBatch);
+				_slotButtons[i].Draw(spriteBatch);
 			}
 
 			// Draw the instructions
@@ -142,39 +172,46 @@ namespace Ecliptica.Games
 			}
 		}
 
+		/// <summary>
+		/// Method to save the game to a slot
+		/// </summary>
+		/// <param name="slot"></param>
 		private static void SaveGame(int slot)
 		{
 			string saveData = $"Slot: {slot}\nPlayer Name: {EclipticaGame.PlayerName}\nLevel: {LevelManager.CurrentLevel.LevelNumber}\nGame Score: {EntityManager.GetTotalScore()}\nShip Lifes: {ShipPlayer.Instance.Life}";
-			string savePath = SaveManager.GetSaveSlotPath(slot);
 
 			// Write save data to the slot file
 			try
 			{
+				string savePath = SaveManager.GetSaveSlotPath(slot);
 				File.WriteAllText(savePath, saveData);
 				Console.WriteLine($"Game saved to {savePath}.");
 			} catch (Exception ex)
 			{
 				Console.WriteLine($"Failed to save game: {ex.Message}");
-				SaveScreen.Instance._saveMessage = $"Failed to save Slot {slot}: {ex.Message}";
+				Instance._saveMessage = $"Failed to save Slot {slot}: {ex.Message}";
 			}
 
-			SaveScreen.Instance._saveMessage = $"Slot {slot} saved successfully!";
-			SaveScreen.Instance.slotButtons[slot - 1].text = $"Slot {slot} - Occupied";
-			SaveScreen.Instance._saveMessageTime = 2.0;
+			Instance._saveMessage = $"Slot {slot} saved successfully!";
+			Instance._slotButtons[slot - 1].Text = $"Slot {slot} - Occupied";
+			Instance._saveMessageTime = 2.0;
 		}
 
+		/// <summary>
+		/// Method to select a slot
+		/// </summary>
+		/// <param name="slotIndex"></param>
 		private void SelectSlot(int slotIndex)
 		{
 			_selectedSlot = slotIndex + 1;
 
-			foreach (var button in slotButtons)
+			foreach (var button in _slotButtons)
 			{
 				button.CurrentColor = DefaultColor;
 			}
 
-			var i = slotIndex;
-
-			slotButtons[slotIndex].CurrentColor = Color.Blue;
+			_slotButtons[slotIndex].CurrentColor = Color.Blue;
 		}
+		#endregion
 	}
 }

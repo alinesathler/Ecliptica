@@ -7,9 +7,17 @@ namespace Ecliptica.Games
 {
 	public class Asteroid : Entity
 	{
-		private Random _random;
-		private LifeAsteroids _asteroidLife;
+		#region Fields
+		private readonly Random _random;
+		private readonly LifeAsteroids _asteroidLife;
+		#endregion
 
+		#region Constructors
+		/// <summary>
+		/// Constructor to initialize the asteroid
+		/// </summary>
+		/// <param name="levelNumber"></param>
+		/// <param name="velocity"></param>
 		public Asteroid(int levelNumber, Vector2 velocity)
 		{
 			_random = new Random();
@@ -74,43 +82,52 @@ namespace Ecliptica.Games
 					break;
 			}
 
-			_position = new Vector2(_random.Next(0, (int)EclipticaGame.ScreenSize.X - (int)image.Width), 0);
+			Position = new Vector2(_random.Next(0, (int)EclipticaGame.ScreenSize.X - (int)image.Width), 0);
 
-			_velocity = velocity;
+			Velocity = velocity;
 
+			// Creta a new instance of the asteroid life
 			_asteroidLife = new LifeAsteroids(Images.Life, 1, 4);
 
 			CalculateBoundingBox();
 		}
+		#endregion
 
+		#region Methods
 		/// <summary>
 		/// Method to update the asteroid
 		/// </summary>
 		/// <param name="gametime"></param>
 		public override void Update(GameTime gametime)
 		{
-			_position += _velocity;
+			Position += Velocity;
 			CalculateBoundingBox();
 
 			Orientation += 0.05f;
 
-			if (_position.Y > EclipticaGame.ScreenSize.Y * 9/10)
+			if (Position.Y > EclipticaGame.ScreenSize.Y * 9/10)
 			{
 				HasExpired();
 			}
 
 			//Bounce off the sides of the screen
-			if (_position.X < image.Width || _position.X > EclipticaGame.ScreenSize.X - image.Width)
+			if (Position.X < image.Width || Position.X > EclipticaGame.ScreenSize.X - image.Width)
 			{
-				_velocity.X *= -1;
+				float aux = Velocity.X;
+				aux = -aux;
+				Velocity = new Vector2(aux, Velocity.Y);
 			}
 		}
 
+		/// <summary>
+		/// Method to draw the asteroid
+		/// </summary>
+		/// <param name="spriteBatch"></param>
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			base.Draw(spriteBatch);
 
-			_asteroidLife.Draw(spriteBatch, new Vector2(_position.X, _position.Y - image.Height), 4, life);
+			_asteroidLife.Draw(spriteBatch, new Vector2(Position.X, Position.Y - image.Height), 4, Life);
 		}
 
 		/// <summary>
@@ -121,5 +138,6 @@ namespace Ecliptica.Games
 			IsExpired = true;
 			IsActive = false;
 		}
+		#endregion
 	}
 }

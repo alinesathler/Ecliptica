@@ -10,10 +10,18 @@ namespace Ecliptica.UI
 {
 	public class TextManipulation
 	{
+		#region Methods
+		/// <summary>
+		/// Method to wrap text
+		/// </summary>
+		/// <param name="font"></param>
+		/// <param name="text"></param>
+		/// <param name="maxLineWidth"></param>
+		/// <returns></returns>
 		public static string WrapText(SpriteFont font, string text, float maxLineWidth)
 		{
 			string[] words = text.Split(' ');
-			StringBuilder wrappedText = new StringBuilder();
+			StringBuilder wrappedText = new();
 			float lineWidth = 0f;
 
 			foreach (var word in words)
@@ -31,6 +39,6 @@ namespace Ecliptica.UI
 
 			return wrappedText.ToString();
 		}
-
+		#endregion
 	}
 }

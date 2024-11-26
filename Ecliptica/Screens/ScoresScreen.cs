@@ -1,6 +1,6 @@
 ﻿using Ecliptica.Arts;
 using Ecliptica.Files;
-using Ecliptica.Screens;
+using Ecliptica.Games;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,14 +8,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Ecliptica.Games
+namespace Ecliptica.Screens
 {
 	public class ScoresScreen : Screen
 	{
-		internal List<KeyValuePair<int, String>> _scores;
-		internal string _message;
-		internal double _messageTime;
+		#region Fields
+		private readonly List<KeyValuePair<int, String>> _scores;
+		private string _message;
+		private double _messageTime;
+		#endregion
 
+		#region Constructors
+		/// <summary>
+		/// Constructor to initialize the scores screen
+		/// </summary>
 		public ScoresScreen()
 		{
 			_message = "";
@@ -47,9 +53,14 @@ namespace Ecliptica.Games
 				Console.WriteLine($"Failed to read high scores: {ex.Message}");
 				_message = "Failed to read high scores";
 			}
-
 		}
+		#endregion
 
+		#region Methods
+		/// <summary>
+		/// Method to update the scores screen
+		/// </summary>
+		/// <param name="gameTime"></param>
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
@@ -62,6 +73,10 @@ namespace Ecliptica.Games
 			}
 		}
 
+		/// <summary>
+		/// Method to draw the scores screen
+		/// </summary>
+		/// <param name="spriteBatch"></param>
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			base.Draw(spriteBatch);
@@ -81,7 +96,7 @@ namespace Ecliptica.Games
 			foreach (var score in _scores)
 			{
 				string scoreText = $"{score.Value} - {score.Key}";
-				Vector2 position = new Vector2(
+				Vector2 position = new(
 					(EclipticaGame.ScreenSize.X - Fonts.FontGameSmall.MeasureString(scoreText).X) / 2,
 					startY
 				);
@@ -101,6 +116,10 @@ namespace Ecliptica.Games
 			}
 		}
 
+		/// <summary>
+		/// Method to read the high scores from the file
+		/// </summary>
+		/// <returns>A list with a KeyValuePair<int, String> score and player name</returns>
 		public static List<KeyValuePair<int, String>> ReadHighScores()
 		{
 			string path = SaveManager.GetScoresPath();
@@ -133,12 +152,16 @@ namespace Ecliptica.Games
 			return scores;
 		}
 
+		/// <summary>
+		/// Method to write the high scores to the file
+		/// </summary>
+		/// <param name="scores"></param>
 		public static void WriteHighScores(List<KeyValuePair<int, String>> scores)
 		{
 			string path = SaveManager.GetScoresPath();
 
 			// Write high scores to the file
-			using (StreamWriter writer = new(path))
+			using StreamWriter writer = new(path);
 			{
 				foreach (KeyValuePair<int, String> score in scores)
 				{
@@ -147,6 +170,9 @@ namespace Ecliptica.Games
 			}
 		}
 
+		/// <summary>
+		/// Method to update the high scores
+		/// </summary>
 		public static void UpdateHighScores()
 		{
 			try
@@ -170,6 +196,7 @@ namespace Ecliptica.Games
 				Console.WriteLine($"Failed to update high scores: {ex.Message}");
 			}
 		}
+		#endregion
 	}
 }
 

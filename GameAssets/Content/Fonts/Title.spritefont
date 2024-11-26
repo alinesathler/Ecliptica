@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<XnaContent>
-  <Asset Type="SpriteFont">
-    <FontName>Fonts/DiscoDeckHalftone-JjKB</FontName>  <!-- Font file reference without extension -->
-    <Size>32</Size> <!-- Font size -->
-    <Spacing>0</Spacing> <!-- Spacing between characters -->
-    <DefaultCharacter>?</DefaultCharacter> <!-- Character for missing glyphs -->
-  </Asset>
-</XnaContent>

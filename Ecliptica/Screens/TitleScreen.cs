@@ -1,5 +1,4 @@
 ﻿using Ecliptica.Arts;
-using Ecliptica.Games;
 using Ecliptica.InputHandler;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,9 +9,15 @@ namespace Ecliptica.Screens
 {
     internal class TitleScreen : Screen
 	{
+		#region Fields
 		private string _message;
 		private double _messageTime;
+		#endregion
 
+		#region Constructors
+		/// <summary>
+		/// Constructor to initialize the title screen
+		/// </summary>
 		public TitleScreen()
 		{
 			_message = "";
@@ -33,8 +38,14 @@ namespace Ecliptica.Screens
 			AddButton("Start Game", () => CheckName(), new Vector2 (((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2,
 				((int)EclipticaGame.ScreenSize.Y - 2 * ButtonHeight)));
 		}
+		#endregion
 
-		private void HandleKeyPress(Keys key)
+		#region Methods
+		/// <summary>
+		/// Method to handle key presses
+		/// </summary>
+		/// <param name="key"></param>
+		private static void HandleKeyPress(Keys key)
 		{
 			if (key == Keys.Back && EclipticaGame.PlayerName.Length > 0)
 			{
@@ -51,6 +62,9 @@ namespace Ecliptica.Screens
 			}
 		}
 
+		/// <summary>
+		/// Method to validate the player name
+		/// </summary>
 		private void CheckName()
 		{
 			string name = EclipticaGame.PlayerName.Trim();
@@ -65,6 +79,10 @@ namespace Ecliptica.Screens
 			}
 		}
 
+		/// <summary>
+		/// Method to update the title screen
+		/// </summary>
+		/// <param name="gameTime"></param>
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
@@ -80,7 +98,7 @@ namespace Ecliptica.Screens
 				}
 			}
 
-			// Start the game when Enter is pressed
+			// Start the game when enter is pressed
 			if (KeyboardHandler.IsKeyPressed(Keys.Enter))
 			{
 				Buttons[0].OnClick();
@@ -94,29 +112,30 @@ namespace Ecliptica.Screens
 			}
 		}
 
+		/// <summary>
+		/// Method to draw the title screen
+		/// </summary>
+		/// <param name="spriteBatch"></param>
 		public override void Draw(SpriteBatch spriteBatch)
 		{
 			base.Draw(spriteBatch);
 
-			//string title = "Ecliptica";
-
-			//spriteBatch.DrawString(Fonts.FontTitle, title, new Vector2((EclipticaGame.ScreenSize.X - Fonts.FontTitle.MeasureString(title).X) / 2, EclipticaGame.ScreenSize.Y / 4), DefaultColor);
-
+			// Draw logo
 			spriteBatch.Draw(Images.Ecliptica, new Rectangle((int)EclipticaGame.ScreenSize.X / 4, 0, (int)EclipticaGame.ScreenSize.X/2, (int)EclipticaGame.ScreenSize.Y/5), Color.White);
 
+			// Draw the prompt
 			string prompt = "Enter your name:";
-
-			Vector2 promptPosition = new Vector2(
+			Vector2 promptPosition = new(
 				(EclipticaGame.ScreenSize.X - Font.MeasureString(prompt).X) / 2,
 				EclipticaGame.ScreenSize.Y / 2 - 50
 			);
+			spriteBatch.DrawString(Font, prompt, promptPosition, DefaultColor);
 
-			Vector2 namePosition = new Vector2(
+			// Draw the name
+			Vector2 namePosition = new(
 				(EclipticaGame.ScreenSize.X - Font.MeasureString(EclipticaGame.PlayerName).X) / 2,
 				EclipticaGame.ScreenSize.Y / 2
 			);
-
-			spriteBatch.DrawString(Font, prompt, promptPosition, DefaultColor);
 			spriteBatch.DrawString(Font, EclipticaGame.PlayerName, namePosition, DefaultColor);
 
 			// Draw the save message if it exists
@@ -130,5 +149,6 @@ namespace Ecliptica.Screens
 				spriteBatch.DrawString(Fonts.FontGameSmall, _message, messagePosition, HoverColor);
 			}
 		}
+		#endregion
 	}
 }

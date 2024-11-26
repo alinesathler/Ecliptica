@@ -19,11 +19,23 @@
 /processorParam:Quality=Best
 /build:Audio/arcade-retro-game-over.wav
 
+#begin Audio/bonus-sound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/bonus-sound.wav
+
 #begin Audio/brave-pilots-menu-screen.ogg
 /importer:OggImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Audio/brave-pilots-menu-screen.ogg
+
+#begin Audio/button-sound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/button-sound.wav
 
 #begin Audio/death-match-boss-theme.ogg
 /importer:OggImporter

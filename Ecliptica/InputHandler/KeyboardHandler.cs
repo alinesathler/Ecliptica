@@ -4,18 +4,30 @@ namespace Ecliptica.InputHandler
 {
     public static class KeyboardHandler
     {
-        private static KeyboardState keyboardState;
-        private static KeyboardState previousKeyState;
+		#region Fields
+		private static KeyboardState _keyboardState;
+        private static KeyboardState _previousKeyState;
+		#endregion
 
-        public static void Update()
+		#region Methods
+		/// <summary>
+		/// Method to update the keyboard state
+		/// </summary>
+		public static void Update()
         {
-            previousKeyState = keyboardState;
-            keyboardState = Keyboard.GetState();
+			_previousKeyState = _keyboardState;
+			_keyboardState = Keyboard.GetState();
         }
 
-        public static bool IsKeyPressed(Keys key)
+		/// <summary>
+		/// Method to check if a key is pressed once
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns>Returntrue if key has just been pressed</returns>
+		public static bool IsKeyPressed(Keys key)
         {
-            return keyboardState.IsKeyDown(key) && !previousKeyState.IsKeyDown(key);
+            return _keyboardState.IsKeyDown(key) && !_previousKeyState.IsKeyDown(key);
         }
-    }
+		#endregion
+	}
 }

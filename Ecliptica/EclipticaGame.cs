@@ -11,6 +11,7 @@
 * Aline Sathler Delfino, 2024.11.24: Added the ability to read and write high scores to a file, added the Scores Screen to display the high scores, changed the game logic to finish the level based on time.
 * Aline Sathler Delfino, 2024.11.24: Levels are generated randomly with increased speed and enemy level, added mouse handler, added bonus life and time, levels design.
 * Aline Sathler Delfino, 2024.11.25: Added About and Tutorial screens.
+* Aline Sathler Delfino, 2024.11.25: Installer, taskbar title and debug.
 */
 
 using Microsoft.Xna.Framework;
@@ -23,32 +24,34 @@ using Ecliptica.Arts;
 using Ecliptica.Screens;
 using Microsoft.Xna.Framework.Media;
 using Ecliptica.UI;
-using Ecliptica.InputHandler;
 
 namespace Ecliptica
 {
     public class EclipticaGame : Game
     {
-        public static EclipticaGame Instance { get; private set; }
+		#region Fields
+		private readonly GraphicsDeviceManager _graphics;
+		private SpriteBatch _spriteBatch;
+		private static KeyboardState _keyboardState;
+		private Texture2D _cursorTexture;
+		private Vector2 _cursorOffset;
+
+		private readonly float _shootCooldown = 0.25f;
+		private float _timeSinceLastShot = 0f;
+		public bool isPaused = false;
+
+		private readonly Platform _platform = Platform.Windows;
+		#endregion
+
+		#region Properties
+		public static EclipticaGame Instance { get; private set; }
         public static Viewport Viewport { get { return Instance.GraphicsDevice.Viewport; } }
         public static Vector2 ScreenSize { get { return new Vector2(Viewport.Width, Viewport.Height); } }
         public static GameTime GameTime { get; private set; }
         public static GraphicsDevice GameGraphicDevice { get { return Instance.GraphicsDevice; } }
 
-
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-		private static KeyboardState _keyboardState;
-		private Texture2D cursorTexture;
-		private Vector2 cursorOffset;
-
-		private float _shootCooldown = 0.25f;
-		private float _timeSinceLastShot = 0f;
-		public bool isPaused = false;
-
-		private Platform _platform = Platform.Windows;
-
 		public static string PlayerName { get; set; } = "";
+		#endregion
 
 		public EclipticaGame()
         {
@@ -58,8 +61,8 @@ namespace Ecliptica
             Content.RootDirectory = "Content";
             IsMouseVisible = false;
 
-            //Screen size
-            SetWindowSize();
+			//Screen size
+			SetWindowSize();
         }
 
 		public EclipticaGame(Platform platform)
@@ -77,6 +80,9 @@ namespace Ecliptica
 			}
 		}
 
+		/// <summary>
+		/// Method to set the window size
+		/// </summary>
 		private void SetWindowSize()
         {
             int screenWidth = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width * 0.9);
@@ -111,13 +117,11 @@ namespace Ecliptica
 			//Change cursor
 			if (_platform == Platform.Windows || _platform == Platform.Linux)
 			{
-				cursorTexture = Images.Cursor;
-				cursorOffset = new Vector2(cursorTexture.Width / 2, 0);
+				_cursorTexture = Images.Cursor;
+				_cursorOffset = new Vector2(_cursorTexture.Width / 2, 0);
 			}
 
 			ScreenManager.ReplaceScreen(new TitleScreen());
-
-			Fonts.Load(Content);
 		}       
 
 		protected override void Update(GameTime gameTime)
@@ -169,7 +173,7 @@ namespace Ecliptica
 			{
 				if (ShipPlayer.Instance != null)
 				{
-					ShipPlayer.Instance.MoveSpaceShip(gameTime);
+					ShipPlayer.Instance.MoveSpaceShip();
 				}
 
 				_keyboardState = Keyboard.GetState();
@@ -206,8 +210,8 @@ namespace Ecliptica
 
 				//Cursor update
 				MouseState mouseState1 = Mouse.GetState();
-				Vector2 cursorPosition1 = new Vector2(mouseState1.X, mouseState1.Y) - cursorOffset;
-				_spriteBatch.Draw(cursorTexture, cursorPosition1, Color.White);
+				Vector2 cursorPosition1 = new Vector2(mouseState1.X, mouseState1.Y) - _cursorOffset;
+				_spriteBatch.Draw(_cursorTexture, cursorPosition1, Color.White);
 
 				_spriteBatch.End();
 
@@ -220,14 +224,12 @@ namespace Ecliptica
 			}
 
 			Background.Draw(_spriteBatch, GraphicsDevice);
-
 			ScreenManager.Draw(_spriteBatch);
-
 
 			//Cursor update
 			MouseState mouseState = Mouse.GetState();
-			Vector2 cursorPosition = new Vector2(mouseState.X, mouseState.Y) - cursorOffset;
-			_spriteBatch.Draw(cursorTexture, cursorPosition, Color.White);
+			Vector2 cursorPosition = new Vector2(mouseState.X, mouseState.Y) - _cursorOffset;
+			_spriteBatch.Draw(_cursorTexture, cursorPosition, Color.White);
 
 			_spriteBatch.End();
 

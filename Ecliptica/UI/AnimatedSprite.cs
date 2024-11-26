@@ -5,57 +5,87 @@ namespace Ecliptica.UI
 {
     public class AnimatedSprite
     {
-        public Texture2D Texture { get; set; }
+		#region Fields
+		private int _currentFrame;
+		private readonly int _totalFrames;
+		private readonly float _timePerFrame;
+		private float _timer;
+		private bool _isActive;
+		#endregion
+
+		#region Properties
+		public Texture2D Texture { get; set; }
         public int Rows { get; set; }
         public int Columns { get; set; }
-        private int _currentFrame;
-        private int _totalFrames;
-        public float TimePerFrame;
-        private float _timer;
-        public bool isActive;
+		public bool IsActive
+		{
+			get { return _isActive; }
+			set { _isActive = value; }
+		}
+		#endregion
 
-        public AnimatedSprite(Texture2D texture, int rows, int columns, float timePerFrame)
+		#region Constructor
+		/// <summary>
+		/// Constructor to initialize the animated sprite
+		/// </summary>
+		/// <param name="texture"></param>
+		/// <param name="rows"></param>
+		/// <param name="columns"></param>
+		/// <param name="timePerFrame"></param>
+		public AnimatedSprite(Texture2D texture, int rows, int columns, float timePerFrame)
         {
             Texture = texture;
             Rows = rows;
             Columns = columns;
             _currentFrame = 0;
             _totalFrames = Rows * Columns;
-            TimePerFrame = timePerFrame;
+			_timePerFrame = timePerFrame;
             _timer = 0f;
-            isActive = true;
+			IsActive = true;
         }
+		#endregion
 
-        public void Update(GameTime gameTime)
+		#region Methods
+		/// <summary>
+		/// Method to update the animated sprite
+		/// </summary>
+		/// <param name="gameTime"></param>
+		public void Update(GameTime gameTime)
         {
-            if (!isActive) return;
+            if (!IsActive) return;
 
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 
-            if (_timer >= TimePerFrame)
+            if (_timer >= _timePerFrame)
             {
-                _timer -= TimePerFrame;
+                _timer -= _timePerFrame;
                 _currentFrame++;
 
                 // Deactivate the explosion when animation is complete
                 if (_currentFrame >= _totalFrames)
                 {
-                    isActive = false;
+					IsActive = false;
                 }
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location)
+		/// <summary>
+		/// Method to draw the animated sprite
+		/// </summary>
+		/// <param name="spriteBatch"></param>
+		/// <param name="location"></param>
+		public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             int width = Texture.Width / Columns;
             int height = Texture.Height / Rows;
 
             int row = _currentFrame / (Texture.Width / width);
             int column = _currentFrame % (Texture.Width / width);
-            Rectangle sourceRect = new Rectangle(column * width, row * width, width, height);
+            Rectangle sourceRect = new(column * width, row * width, width, height);
 
             spriteBatch.Draw(Texture, location, sourceRect, Color.White);
         }
-    }
+		#endregion
+	}
 }

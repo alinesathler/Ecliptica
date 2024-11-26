@@ -2,46 +2,45 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ecliptica.Games;
 using Ecliptica.Arts;
-using System.Reflection.Metadata;
 using Ecliptica.Screens;
 
 namespace Ecliptica.Levels
 {
 	public static class LevelManager
 	{
+		#region Fields
+		private readonly static List<Level> _levels;
+		private static int _currentLevelIndex;
+
+		private readonly static double _initialLevelTime = 50;
+		private readonly static double _levelTimeIncrement = 10;
+		#endregion
+
+		#region Properties
 		public static Level CurrentLevel { get; private set; }
-		private static List<Level> levels;
-		private static int currentLevelIndex;
-		private static double elapsedLevelTime;
+		#endregion
 
-		//private static double initialLevelTime = 50;
-		//private static double levelTimeIncrement = 10;
-
-		private static double initialLevelTime = 50;
-		private static double levelTimeIncrement = 10;
-
+		#region Constructors
 		/// <summary>
 		/// Constructor to initialize the levels
 		/// </summary>
 		static LevelManager()
 		{
-			levels = new();
-			currentLevelIndex = 0;
-			elapsedLevelTime = 0;
+			_levels = new();
+			_currentLevelIndex = 0;
 		}
+		#endregion
 
+		#region Methods
 		/// <summary>
 		/// Method to check if the current level is the last level
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>True if current level is the last level</returns>
 		public static bool IsLastLevel()
 		{
-			return currentLevelIndex == levels.Count - 1;
+			return _currentLevelIndex == _levels.Count - 1;
 		}
 
 		/// <summary>
@@ -51,9 +50,10 @@ namespace Ecliptica.Levels
 		{
 			Random random = new();
 
-			for(int i = levelNumber; i < 6; i++)
+			// Create the levels
+			for (int i = levelNumber; i < 6; i++)
 			{
-				double levelTime = initialLevelTime + (i * levelTimeIncrement);
+				double levelTime = _initialLevelTime + (i * _levelTimeIncrement);
 				int levelStep = 10 - i;
 
 				Level level = new(i, levelTime, levelStep);
@@ -64,11 +64,11 @@ namespace Ecliptica.Levels
 				}
 
 				level.MusicTrack = Sounds.MusicTheme;
-				levels.Add(level);
+				_levels.Add(level);
 			}
 
 			// Set the first level as the current level
-			CurrentLevel = levels[currentLevelIndex];
+			CurrentLevel = _levels[_currentLevelIndex];
 			CurrentLevel.LoadLevel();
 		}
 
@@ -95,14 +95,14 @@ namespace Ecliptica.Levels
 		/// </summary>
 		public static void NextLevel()
 		{
-			currentLevelIndex++;
+			_currentLevelIndex++;
 
 			ScoresScreen.UpdateHighScores();
 
 			// If there are more levels, load the next one
-			if (currentLevelIndex < levels.Count)
+			if (_currentLevelIndex < _levels.Count)
 			{
-				CurrentLevel = levels[currentLevelIndex];
+				CurrentLevel = _levels[_currentLevelIndex];
 
 				CurrentLevel.LoadLevel();
 			} else
@@ -111,17 +111,23 @@ namespace Ecliptica.Levels
 			}
 		}
 
+		/// <summary>
+		///	Method to fire a projectile
+		/// </summary>
 		public static void FireProjectile()
 		{
 			CurrentLevel?.FireProjectile();
 		}
 
+		/// <summary>
+		/// Method to clear the levels
+		/// </summary>
 		public static void Clear()
 		{
 			CurrentLevel = null;
-			levels.Clear();
-			currentLevelIndex = 0;
+			_levels.Clear();
+			_currentLevelIndex = 0;
 		}
+		#endregion
 	}
-
 }
