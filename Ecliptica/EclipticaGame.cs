@@ -25,7 +25,6 @@ using Ecliptica.Arts;
 using Ecliptica.Screens;
 using Microsoft.Xna.Framework.Media;
 using Ecliptica.UI;
-using Ecliptica.InputHandler;
 
 namespace Ecliptica
 {
