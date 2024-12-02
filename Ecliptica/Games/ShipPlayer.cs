@@ -30,10 +30,17 @@ namespace Ecliptica.Games
 			Position = new Vector2(EclipticaGame.ScreenSize.X / 2, EclipticaGame.ScreenSize.Y * 9/10);
 			MaxLife = 8;
 			Life = MaxLife;
+            Scale = 1.0f;
 
-			_shipLife = new LifeShip(Images.LifeBarShip);
+            _shipLife = new LifeShip(Images.LifeBarShip);
 
-			CalculateBoundingBox();
+            // Bigger spaceship for mobile platforms
+            if (EclipticaGame.Instance.platform == Platform.Android || EclipticaGame.Instance.platform == Platform.iOS)
+            {
+                Scale = 2.0f;
+            }
+
+            CalculateBoundingBox();
 		}
 		#endregion
 
@@ -53,9 +60,15 @@ namespace Ecliptica.Games
 		/// <param name="spriteBatch"></param>
 		public override void Draw(SpriteBatch spriteBatch)
 		{
-			spriteBatch.Draw(image, Position, null, Color.White, Orientation, new Vector2(image.Width / 2, image.Height / 2), 1.0f, SpriteEffects.None, 0);
+			spriteBatch.Draw(image, Position, null, Color.White, Orientation, new Vector2(image.Width / 2, image.Height / 2), Scale, SpriteEffects.None, 0);
 
-			_shipLife.Draw(spriteBatch, new Vector2(Position.X, Position.Y + image.Height / 2), Life);
+			if (EclipticaGame.Instance.platform == Platform.Android || EclipticaGame.Instance.platform == Platform.iOS)
+            {
+                // Bigger spaceship for mobile platforms
+                spriteBatch.Draw(image, Position, null, Color.White, Orientation, new Vector2(image.Width / 2, image.Height / 2), Scale, SpriteEffects.None, 0);
+            }
+
+            _shipLife.Draw(spriteBatch, new Vector2(Position.X, Position.Y + image.Height / 2), Life);
 		}
 
 		/// <summary>

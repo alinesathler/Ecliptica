@@ -99,12 +99,33 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/GameFont.spritefont
 
+#begin Fonts/GameFontAndroid.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/GameFontAndroid.spritefont
+
 #begin Fonts/GameFontSmaller.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/GameFontSmaller.spritefont
+
+#begin Fonts/GameFontSmallerAndroid.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/GameFontSmallerAndroid.spritefont
+
+#begin Fonts/MyFontAndroid.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/MyFontAndroid.spritefont
 
 #begin Images/asteroid-blue-medium.png
 /importer:TextureImporter

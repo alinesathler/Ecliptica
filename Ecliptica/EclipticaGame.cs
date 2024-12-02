@@ -12,6 +12,7 @@
 * Aline Sathler Delfino, 2024.11.24: Levels are generated randomly with increased speed and enemy level, added mouse handler, added bonus life and time, levels design.
 * Aline Sathler Delfino, 2024.11.25: Added About and Tutorial screens.
 * Aline Sathler Delfino, 2024.11.25: Installer, taskbar title and debug.
+* Aline Sathler Delfino, 2024.12.02: Android vbersion and debuging.	
 */
 
 using Microsoft.Xna.Framework;
@@ -24,6 +25,7 @@ using Ecliptica.Arts;
 using Ecliptica.Screens;
 using Microsoft.Xna.Framework.Media;
 using Ecliptica.UI;
+using Ecliptica.InputHandler;
 
 namespace Ecliptica
 {
@@ -40,7 +42,7 @@ namespace Ecliptica
 		private float _timeSinceLastShot = 0f;
 		public bool isPaused = false;
 
-		private readonly Platform _platform = Platform.Windows;
+		public readonly Platform platform = Platform.Windows;
 		#endregion
 
 		#region Properties
@@ -69,12 +71,12 @@ namespace Ecliptica
 		{
 			Instance = this;
 
-			_platform = platform;
+            this.platform = platform;
 
 			_graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 
-			if (_platform == Platform.Windows || _platform == Platform.Linux)
+			if (platform == Platform.Windows || platform == Platform.Linux)
 			{
 				SetWindowSize();
 			}
@@ -85,8 +87,8 @@ namespace Ecliptica
 		/// </summary>
 		private void SetWindowSize()
         {
-            int screenWidth = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width * 0.9);
-            int screenHeight = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.9);
+            int screenWidth = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width);
+            int screenHeight = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.90);
 
             _graphics.PreferredBackBufferWidth = screenWidth;
             _graphics.PreferredBackBufferHeight = screenHeight;
@@ -96,7 +98,7 @@ namespace Ecliptica
         {
             // TODO: Add your initialization logic here
 
-            if(_platform == Platform.Android || _platform == Platform.iOS)
+            if(platform == Platform.Android || platform == Platform.iOS)
 			{
 				//Enable touch input
                 TouchPanel.EnabledGestures = GestureType.Tap | GestureType.DoubleTap | GestureType.Flick | GestureType.FreeDrag;
@@ -115,7 +117,7 @@ namespace Ecliptica
 			Fonts.Load(Content);
 
 			//Change cursor
-			if (_platform == Platform.Windows || _platform == Platform.Linux)
+			if (platform == Platform.Windows || platform == Platform.Linux)
 			{
 				_cursorTexture = Images.Cursor;
 				_cursorOffset = new Vector2(_cursorTexture.Width / 2, 0);
@@ -142,7 +144,7 @@ namespace Ecliptica
 
 			MediaPlayer.Volume = 1.0f;
 
-			if (_platform == Platform.Android || _platform == Platform.iOS)
+			if (platform == Platform.Android || platform == Platform.iOS)
 			{
 				while (TouchPanel.IsGestureAvailable)
 				{
@@ -169,7 +171,7 @@ namespace Ecliptica
 							break;
 					}
 				}
-			} else if (_platform == Platform.Windows)
+			} else if (platform == Platform.Windows)
 			{
 				if (ShipPlayer.Instance != null)
 				{
@@ -178,22 +180,22 @@ namespace Ecliptica
 
 				_keyboardState = Keyboard.GetState();
 
-				// Spaceship shooting
-				_timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                // Spaceship shooting
+                _timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 				if (_keyboardState.IsKeyDown(Keys.Space) && _timeSinceLastShot >= _shootCooldown && ShipPlayer.Instance != null)
 				{
 					LevelManager.FireProjectile();
 					_timeSinceLastShot = 0f;
 				}
-
-				ScreenManager.Update(gameTime);
-				Background.Update(gameTime);
-				LevelTransition.UpdateTransition(gameTime);
-
-				base.Update(gameTime);
 			}
-		}
+
+            ScreenManager.Update(gameTime);
+            Background.Update(gameTime);
+            LevelTransition.UpdateTransition(gameTime);
+
+            base.Update(gameTime);
+        }
 
 		protected override void Draw(GameTime gameTime)
 		{ 
@@ -208,10 +210,14 @@ namespace Ecliptica
 
 				PauseScreen.Instance.Draw(_spriteBatch);
 
-				//Cursor update
-				MouseState mouseState1 = Mouse.GetState();
-				Vector2 cursorPosition1 = new Vector2(mouseState1.X, mouseState1.Y) - _cursorOffset;
-				_spriteBatch.Draw(_cursorTexture, cursorPosition1, Color.White);
+
+				if (platform == Platform.Windows || platform == Platform.Linux)
+				{
+					//Cursor update
+					MouseState mouseState1 = Mouse.GetState();
+					Vector2 cursorPosition1 = new Vector2(mouseState1.X, mouseState1.Y) - _cursorOffset;
+					_spriteBatch.Draw(_cursorTexture, cursorPosition1, Color.White);
+				}
 
 				_spriteBatch.End();
 
@@ -226,10 +232,13 @@ namespace Ecliptica
 			Background.Draw(_spriteBatch, GraphicsDevice);
 			ScreenManager.Draw(_spriteBatch);
 
-			//Cursor update
-			MouseState mouseState = Mouse.GetState();
-			Vector2 cursorPosition = new Vector2(mouseState.X, mouseState.Y) - _cursorOffset;
-			_spriteBatch.Draw(_cursorTexture, cursorPosition, Color.White);
+			if(platform == Platform.Windows || platform == Platform.Linux)
+			{
+				//Cursor update
+				MouseState mouseState = Mouse.GetState();
+				Vector2 cursorPosition = new Vector2(mouseState.X, mouseState.Y) - _cursorOffset;
+				_spriteBatch.Draw(_cursorTexture, cursorPosition, Color.White);
+			}
 
 			_spriteBatch.End();
 

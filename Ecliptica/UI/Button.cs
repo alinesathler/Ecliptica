@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using Ecliptica.Arts;
 using System;
 using Ecliptica.InputHandler;
+using Microsoft.Xna.Framework.Input.Touch;
+using Ecliptica.Games;
 
 namespace Ecliptica.UI
 {
@@ -56,37 +58,57 @@ namespace Ecliptica.UI
 			_defaultColor = defaultColor;
 			_hoverColor = hoverColor;
 			OnClick = onClick;
-		}
-		#endregion
+        }
+        #endregion
 
-		#region Methods
-		/// <summary>
-		/// Method to update the button
-		/// </summary>
-		/// <param name="mouseState"></param>
-		public void Update(MouseState mouseState)
+        #region Methods
+        /// <summary>
+        /// Method to update the button
+        /// </summary>
+        /// <param name="mouseState"></param>
+        /// <param name="touchState"></param>
+        public void Update(MouseState mouseState, TouchCollection touchState)
         {
+            bool isHoveredOrTouched = false;
+
+            // Handle mouse input (Windows)
             if (_bounds.Contains(mouseState.Position))
             {
-                _scale = _hoverScale;
+                isHoveredOrTouched = true;
 
                 if (MouseHandler.IsLeftClick(_bounds))
                 {
                     Sounds.PlaySound(Sounds.ButtonSound, 1.0f);
-					OnClick?.Invoke();
+                    OnClick?.Invoke();
                 }
             }
-            else
+
+            // Handle touch input (Android)
+            foreach (var touch in touchState)
             {
-                _scale = _defaultScale;
+                if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved)
+                {
+                    if (_bounds.Contains(touch.Position.ToPoint()))
+                    {
+                        isHoveredOrTouched = true;
+
+                        if (touch.State == TouchLocationState.Pressed)
+                        {
+                            Sounds.PlaySound(Sounds.ButtonSound, 1.0f);
+                            OnClick?.Invoke();
+                        }
+                    }
+                }
             }
+
+            _scale = isHoveredOrTouched ? _hoverScale : _defaultScale;
         }
 
-		/// <summary>
-		/// Method to draw the button
-		/// </summary>
-		/// <param name="spriteBatch"></param>
-		public void Draw(SpriteBatch spriteBatch)
+        /// <summary>
+        /// Method to draw the button
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public void Draw(SpriteBatch spriteBatch)
         {
             Vector2 textSize = _font.MeasureString(Text);
             Vector2 origin = textSize / 2;

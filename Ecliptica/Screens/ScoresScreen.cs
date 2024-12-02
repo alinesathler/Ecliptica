@@ -40,7 +40,6 @@ namespace Ecliptica.Screens
 
 			// Buttons
 			AddButton("Return", () => { ScreenManager.PopScreen(); }, new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y * 2 / 3)));
-			AddButton("Exit", () => EclipticaGame.Instance.Exit());
 
 			// Scores
 			_scores = new();

@@ -1,9 +1,11 @@
 ﻿using Ecliptica.Arts;
 using Ecliptica.Files;
+using Ecliptica.InputHandler;
 using Ecliptica.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -58,7 +60,6 @@ namespace Ecliptica.Screens
 			// Buttons
 			AddButton("Load", () => { LoadGame(_selectedSlot); }, new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y * 2 / 3)));
 			AddButton("Return", () => { IsActive = false; ScreenManager.PopScreen(); });
-			AddButton("Exit", () => EclipticaGame.Instance.Exit());
 
 			// Slots Buttons
 			_slotButtons = new();
@@ -121,11 +122,17 @@ namespace Ecliptica.Screens
 				}
 			}
 
-			foreach (var slotButton in _slotButtons)
-			{
-				slotButton.Update(Mouse.GetState());
-			}
-		}
+            // Windows or Linux
+            MouseState mouseState = Mouse.GetState();
+
+            // Touch screen
+            TouchCollection touchState = TouchPanel.GetState();
+
+            foreach (var slotButton in _slotButtons)
+            {
+                slotButton.Update(mouseState, touchState);
+            }
+        }
 
 		/// <summary>
 		/// Method to draw the load screen

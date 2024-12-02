@@ -21,7 +21,7 @@ namespace Ecliptica.Screens
 			DefaultColor = Color.White;
 			HoverColor = Color.Yellow;
 			ButtonWidth = 450;
-			ButtonHeight = 50;
+			ButtonHeight = 75;
 
 			// Buttons
 			AddButton("Start Game", () => ScreenManager.ReplaceScreen(new GameScreen()), new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, (int)EclipticaGame.ScreenSize.Y / 3));

@@ -1,11 +1,13 @@
 ﻿using Ecliptica.Arts;
 using Ecliptica.Files;
 using Ecliptica.Games;
+using Ecliptica.InputHandler;
 using Ecliptica.Levels;
 using Ecliptica.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -115,9 +117,15 @@ namespace Ecliptica.Screens
 				if (_saveMessageTime <= 0) _saveMessage = null;
 			}
 
+            // Windows or Linux
+            MouseState mouseState = Mouse.GetState();
+
+            // Touch screen
+            TouchCollection touchState = TouchPanel.GetState();
+
             foreach (var slotButton in _slotButtons)
             {
-				slotButton.Update(Mouse.GetState());
+				slotButton.Update(mouseState, touchState);
             }
         }
 

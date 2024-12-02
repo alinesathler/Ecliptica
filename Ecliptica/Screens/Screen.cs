@@ -4,6 +4,7 @@ using Ecliptica.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
@@ -58,13 +59,16 @@ namespace Ecliptica.Screens
 		{
 			MouseState mouseState = Mouse.GetState();
 
-			MouseHandler.Update();
+            // Touch screen
+            TouchCollection touchState = TouchPanel.GetState();
 
-			foreach (var button in Buttons)
-			{
-				button.Update(mouseState);
-			}
-		}
+            MouseHandler.Update();
+
+            foreach (var button in Buttons)
+            {
+                button.Update(mouseState, touchState);
+            }
+        }
 
 		/// <summary>
 		/// Method to draw the screen

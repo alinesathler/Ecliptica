@@ -28,6 +28,6 @@ namespace Ecliptica.InputHandler
         {
             return _keyboardState.IsKeyDown(key) && !_previousKeyState.IsKeyDown(key);
         }
-		#endregion
-	}
+        #endregion
+    }
 }

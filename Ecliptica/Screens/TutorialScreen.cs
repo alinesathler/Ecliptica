@@ -1,4 +1,5 @@
 ﻿using Ecliptica.Arts;
+using Ecliptica.Games;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -30,10 +31,20 @@ namespace Ecliptica.Screens
 
 			// Tutorial Message
 			_tutorialMessage = "Welcome to Ecliptica!\n\n" +
-				"Instructions:\n" +
-				"- Use the arrow keys to move your spaceship.\n" +
+				"Instructions:\n";
+			if(EclipticaGame.Instance.platform == Platform.Android || EclipticaGame.Instance.platform == Platform.iOS)
+			{
+				_tutorialMessage += "- Drag the spaceship to move it.\n" +
+					"- Tap the screen to shoot lasers at incoming asteroids.\n";
+
+            } else
+			{
+				_tutorialMessage += "- Use the arrow keys to move your spaceship.\n" +
 				"- Press SPACEBAR to shoot lasers at incoming asteroids.\n" +
-				"- Destroy asteroids to gain points and avoid collisions.\n" +
+                "- Press Ctrl to turn on the turbo speed and move faster.\n";
+            }
+
+            _tutorialMessage +=  "- Destroy asteroids to gain points and avoid collisions.\n" +
 				"- Collect power-ups to improve your abilities.\n\n" +
 				"Goal:\n" +
 				"- Destroy as many asteroids as possible within the time limit.\n" +

@@ -55,26 +55,26 @@ namespace Ecliptica.UI
         /// <param name="graphicsDevice"></param>
         public static void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
         {
-            graphicsDevice.Clear(Color.White);
+            graphicsDevice.Clear(Color.Black);
 
-            // Draw the static blue background
+            // Draw the static solid background
             spriteBatch.Draw(
                 BackgroundSolid,
-                new Rectangle(0, 0, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height),
+                new Rectangle(0, 0, (int)EclipticaGame.ScreenSize.X, (int)EclipticaGame.ScreenSize.Y),
                 Color.White
             );
 
             // Draw scrolling stars
             spriteBatch.Draw(
                 BackgroundStars,
-                new Rectangle(0, (int)-_starOffset, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height),
+                new Rectangle(0, (int)-_starOffset, (int)EclipticaGame.ScreenSize.X, (int)EclipticaGame.ScreenSize.Y),
                 Color.White
             );
 
             // Draw second star layer
             spriteBatch.Draw(
                 BackgroundStars,
-                new Rectangle(0, (int)(-BackgroundStars.Height - _starOffset), graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height),
+                new Rectangle(0, (int)(-BackgroundStars.Height - _starOffset), (int)EclipticaGame.ScreenSize.X, (int)EclipticaGame.ScreenSize.Y),
                 Color.White
             );
         }

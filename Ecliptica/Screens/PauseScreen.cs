@@ -41,7 +41,8 @@ namespace Ecliptica.Screens
 			// Buttons
 			AddButton("Resume", () => { isPaused = false; ScreenManager.PopScreen(); }, new Vector2(((int)EclipticaGame.ScreenSize.X - ButtonWidth) / 2, ((int)EclipticaGame.ScreenSize.Y) * 2/3));
 			AddButton("Restart", () => { isPaused = false; ScreenManager.ReplaceScreen(new GameScreen()); });
-			AddButton("Main Menu", () => { isPaused = false; ScreenManager.ReplaceScreen(new MenuScreen()); });
+            AddButton("Load Game", () => { isPaused = false; ScreenManager.PushScreen(new LoadScreen()); });
+            AddButton("Main Menu", () => { isPaused = false; ScreenManager.ReplaceScreen(new MenuScreen()); });
 			AddButton("Exit", () => { isPaused = false; EclipticaGame.Instance.Exit(); });
 		}
 		#endregion

@@ -200,6 +200,8 @@ namespace Ecliptica.Levels
 		public void AddTime()
 		{
 			_levelRemaningTime += 10;
+
+			_stepCounter--;
 		}
 		#endregion
 	}

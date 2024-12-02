@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Ecliptica.Arts.Fonts">
+    <Position X="48.5" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBQAAAAAA=</HashCode>
+      <FileName>Arts\Fonts.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Arts.Images">
+    <Position X="39.75" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BADIhEBIRRIAgAoAgBERAICEhIGERAAIAAJAgEABAAI=</HashCode>
+      <FileName>Arts\Images.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Arts.Sounds">
+    <Position X="41.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAgAAAAAAADAABBAAAAA0MBgAAAAAAEAAAAEAAAAA=</HashCode>
+      <FileName>Arts\Sounds.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Files.FileIO">
+    <Position X="46.75" Y="16" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAEAAAQAAAAAAAACAAAA=</HashCode>
+      <FileName>Files\FileIO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Files.SaveManager">
+    <Position X="43.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAgAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Files\SaveManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Games.Asteroid">
+    <Position X="24.25" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAAAAAAgAAAAAAAAAAAAAAIAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Games\Asteroid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Games.BonusLife">
+    <Position X="26.5" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Games\BonusLife.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Games.BonusTime">
+    <Position X="17.5" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Games\BonusTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Games.Entity">
+    <Position X="22" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAKAQIAggAgEAMAAAQAECAAAACAQgAAgQAFAGA=</HashCode>
+      <FileName>Games\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Games.EntityManager">
+    <Position X="48.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAIAAAAIAiEAAAAAAAwEAIAAAAAAKAEEIAJACIA=</HashCode>
+      <FileName>Games\EntityManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Games.Extensions">
+    <Position X="45" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Games\Extensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Games.LifeAsteroids">
+    <Position X="46.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAEAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Games\LifeAsteroids.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Games.LifeShip">
+    <Position X="43.25" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Games\LifeShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Games.Projectile">
+    <Position X="19.75" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Games\Projectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Games.ShipPlayer">
+    <Position X="22" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAAgAAAAgAAQoAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Games\ShipPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.InputHandler.KeyboardHandler">
+    <Position X="45" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAQAAAAAAQCAAAAAAAAA=</HashCode>
+      <FileName>InputHandler\KeyboardHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.InputHandler.MouseHandler">
+    <Position X="41.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAQAACkCAAAAAAAACAAQAAAAAAgAAAAAhA=</HashCode>
+      <FileName>InputHandler\MouseHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.InputHandler.ServiceLocator">
+    <Position X="45" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABQAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InputHandler\ServiceLocator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Levels.Level">
+    <Position X="48.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAYAIgAAAAIAAiQAAAAAAAAEAAEgAQQAAEAFAohAgAA=</HashCode>
+      <FileName>Levels\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Levels.LevelManager">
+    <Position X="46.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAIIAAAEAAAAAgAAAQAAAEAIAAAEAAAAAAAAAABCAAA=</HashCode>
+      <FileName>Levels\LevelManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Levels.LevelTransition">
+    <Position X="45" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAFAAAACAAAAAEAAAQAAABAAAAAAQAAAA=</HashCode>
+      <FileName>Levels\LevelTransition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.AboutScreen">
+    <Position X="19.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAgAAAAAAAQAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Screens\AboutScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.GameOverScreen">
+    <Position X="23.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\GameOverScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.GameScreen">
+    <Position X="26" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAgAAAIAAAAAAQAAAAAgAAAA=</HashCode>
+      <FileName>Screens\GameScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.LoadScreen">
+    <Position X="28.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAIICAACAAgAAECAQAgABAAAAAAAQRAAAAAAAAAE=</HashCode>
+      <FileName>Screens\LoadScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.MenuScreen">
+    <Position X="32.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\MenuScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.PauseScreen">
+    <Position X="12.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAABAAAAAAAAQAAAAAAAIAA=</HashCode>
+      <FileName>Screens\PauseScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.SaveScreen">
+    <Position X="17" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIIAAACQAiAAEAAQAAABAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Screens\SaveScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.ScoresScreen">
+    <Position X="21.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAAAAAggAQAAABAAAAABAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Screens\ScoresScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.Screen">
+    <Position X="23.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAwAgAEAQAIgAgAAAgAAAAAAIAAAAAAEAAAAAIACAAI=</HashCode>
+      <FileName>Screens\Screen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.ScreenManager">
+    <Position X="43.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQgAAAIAAAAAiAAAAQAgAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\ScreenManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.TitleScreen">
+    <Position X="30.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAIAAAgEASAAAACAAAAAAAAAAEAAAAAgAAAA=</HashCode>
+      <FileName>Screens\TitleScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.TutorialScreen">
+    <Position X="35" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAggAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\TutorialScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.Screens.WinScreen">
+    <Position X="14.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAABAAAAAAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Screens\WinScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.UI.AnimatedSprite">
+    <Position X="41.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAkAAEIAAAAABAAAAAEAAAAIAAQgAAAA=</HashCode>
+      <FileName>UI\AnimatedSprite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.UI.Background">
+    <Position X="43.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAIAAgAAAAAAAAAAAAQAABAAAAAAAIAAAAA=</HashCode>
+      <FileName>UI\Background.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.UI.Button">
+    <Position X="45" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAACAAoAAAAAAAAACAICAAIAIAAAACAACAiA=</HashCode>
+      <FileName>UI\Button.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.UI.Firework">
+    <Position X="43.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAIAAgAAAAQAAAgAAAAQAAAABgAAgAAAABA=</HashCode>
+      <FileName>UI\Firework.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.UI.TextManipulation">
+    <Position X="41.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\TextManipulation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ecliptica.EclipticaGame">
+    <Position X="46.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAFAwAAgAIIAAABAQAECAACQoAAAAgAIAQ=</HashCode>
+      <FileName>EclipticaGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Ecliptica.InputHandler.IKeyboardHelper">
+    <Position X="39.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>InputHandler\IKeyboardHelper.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Ecliptica.Games.Platform">
+    <Position X="39.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAQAAAAAAAAAAAAAAABAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Games\Platforms.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
