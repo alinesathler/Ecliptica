@@ -89,7 +89,12 @@ namespace Ecliptica.Screens
 
 			foreach (var firework in fireworks)
 				firework.Draw(spriteBatch);
-				
-		}
+
+            // Draw final score
+			string finalScore = "Final Score: " + EntityManager.GetTotalScore();
+            Vector2 textSizeFinalScore = Font.MeasureString(finalScore);
+            spriteBatch.DrawString(Font, "Final Score: " + EntityManager.GetTotalScore(), new Vector2((EclipticaGame.ScreenSize.X - textSizeFinalScore.X) / 2, 20), HoverColor);
+
+        }
 	}
 }

@@ -24,7 +24,7 @@ using Ecliptica.Levels;
 using Ecliptica.Arts;
 using Ecliptica.Screens;
 using Microsoft.Xna.Framework.Media;
-using Ecliptica.UI;
+using Ecliptica.UI;            
 
 namespace Ecliptica
 {
