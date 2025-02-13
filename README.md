@@ -75,7 +75,7 @@ Controls
 | Move Left     | `Left Arrow`  | Swipe Left    |
 | Move Right    | `Right Arrow` | Swipe Right   |
 | Shoot         | `Spacebar`    | Tap Screen    |
-| Move faster   | `Ctrl`        | Two-Finger Tap |
+| Move faster   | `Ctrl`        | - |
 
 
 
