@@ -91,6 +91,14 @@ Leaderboards & High Scores - Track top players with Firebase or PlayFab (today t
 License
 
 This project is licensed under the MIT License  see the [LICENSE](LICENSE) file for details.
+(Note: License Choice Explanation (MIT License)
+
+I chose the MIT License for Ecliptica because it provides a balance between open-source collaboration and developer rights.
+  - Open-Source Friendly: I want other developers to learn from, use, and modify my code without strict limitations. The MIT License allows anyone to fork, improve, and even use the game in their own projects, as long as they give proper credit.
+  - Minimal Restrictions: Some licenses (like the GPL) require projects using my code to also be open-source. MIT does not have this requirement, meaning developers can use my code without being forced to make their projects open-source.
+  - Simplicity & Accessibility: The MIT License is short and easy to understand, making it more accessible to developers without a legal background.
+  - Attribution Requirement: While I’m allowing free use, the MIT License still requires users to credit me as the original author. This ensures that my work is acknowledged.
+  - Flexibility for Future Use: If I want to expand or commercialize Ecliptica in the future, the MIT License doesn’t restrict me from doing so. Unlike more restrictive licenses, I can still retain full ownership of my project while allowing community contributions.)
 
 
 Contact & Contributions
