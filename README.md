@@ -2,7 +2,7 @@ Ecliptica
 
 A thrilling 2D space shooter adventure!
 
-![Title Screen](screenshots/title-screen.png)
+![Title Screen](Screenshots/title-screen.png)
 
 
 About the Game
@@ -27,9 +27,9 @@ Custom Soundtrack & Effects - Immersive sound effects and background music.
 
 Screenshots
 
-![Game Screen](screenshots/game.png)
-![Save Game Screen](screenshots/save-game.png)
-![Tutorial Screen](screenshots/help.png)
+![Game Screen](Screenshots/game.png)
+![Save Game Screen](Screenshots/save-game.png)
+![Tutorial Screen](Screenshots/help.png)
 
 
 Tools & Technologies
